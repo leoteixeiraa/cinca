@@ -1,0 +1,135 @@
+<div class="container mt-4">
+    <span class="titulo">Linhas - Plano de Serviços</span>
+    <hr class="mb-4">
+    
+    <div class="row">
+      <div class="col-lg-8 col-md-6 col-sm-12">
+        <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+      <br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search"
+        (input)="carregar($event.target.value)"
+        (change)="this.textoBuscar = $event.target.value"
+        placeholder="Pesquisar" aria-label="Pesquisar">
+        <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+      </form>
+      </div>
+    
+    </div>
+    
+
+
+<table class="table table-striped ml-2">
+    <tr>
+        <td><b>Operadora</b></td>
+        <td><b>Código Acesso</b></td>
+        <td><b>Número da Conta</b></td>
+        <td><b>Localização</b></td>
+        <!-- <td><b>Agrupamento</b></td>
+        <td><b>ICCID</b></td>
+        <td><b>Utilizador</b></td>
+        <td><b>Plano de Dados</b></td>
+        <td><b>Intr.Grupo <br>Regional Nacional</b></td>
+        <td><b>Intr.Rede<br>Local</b></td>
+        <td><b>Intr.Rede<br>Regional</b></td>
+        <td><b>Intr.Rede<br>Nacional</b></td> -->
+        <td><b>Ações</b></td>
+    </tr>
+    <tr *ngFor="let dado2 of lista">
+
+        <td>{{dado2.operadora}}</td>
+        <td>{{dado2.cod_acesso}}</td>
+        <td>{{dado2.num_conta}}</td>
+        <td>{{dado2.localizacao}}</td>
+        <!-- <td>{{dado2.agrupamento}}</td>
+        <td>{{dado2.iccid}}</td>
+        <td>{{dado2.utilizador}}</td>
+        <td>{{dado2.plano_dados}}</td>
+        <td>{{dado2.intragrupo_regional_nacional}}</td>
+        <td>{{dado2.intrarede_local}}</td>
+        <td>{{dado2.regional}}</td>
+        <td>{{dado2.intrarede_nacional}}</td> -->
+        <td>
+            <a (click)="dadosEditar(dado2.operadora, dado2.cod_acesso, dado2.num_conta, dado2.localizacao, dado2.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+  </td>
+</tr>
+</table>
+
+</div>
+
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Operadora</label>
+                    <div class="form-group">
+                        <select (input)="this.operadora = $event.target.value" value="{{operadora}}" class="form-control" placeholder="Operadora">
+                          <option>Vivo</option>
+                          <option>Oi</option>
+                          <option>Tim</option>
+                          <option>Claro</option>
+                          <option>Nextel</option>
+                        </select>
+                      </div>         
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Cod. Acesso</label>
+                  <input type="text" class="form-control" (input)="this.cod_acesso = $event.target.value"
+                  value="{{cod_acesso}}"
+                   aria-describedby="emailHelp" placeholder="Código Acesso" required />
+
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Num. Conta</label>
+                  <input type="text" class="form-control" (input)="this.num_conta = $event.target.value"
+                  value="{{num_conta}}"
+                  placeholder="Número da Conta"  required />
+                </div>
+            <div class="form-group">
+                    <label for="exampleInputEmail1">Localização</label>
+                    <div class="form-group">
+                        <select (input)="this.localizacao = $event.target.value" value="{{localizacao}}" class="form-control" placeholder="Localizacao">
+                          <option>Abdon Batista</option>
+                          <option>AMARP</option>
+                          <option>Arroio Trinta</option>
+                          <option>Brunópolis</option>
+                          <option>CIMCATARINA</option>
+                          <option>Videira</option>
+                          <option>Curitibanos</option>
+                          <option>Dona Emma</option>
+                          <option>Fraiburgo</option>
+                          <option>Frei Rogério</option>
+                          <option>Iomerê</option>
+                        </select>
+                      </div>         
+                  </div>
+
+        <div class="modal-footer">
+            <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+            <button *ngIf="id > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
