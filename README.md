@@ -1,6 +1,6 @@
-# Sistema Telefonia
+# Sistema Único do CINCATARINA
 
-# Plano de serviços para controle de Telefonia
+# Gestão e controle de energia
 
  Sistema Desenvolvido em JavaScript, utilizando o framework Angular 8, bootstrap, API PHP para comunicação com banco em MySQL.
 
@@ -21,7 +21,7 @@
 
 ### Documentação Completa
 
-* GitBook (<https://projeto-telefonia-cincatarina.gitbook.io/>)
+* GitBook (<https://leovenancio00.gitbook.io/projeto-controle-de-energia/>)
 
 
 ### Linguagens Utilizadas
