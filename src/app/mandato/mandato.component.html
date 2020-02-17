@@ -1,0 +1,97 @@
+<div class="container mt-4">
+    <span class="titulo">Cadastro de Mandato</span>
+    <hr class="mb-4">
+    
+    <div class="row">
+      <div class="col-lg-8 col-md-6 col-sm-12">
+        <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+      <br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search"
+        (input)="carregar($event.target.value)"
+        (change)="this.textoBuscar = $event.target.value"
+        placeholder="Pesquisar" aria-label="Pesquisar">
+        <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+      </form>
+      </div>
+    
+    </div>
+    
+
+
+<table class="table table-striped ml-2">
+    <tr>
+        <td><b>Código do Mandato</b></td>
+        <td><b>Descricao</b></td>
+        <td><b>Data de início</b></td>
+        <td><b>Data Final</b></td>
+        <td><b>Ações</b></td>
+    </tr>
+    <tr *ngFor="let dado2 of lista">
+
+        <td>{{dado2.idMandato}}</td>
+        <td>{{dado2.descricao}}</td>
+        <td>{{dado2.dataInicio}}</td>
+        <td>{{dado2.dataFinal}}</td>
+        <td>
+           <a (click)="dadosEditar(dado2.descricao, dado2.dataInicio, dado2.dataFinal, dado2.idMandato)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.idMandato)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+  </td>
+</tr>
+</table>
+
+</div>
+
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Descricao</label>
+                  <input type="text" class="form-control" (input)="this.descricao = $event.target.value"
+                  value="{{descricao}}"
+                   aria-describedby="emailHelp" placeholder="Descrição" required />
+
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Data de Início</label>
+                  <input type="date" class="form-control" (input)="this.dataInicio = $event.target.value"
+                  value="{{dataInicio}}"
+                   aria-describedby="emailHelp" placeholder="Data de Início" required />
+
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Data Final</label>
+                  <input type="date" class="form-control" (input)="this.dataFinal = $event.target.value"
+                  value="{{dataFinal}}"
+                   aria-describedby="emailHelp" placeholder="Data Final" required />
+
+                </div>
+           
+        <div class="modal-footer">
+            <button *ngIf="idMandato === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+            <button *ngIf="idMandato > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

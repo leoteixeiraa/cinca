@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'; //biblioteca via comando
 
 @Injectable({
@@ -8,15 +8,17 @@ import 'rxjs/add/operator/map'; //biblioteca via comando
 export class ApiServiceService {
 
   server: string = "http://localhost/apiAngular/";
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  Api(dados: any, api: string){
+  Api(dados: any, api: string) {
     const httpOptions = {
-      headers: new HttpHeaders({'Content-Type':
-    'application/json'})
+      headers: new HttpHeaders({
+        'Content-Type':
+          'application/json'
+      })
     };
     const url = this.server + api;
-    return this.http.post(url, JSON.stringify(dados), 
-    httpOptions).map(res => res);
+    return this.http.post(url, JSON.stringify(dados),
+      httpOptions).map(res => res);
   }
 }
