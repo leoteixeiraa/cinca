@@ -33,8 +33,8 @@
 
         <td>{{dado2.idMandato}}</td>
         <td>{{dado2.descricao}}</td>
-        <td>{{dado2.dataInicio}}</td>
-        <td>{{dado2.dataFinal}}</td>
+        <td>{{dado2.dataInicio | date:"dd/MM/yyyy"}}</td>
+        <td>{{dado2.dataFinal  | date:"dd/MM/yyyy"}}</td>
         <td>
            <a (click)="dadosEditar(dado2.descricao, dado2.dataInicio, dado2.dataFinal, dado2.idMandato)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
       <a (click)="excluir(dado2.idMandato)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
@@ -53,7 +53,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -88,7 +88,7 @@
 
             <button *ngIf="idMandato > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" onClick="window.location.reload();" data-dismiss="modal">Fechar</button>
 
         </div>
 

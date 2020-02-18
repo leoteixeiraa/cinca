@@ -22,7 +22,7 @@ export class MandatoComponent implements OnInit {
 
   constructor(
     private provider: ApiServiceService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -83,6 +83,7 @@ export class MandatoComponent implements OnInit {
     this.dataInicio = dataInicio;
     this.dataFinal = dataFinal;
     this.idMandato = idMandato;
+
   }
 
   editar() {
@@ -104,6 +105,8 @@ export class MandatoComponent implements OnInit {
               //  location='linhas';
               // this.router.navigate(['/linhas']);
               window.location.href = "mandato";
+
+
             } else {
               alert('Erro ao Editar!!');
             }
