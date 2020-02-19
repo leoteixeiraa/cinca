@@ -29,18 +29,24 @@
         <td><b>Data Final</b></td>
         <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado2 of lista">
+    <tr *ngFor="let dado2 of lista | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 7,
+                                                      currentPage: page,
+                                                      totalItems: totalRec }">
 
         <td>{{dado2.idMandato}}</td>
         <td>{{dado2.descricao}}</td>
         <td>{{dado2.dataInicio | date:"dd/MM/yyyy"}}</td>
         <td>{{dado2.dataFinal  | date:"dd/MM/yyyy"}}</td>
         <td>
-           <a (click)="dadosEditar(dado2.descricao, dado2.dataInicio, dado2.dataFinal, dado2.idMandato)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
-      <a (click)="excluir(dado2.idMandato)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+      <a (click)="dadosEditar(dado2.descricao, dado2.dataInicio, dado2.dataFinal, dado2.idMandato)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.idMandato)"  title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
   </td>
 </tr>
 </table>
+<div id="pagination">
+			<pagination-controls previousLabel="Anterior" nextLabel="Próximo"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+		</div> 
 
 </div>
 
@@ -88,10 +94,12 @@
 
             <button *ngIf="idMandato > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" onClick="window.location.reload();" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary"  data-dismiss="modal">Fechar</button>
 
         </div>
 
       </div>
+      
     </div>
+
   </div>

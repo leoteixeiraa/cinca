@@ -10,6 +10,11 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LinhasComponent } from './linhas/linhas.component';
 import { LoginComponent } from './login/login.component';
 import { MandatoComponent } from './mandato/mandato.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CustomMaterialModule } from './custom-material/custom-material.module';
+
 
 @NgModule({
   declarations: [
@@ -17,15 +22,19 @@ import { MandatoComponent } from './mandato/mandato.component';
     UsuariosComponent,
     LinhasComponent,
     LoginComponent,
-    MandatoComponent
+    MandatoComponent,
+    JwPaginationComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule, //Paginação
+    CustomMaterialModule
   ],
   providers: [ApiServiceService,
-  HttpClient
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

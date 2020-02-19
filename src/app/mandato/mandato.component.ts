@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
 
+
 @Component({
   selector: 'app-mandato',
   templateUrl: './mandato.component.html',
@@ -19,6 +20,7 @@ export class MandatoComponent implements OnInit {
   localizacao = '';
   title = 'Inserir Mandato';
   textoBuscar = '';
+  pageOfItems: Array<any>;
 
   constructor(
     private provider: ApiServiceService,
@@ -84,6 +86,8 @@ export class MandatoComponent implements OnInit {
     this.dataFinal = dataFinal;
     this.idMandato = idMandato;
 
+
+
   }
 
   editar() {
@@ -95,6 +99,8 @@ export class MandatoComponent implements OnInit {
           descricao: this.descricao,
           dataInicio: this.dataInicio,
           dataFinal: this.dataFinal
+
+
         };
         this.provider.Api(dados2, 'apiMandato.php')
           .subscribe(data => {

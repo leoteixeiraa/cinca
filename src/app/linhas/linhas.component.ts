@@ -85,6 +85,8 @@ export class LinhasComponent implements OnInit {
     this.num_conta = num_conta;
     this.localizacao = localizacao;
     this.id = id;
+
+
   }
 
   editar() {
