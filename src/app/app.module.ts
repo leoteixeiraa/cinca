@@ -11,7 +11,6 @@ import { LinhasComponent } from './linhas/linhas.component';
 import { LoginComponent } from './login/login.component';
 import { MandatoComponent } from './mandato/mandato.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 
@@ -23,7 +22,6 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
     LinhasComponent,
     LoginComponent,
     MandatoComponent,
-    JwPaginationComponent,
     ConfirmDialogComponent
   ],
   imports: [

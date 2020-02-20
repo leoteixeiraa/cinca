@@ -29,10 +29,7 @@
         <td><b>Data Final</b></td>
         <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado2 of lista | paginate: { id: 'listing_pagination',
-                                                      itemsPerPage: 7,
-                                                      currentPage: page,
-                                                      totalItems: totalRec }">
+    <tr *ngFor="let dado2 of lista ">
 
         <td>{{dado2.idMandato}}</td>
         <td>{{dado2.descricao}}</td>
@@ -44,9 +41,7 @@
   </td>
 </tr>
 </table>
-<div id="pagination">
-			<pagination-controls previousLabel="Anterior" nextLabel="Próximo"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-		</div> 
+
 
 </div>
 
@@ -92,7 +87,7 @@
         <div class="modal-footer">
             <button *ngIf="idMandato === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
 
-            <button *ngIf="idMandato > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+            <button *ngIf="idMandato > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
           <button type="button" class="btn btn-secondary"  data-dismiss="modal">Fechar</button>
 
