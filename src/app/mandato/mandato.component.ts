@@ -38,13 +38,13 @@ export class MandatoComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'listar',
         limit: this.limit,
         start: this.start,
         textoBuscar: texto
       };
-      this.provider.Api(dados2, 'apiMandato.php').subscribe(data => {
+      this.provider.Api(dados, 'apiMandato.php').subscribe(data => {
         for (const dado2 of data['result']) {
           this.lista.push(dado2);
         }
@@ -56,13 +56,13 @@ export class MandatoComponent implements OnInit {
   cadastrar() {
     if (this.descricao !== '' && this.dataInicio !== '' && this.dataFinal !== '') {
       return new Promise(resolve => {
-        const dados2 = {
+        const dados = {
           requisicao: 'add',
           descricao: this.descricao,
           dataInicio: this.dataInicio,
           dataFinal: this.dataFinal
         };
-        this.provider.Api(dados2, 'apiMandato.php')
+        this.provider.Api(dados, 'apiMandato.php')
           .subscribe(data => {
 
             if (data['success']) {
@@ -93,7 +93,7 @@ export class MandatoComponent implements OnInit {
   editar() {
     if (this.descricao !== '' && this.dataInicio !== '' && this.dataFinal !== '') {
       return new Promise(resolve => {
-        const dados2 = {
+        const dados = {
           requisicao: 'editar',
           idMandato: this.idMandato,
           descricao: this.descricao,
@@ -102,7 +102,7 @@ export class MandatoComponent implements OnInit {
 
 
         };
-        this.provider.Api(dados2, 'apiMandato.php')
+        this.provider.Api(dados, 'apiMandato.php')
           .subscribe(data => {
 
             if (data['success']) {
@@ -128,11 +128,11 @@ export class MandatoComponent implements OnInit {
 
   excluir(idu: string) {
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'excluir',
         idMandato: idu
       };
-      this.provider.Api(dados2, 'apiMandato.php')
+      this.provider.Api(dados, 'apiMandato.php')
         .subscribe(data => {
 
           if (data['success']) {

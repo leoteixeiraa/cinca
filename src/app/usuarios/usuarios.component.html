@@ -24,18 +24,18 @@
 <table class="table table-striped ml-2">
     <tr>
         <td><b>Nome</b></td>
-        <td><b>Usuário</b></td>
+        <td><b>Login</b></td>
         <td><b>Senha</b></td>
         <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado of lista">
+    <tr *ngFor="let dado2 of lista">
 
-        <td>{{dado.nome}}</td>
-        <td>{{dado.usuario}}</td>
-        <td>{{dado.senha}}</td>
+        <td>{{dado2.nome}}</td>
+        <td>{{dado2.login}}</td>
+        <td>{{dado2.senha}}</td>
         <td>
-            <a (click)="dadosEditar(dado.nome, dado.usuario, dado.senha, dado.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
-      <a (click)="excluir(dado.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+            <a (click)="dadosEditar(dado2.nome, dado2.login, dado2.senha, dado2.idUser)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.idUser)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
   </td>
 </tr>
 </table>
@@ -51,7 +51,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -63,33 +63,35 @@
                     <label for="exampleInputEmail1">Nome</label>
                     <input type="text" class="form-control"
                     (input)="this.nome = $event.target.value" aria-describedby="emailHelp"
-                    value="{{nome}}" placeholder="Seu nome" required />
+                    value="{{nome}}" placeholder="Digite seu nome" required />
+
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Login</label>
+                    <input type="text" class="form-control"
+                    (input)="this.login = $event.target.value" aria-describedby="emailHelp"
+                    value="{{login}}" placeholder="Digite seu Login" required />
 
                   </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" (input)="this.usuario = $event.target.value"
-                  value="{{usuario}}"
-                   aria-describedby="emailHelp" placeholder="Seu email" required />
-
-                </div>
-                <div class="form-group">
                   <label for="exampleInputPassword1">Senha</label>
-                  <input type="text" class="form-control" (input)="this.senha = $event.target.value"
+                  <input type="password" class="form-control" (input)="this.senha = $event.target.value"
                   value="{{senha}}"
-                  placeholder="Senha"  required />
+                  placeholder="Digite uma senha"  required />
                 </div>
 
         </div>
         <div class="modal-footer">
-            <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+            <button *ngIf="idUser === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
 
-            <button *ngIf="id > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+            <button *ngIf="idUser > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary"  data-dismiss="modal">Fechar</button>
 
         </div>
 
       </div>
+      
     </div>
+
   </div>

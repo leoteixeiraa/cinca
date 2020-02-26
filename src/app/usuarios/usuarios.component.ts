@@ -13,37 +13,37 @@ export class UsuariosComponent implements OnInit {
   limit = 10;
   start = 0;
   nome = '';
-  usuario = '';
+  login = '';
   senha = '';
-  id = '';
-  title = 'Inserir Usuário';
+  idUser = '';
+  title = 'Inserir Usuário ao sistema';
   textoBuscar = '';
 
-  constructor( 
+  constructor(
     private provider: ApiServiceService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.lista = [];  
+    this.lista = [];
     this.start = 0;
     this.carregar(this.textoBuscar);
   }
 
 
-  carregar(texto : string) {
+  carregar(texto: string) {
     this.lista = [];
     this.start = 0;
     return new Promise(resolve => {
       const dados = {
-        requisicao : 'listar',
-        limit : this.limit,
+        requisicao: 'listar',
+        limit: this.limit,
         start: this.start,
         textoBuscar: texto
       };
       this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
-        for(const dado of data['result']){
-          this.lista.push(dado);
+        for (const dado2 of data['result']) {
+          this.lista.push(dado2);
         }
         resolve(true);
       });
@@ -51,85 +51,85 @@ export class UsuariosComponent implements OnInit {
   }
 
   cadastrar() {
-    if(this.nome !== '' && this.usuario !== '' && this.senha !== '') {
-    return new Promise(resolve => {
-      const dados = {
-        requisicao : 'add',
-        nome: this.nome,
-        usuario: this.usuario,
-        senha: this.senha
-      };
-      this.provider.Api(dados, 'apiUsuarios.php')
-      .subscribe(data => {
+    if (this.login !== '' && this.senha !== '') {
+      return new Promise(resolve => {
+        const dados = {
+          requisicao: 'add',
+          nome: this.nome,
+          login: this.login,
+          senha: this.senha
+        };
+        this.provider.Api(dados, 'apiUsuarios.php')
+          .subscribe(data => {
 
-        if(data['success']){
-          alert('Salvo com sucesso!!');
-          window.location.href = "usuarios"; 
-        }else{
-          alert('Erro ao Salvar!!');
-        }
+            if (data['success']) {
+              alert('Salvo com sucesso!!');
+              window.location.href = "usuarios";
+            } else {
+              alert('Erro ao Salvar!!');
+            }
 
+          });
       });
-    });
-  }else{
-    alert('Prencha os Campos!');
-  }
+    } else {
+      alert('Prencha os Campos!');
+    }
   }
 
-  dadosEditar(nome: string, usuario: string, senha: string, id: string){
+  dadosEditar(nome: string, login: string, senha: string, idUser: string) {
     this.title = 'Editar Usuário';
     this.nome = nome;
-    this.usuario = usuario;
+    this.login = login;
     this.senha = senha;
-    this.id = id;
+    this.idUser = idUser;
   }
 
   editar() {
     return new Promise(resolve => {
       const dados = {
-        requisicao : 'editar',
+        requisicao: 'editar',
         nome: this.nome,
-        usuario: this.usuario,
+        login: this.login,
         senha: this.senha,
-        id: this.id
+        idUser: this.idUser
       };
       this.provider.Api(dados, 'apiUsuarios.php')
-      .subscribe(data => {
+        .subscribe(data => {
 
-        if(data['success']){
-         alert('Editado com sucesso!!');
-         
-        //  location='usuarios';
-        // this.router.navigate(['/usuarios']);
-        window.location.href = "usuarios"; 
-        }else{
-         alert('Erro ao Editar!!');
-        }
+          if (data['success']) {
+            alert('Editado com sucesso!!');
 
-      });
+            //  location='usuarios';
+            // this.router.navigate(['/usuarios']);
+            window.location.href = "usuarios";
+          } else {
+            alert('Erro ao Editar!!');
+          }
+
+        });
     });
 
-}
+  }
 
-excluir(idu: string) {
-  return new Promise(resolve => {
+  excluir(idu: string) {
+    return new Promise(resolve => {
       const dados = {
-        requisicao : 'excluir',
-        id: idu
+        requisicao: 'excluir',
+        idUser: idu
       };
       this.provider.Api(dados, 'apiUsuarios.php')
-      .subscribe(data => {
+        .subscribe(data => {
 
-        if(data['success']){
-          alert('Excluido com sucesso!');
+          if (data['success']) {
+            alert('Excluido com sucesso!');
 
-          window.location.href = "usuarios"; 
-        }else{
-          alert('Erro ao Excluir!!');
-        }
+            window.location.href = "usuarios";
+          } else {
+            alert('Erro ao Excluir!!');
+          }
 
-      });
+        });
     });
-    }
+  }
 
 }

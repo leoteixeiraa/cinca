@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  usuario = '';
+  senha = '';
+
+  constructor(private provider: ApiServiceService) { }
 
   ngOnInit() {
   }
 
+  login(usuario: string, senha: string) {
+
+    return new Promise(resolve => {
+      const dados = {
+        requisicao: 'listar',
+        textoBuscar: usuario
+      };
+      this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
+        if (data['success']) {
+          alert('Login Efetuado!');
+          window.location.href = "usuarios";
+        } else {
+          alert('Dados Incorretos');
+        }
+        resolve(true);
+      });
+    });
+  }
 }

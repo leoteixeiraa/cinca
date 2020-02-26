@@ -14,9 +14,9 @@
 
     <!-- Login Form -->
     <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Digite Seu Login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Digite Sua senha">
-      <input type="submit" class="fadeIn fourth" value="Acessar">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Digite Seu Login" (input)="this.usuario = $event.target.value" >
+      <input type="text" id="password" class="fadeIn third" name="senha" placeholder="Digite Sua senha" (input)="this.senha = $event.target.value">
+      <input type="submit" class="fadeIn fourth" value="Acessar" onclick="login(this.usuario, this.senha)">
     </form>
 
     <!-- Remind Passowrd -->

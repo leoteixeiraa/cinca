@@ -248,18 +248,20 @@ input[type=text]:placeholder {
     -webkit-animation-delay: 0.6s;
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
+    
 }
 
 .fadeIn.third {
     -webkit-animation-delay: 0.8s;
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
+    -webkit-text-security: disc;
 }
 
 .fadeIn.fourth {
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
 /* Simple CSS3 Fade-in Animation */
@@ -292,4 +294,10 @@ animation-delay: 1s;
 
 #icon {
     width: 60%;
+}
+
+#icone {
+    font-size: 50px;
+    padding: 15px;
+
 }

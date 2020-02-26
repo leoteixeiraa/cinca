@@ -1,6 +1,6 @@
+import { __decorate } from "tslib";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,28 +14,31 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
-
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    UsuariosComponent,
-    LinhasComponent,
-    LoginComponent,
-    MandatoComponent,
-    // JwPaginationComponent,
-    ConfirmDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgxPaginationModule, //Paginação
-    CustomMaterialModule
-  ],
-  providers: [ApiServiceService,
-    HttpClient
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+let AppModule = class AppModule {
+};
+AppModule = __decorate([
+    NgModule({
+        declarations: [
+            AppComponent,
+            UsuariosComponent,
+            LinhasComponent,
+            LoginComponent,
+            MandatoComponent,
+            // JwPaginationComponent,
+            ConfirmDialogComponent
+        ],
+        imports: [
+            BrowserModule,
+            AppRoutingModule,
+            HttpClientModule,
+            NgxPaginationModule,
+            CustomMaterialModule
+        ],
+        providers: [ApiServiceService,
+            HttpClient
+        ],
+        bootstrap: [AppComponent]
+    })
+], AppModule);
+export { AppModule };
+//# sourceMappingURL=app.module.js.map
