@@ -1,7 +1,5 @@
 # Sistema Único do CINCATARINA
 
-# Gestão e controle de energia
-
  Sistema Desenvolvido em JavaScript, utilizando o framework Angular 8, bootstrap, API PHP para comunicação com banco em MySQL.
 
  ![](sistema.png)
@@ -48,3 +46,5 @@ npm install -g @angular/cli
 ## Desenvolvedores do Projeto:
 
 1. Leonardo Teixeira
+2. Danrlei Correa
+3. João Vitor Oliva
