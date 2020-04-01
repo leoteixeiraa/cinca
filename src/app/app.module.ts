@@ -14,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
     LoginComponent,
     MandatoComponent,
     // JwPaginationComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PessoaFisicaComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { LinhasComponent } from './linhas/linhas.component';
 import { LoginComponent } from './login/login.component';
 import { MandatoComponent } from './mandato/mandato.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 
 const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'mandato', component: MandatoComponent },
   { path: 'confirm-dialog', component: ConfirmDialogComponent },
+  { path: 'pessoa-fisica', component: PessoaFisicaComponent },
 ];
 
 @NgModule({
