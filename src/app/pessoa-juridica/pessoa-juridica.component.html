@@ -25,14 +25,26 @@
     <tr>
         <td><b>ID PJ</b></td>
         <td><b>Razão Social</b></td>
+        <td><b>CNPJ</b></td>
+        <td><b>Status</b></td>
+        <td><b>Endereço</b></td>
+        <td><b>Telefone</b></td>
+        <td><b>E-mail</b></td>
+        <td><b>Cidade</b></td>
         <td><b>Ações</b></td>
     </tr>
     <tr *ngFor="let dado2 of lista">
 
         <td>{{dado2.idPJuridica}}</td>
         <td>{{dado2.razaoSocial}}</td>
+        <td>{{dado2.cnpj}}</td>
+        <td>{{dado2.status}}</td>
+        <td>{{dado2.endereco}}</td>
+        <td>{{dado2.telefone}}</td>
+        <td>{{dado2.email}}</td>
+        <td>{{dado2.cidade}}</td>  
         <td>
-      <a (click)="dadosEditar(dado2.razaoSocial, dado2.idPJuridica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="dadosEditar(dado2.razaoSocial, dado2.cnpj, dado2.status, dado2.endereco, dado2.complemento, dado2.cidade, dado2.bairro, dado2.numero, dado2.pontoReferencia, dado2.cep, dado2.uf, dado2.email, dado2.telefone, dado2.site, dado2.idPJuridica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
       <a (click)="excluir(dado2.idPJuridica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
   </td>
 </tr>
@@ -49,7 +61,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <button type="button" class="close" onClick="window.location.reload();" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -69,11 +81,13 @@
                    <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">CNPJ</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="CNPJ">
+                        <input type="email" class="form-control" (input)="this.cnpj = $event.target.value"
+                  value="{{cnpj}}" placeholder="CNPJ">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputPassword4">Status</label>
-                        <select id="inputEstado" class="form-control">
+                        <select (input)="this.status = $event.target.value"
+                  value="{{status}}" class="form-control">
                           <option selected>Ativo</option>
                           <option>Inativo</option>
                         </select>
@@ -86,50 +100,80 @@
 
             <div class="form-group">  
                   <label for="exampleInputEmail1">Endereço</label>
-                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-                  value="{{razaoSocial}}"
+                  <input type="text" class="form-control" (input)="this.endereco = $event.target.value"
+                  value="{{endereco}}"
                    aria-describedby="emailHelp" placeholder="Endereço" required />
                 </div>
                    <div class="form-group">  
                   <label for="exampleInputEmail1">Complemento</label>
-                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-                  value="{{razaoSocial}}"
-                   aria-describedby="emailHelp" placeholder="Complemento" required />
+                  <input type="text" class="form-control" (input)="this.complemento = $event.target.value"
+                  value="{{complemento}}"
+                   aria-describedby="emailHelp" placeholder="Complemento" />
                 </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">Cidade</label>
-                  <input type="text" class="form-control" placeholder="Cidade" id="inputCity">
+                  <input type="text" class="form-control" (input)="this.cidade = $event.target.value"
+                  value="{{cidade}}" placeholder="Cidade" >
              </div>
           <div class="form-group col-md-4">
             <label for="inputEstado">Bairro</label>
-         <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-                  value="{{razaoSocial}}"
+         <input type="text" class="form-control" (input)="this.bairro = $event.target.value"
+                  value="{{bairro}}"
                    aria-describedby="emailHelp" placeholder="Bairro" required />
           </div>
           <div class="form-group col-md-2">
             <label for="inputCEP">Nº</label>
-            <input type="text" class="form-control" placeholder="Nº" id="inputCEP">
+            <input type="text" class="form-control" (input)="this.numero = $event.target.value"
+                  value="{{numero}}" placeholder="Nº" >
           </div>
         </div>
 
                     <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">Ponto de referência</label>
-                  <input type="text" class="form-control" placeholder="Ponto de refêrencia" id="inputCity">
+                  <input type="text" class="form-control" (input)="this.pontoReferencia = $event.target.value"
+                  value="{{pontoReferencia}}" placeholder="Ponto de refêrencia" >
              </div>
           <div class="form-group col-md-4">
             <label for="inputEstado">CEP</label>
-         <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-                  value="{{razaoSocial}}"
+         <input type="text" class="form-control" (input)="this.cep = $event.target.value"
+                  value="{{cep}}"
                    aria-describedby="emailHelp" placeholder="CEP" required />
           </div>
           <div class="form-group col-md-2">
             <label for="inputCEP">UF</label>
-            <select id="inputEstado" class="form-control">
+            <select (input)="this.uf = $event.target.value"
+                  value="{{uf}}"  class="form-control">
         <option selected>UF</option>
-        <option>...</option>
+        <option value="AC">AC</option>
+    <option value="AL">AL</option>
+    <option value="AP">AP</option>
+    <option value="AM">AM</option>
+    <option value="BA">BA</option>
+    <option value="CE">CE</option>
+    <option value="DF">DF</option>
+    <option value="ES">ES</option>
+    <option value="GO">GO</option>
+    <option value="MA">MA</option>
+    <option value="MS">MS</option>
+    <option value="MT">MT</option>
+    <option value="MG">MG</option>
+    <option value="PA">PA</option>
+    <option value="PB">PB</option>
+    <option value="PR">PR</option>
+    <option value="PE">PE</option>
+    <option value="PI">PI</option>
+    <option value="RJ">RJ</option>
+    <option value="RN">RN</option>
+    <option value="RS">RS</option>
+    <option value="RO">RO</option>
+    <option value="RR">RR</option>
+    <option value="SC">SC</option>
+    <option value="SP">SP</option>
+    <option value="SE">SE</option>
+    <option value="TO">TO</option>
       </select>
           </div>
         </div>
@@ -140,19 +184,21 @@
             <br>
                 <div class="form-group">  
                   <label for="exampleInputEmail1">E-mail</label>
-                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-                  value="{{razaoSocial}}"
+                  <input type="text" class="form-control" (input)="this.email = $event.target.value"
+                  value="{{email}}"
                    aria-describedby="emailHelp" placeholder="E-mail" required />
                 </div>
 
                    <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Telefone</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Telefone">
+                        <input type="email" class="form-control" (input)="this.telefone = $event.target.value"
+                  value="{{telefone}}"  placeholder="Telefone">
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputPassword4">Site</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Site">
+                        <input type="email" (input)="this.site = $event.target.value"
+                  value="{{site}}" class="form-control" placeholder="Site">
                       </div>
                     </div>
         
@@ -162,7 +208,7 @@
 
             <button *ngIf="idPJuridica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" onClick="window.location.reload();" data-dismiss="modal">Fechar</button>
 
         </div>
 
