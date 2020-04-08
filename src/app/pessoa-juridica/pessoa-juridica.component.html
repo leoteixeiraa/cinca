@@ -1,0 +1,171 @@
+<div class="container mt-4">
+    <span class="titulo">Painel Pessoa Jurídica</span>
+    <hr class="mb-4">
+    
+    <div class="row">
+      <div class="col-lg-8 col-md-6 col-sm-12">
+        <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+      <br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search"
+        (input)="carregar($event.target.value)"
+        (change)="this.textoBuscar = $event.target.value"
+        placeholder="Pesquisar" aria-label="Pesquisar">
+        <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+      </form>
+      </div>
+    
+    </div>
+    
+
+
+<table class="table table-striped ml-2">
+    <tr>
+        <td><b>ID PJ</b></td>
+        <td><b>Razão Social</b></td>
+        <td><b>Ações</b></td>
+    </tr>
+    <tr *ngFor="let dado2 of lista">
+
+        <td>{{dado2.idPJuridica}}</td>
+        <td>{{dado2.razaoSocial}}</td>
+        <td>
+      <a (click)="dadosEditar(dado2.razaoSocial, dado2.idPJuridica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.idPJuridica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+  </td>
+</tr>
+</table>
+
+</div>
+
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+           <div class="modal-header">
+                <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
+            </div>
+            <br>
+                <div class="form-group">  
+                  <label for="exampleInputEmail1">Razão Social</label>
+                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="Razão Social" required />
+                </div>
+
+                   <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">CNPJ</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="CNPJ">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Status</label>
+                        <select id="inputEstado" class="form-control">
+                          <option selected>Ativo</option>
+                          <option>Inativo</option>
+                        </select>
+                      </div>
+                    </div>
+                <div class="modal-header">
+                <h6 class="modal-title"><strong>Endereço</strong></h6>
+            </div>
+            <br>
+
+            <div class="form-group">  
+                  <label for="exampleInputEmail1">Endereço</label>
+                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="Endereço" required />
+                </div>
+                   <div class="form-group">  
+                  <label for="exampleInputEmail1">Complemento</label>
+                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="Complemento" required />
+                </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">Cidade</label>
+                  <input type="text" class="form-control" placeholder="Cidade" id="inputCity">
+             </div>
+          <div class="form-group col-md-4">
+            <label for="inputEstado">Bairro</label>
+         <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="Bairro" required />
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCEP">Nº</label>
+            <input type="text" class="form-control" placeholder="Nº" id="inputCEP">
+          </div>
+        </div>
+
+                    <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">Ponto de referência</label>
+                  <input type="text" class="form-control" placeholder="Ponto de refêrencia" id="inputCity">
+             </div>
+          <div class="form-group col-md-4">
+            <label for="inputEstado">CEP</label>
+         <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="CEP" required />
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputCEP">UF</label>
+            <select id="inputEstado" class="form-control">
+        <option selected>UF</option>
+        <option>...</option>
+      </select>
+          </div>
+        </div>
+
+        <div class="modal-header">
+                <h6 class="modal-title"><strong>Contato</strong></h6>
+            </div>
+            <br>
+                <div class="form-group">  
+                  <label for="exampleInputEmail1">E-mail</label>
+                  <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                  value="{{razaoSocial}}"
+                   aria-describedby="emailHelp" placeholder="E-mail" required />
+                </div>
+
+                   <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Telefone</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Telefone">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Site</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Site">
+                      </div>
+                    </div>
+        
+
+        <div class="modal-footer">
+            <button *ngIf="idPJuridica === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+            <button *ngIf="idPJuridica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

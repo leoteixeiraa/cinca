@@ -1,1 +1,84 @@
-<p>pessoa-fisica works!</p>
+<div class="container mt-4">
+    <span class="titulo">Cadastro de Pessoa Física</span>
+    <hr class="mb-4">
+    
+    <div class="row">
+      <div class="col-lg-8 col-md-6 col-sm-12">
+        <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+      <br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search"
+        (input)="carregar($event.target.value)"
+        (change)="this.textoBuscar = $event.target.value"
+        placeholder="Pesquisar" aria-label="Pesquisar">
+        <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+      </form>
+      </div>
+    
+    </div>
+    
+
+
+<table class="table table-striped ml-2">
+    <tr>
+        <td><b>Código PF</b></td>
+        <td><b>Nome</b></td>
+        <td><b>CPF</b></td>
+        <td><b>Ações</b></td>
+    </tr>
+    <tr *ngFor="let dado2 of lista ">
+
+        <td>{{dado2.idPFisica}}</td>
+        <td>{{dado2.nome}}</td>
+        <td>{{dado2.cpf}}</td>
+        <td>
+      <a (click)="dadosEditar(dado2.nome, dado2.cpf, dado2.rg, dado2.sexo, dado2.dataNascimento, dado2.estadoCivil, dado2.cep, dado2.endereco, dado2.complemento, dado2.cidade, dado2.bairro, dado2.uf, dado2.telefone, dado2.email, dado2.idPFisica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado2.idPFisica)"  title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+  </td>
+</tr>
+</table>
+<!--<div id="pagination">
+			<pagination-controls previousLabel="Anterior" nextLabel="Próximo"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+		</div>  -->
+    
+</div>
+
+
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{title}}</h5>
+          <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+               <div class="form-group">
+                  <label for="exampleInputEmail1">Nome</label>
+                  <input type="text" class="form-control" (input)="this.nome = $event.target.value"
+                  value="{{nome}}"
+                   aria-describedby="emailHelp" placeholder="Nome Completo" required />
+
+                </div>
+        <div class="modal-footer">
+            <button *ngIf="idPFisica === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+            <button *ngIf="idPFisica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
+          <button type="button" class="btn btn-secondary"  data-dismiss="modal">Fechar</button>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>

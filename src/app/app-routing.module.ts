@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { MandatoComponent } from './mandato/mandato.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
+import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
 
 const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'mandato', component: MandatoComponent },
   { path: 'confirm-dialog', component: ConfirmDialogComponent },
   { path: 'pessoa-fisica', component: PessoaFisicaComponent },
+  { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
 ];
 
 @NgModule({

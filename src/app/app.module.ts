@@ -15,6 +15,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
+import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
     MandatoComponent,
     // JwPaginationComponent,
     ConfirmDialogComponent,
-    PessoaFisicaComponent
+    PessoaFisicaComponent,
+    PessoaJuridicaComponent
   ],
   imports: [
     BrowserModule,

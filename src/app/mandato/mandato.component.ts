@@ -14,6 +14,7 @@ export class MandatoComponent implements OnInit {
   limit = 10;
   start = 0;
   idMandato = '';
+
   descricao = '';
   dataInicio = '';
   dataFinal = '';
