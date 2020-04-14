@@ -64,7 +64,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.razaoSocial !== '' && this.cnpj !== '' && this.status !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.pontoReferencia !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '') {
+    if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '') {
       return new Promise(resolve => {
         const dados2 = {
           requisicao: 'add',
