@@ -5,9 +5,12 @@
   <div class="row">
     <div class="col-lg-8 col-md-6 col-sm-12">
       <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+
       <br><br>
     </div>
+
     <div class="col-lg-4 col-md-6 col-sm-12">
+
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" (input)="carregar($event.target.value)"
           (change)="this.textoBuscar = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
@@ -78,12 +81,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
         <div class="modal-header">
           <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
         </div>
-        <br>
+
         <div class="form-group">
           <label for="exampleInputEmail1">Razão Social</label>
           <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
@@ -108,7 +110,7 @@
         <div class="modal-header">
           <h6 class="modal-title"><strong>Endereço</strong></h6>
         </div>
-        <br>
+
 
         <div class="form-group">
           <label for="exampleInputEmail1">Endereço</label>
