@@ -16,6 +16,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
+import { FormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.compo
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule, //Paginação
-    CustomMaterialModule
+    CustomMaterialModule,
+    FormsModule,
+    TextMaskModule
   ],
   providers: [ApiServiceService,
     HttpClient
