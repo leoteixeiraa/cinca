@@ -81,119 +81,182 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
-        <div class="modal-header">
-          <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
-        </div>
-
-        <div class="form-group">
-          <label for="exampleInputEmail1">Razão Social</label>
-          <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
-            value="{{razaoSocial}}" aria-describedby="emailHelp" placeholder="Razão Social" required />
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">CNPJ</label>
-            <input type="email" class="form-control" (input)="this.cnpj = $event.target.value" value="{{cnpj}}"
-              placeholder="CNPJ">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Status</label>
-            <select (input)="this.status = $event.target.value" value="{{status}}" class="form-control">
-              <option selected>{{status}}</option>
-              <option selected>Ativo</option>
-              <option>Inativo</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-header">
-          <h6 class="modal-title"><strong>Endereço</strong></h6>
-        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#infBasicas" role="tab" aria-controls="infBasicas">Inf.
+              Básicas</a>
+          </li>
 
 
-        <div class="form-group">
-          <label for="exampleInputEmail1">Endereço</label>
-          <input type="text" class="form-control" (input)="this.endereco = $event.target.value" value="{{endereco}}"
-            aria-describedby="emailHelp" placeholder="Endereço" required />
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Complemento</label>
-          <input type="text" class="form-control" (input)="this.complemento = $event.target.value"
-            value="{{complemento}}" aria-describedby="emailHelp" placeholder="Complemento" />
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#endereco" role="tab" aria-controls="endereco">Endereço</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#contato" role="tab" aria-controls="contato">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#observacoes" role="tab"
+              aria-controls="observacoes">Observacoes</a>
+          </li>
+        </ul>
+        <!--Inf. do Sub-Menu -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="infBasicas" role="tabpanel">
+            <div class="modal-header">
+              <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Razão Social</label>
+              <input type="text" class="form-control" (input)="this.razaoSocial = $event.target.value"
+                value="{{razaoSocial}}" aria-describedby="emailHelp" placeholder="Razão Social" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">CNPJ</label>
+                <input type="email" class="form-control" (input)="this.cnpj = $event.target.value" value="{{cnpj}}"
+                  placeholder="CNPJ">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Status</label>
+                <select (input)="this.status = $event.target.value" value="{{status}}" class="form-control">
+                  <option selected>{{status}}</option>
+                  <option selected>Ativo</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane" id="endereco" role="tabpanel">
+            <div class="modal-header">
+              <h6 class="modal-title"><strong>Endereço</strong></h6>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Endereço</label>
+              <input type="text" class="form-control" (input)="this.endereco = $event.target.value" value="{{endereco}}"
+                aria-describedby="emailHelp" placeholder="Endereço" required />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Complemento</label>
+              <input type="text" class="form-control" (input)="this.complemento = $event.target.value"
+                value="{{complemento}}" aria-describedby="emailHelp" placeholder="Complemento" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Cidade</label>
+                <input type="text" class="form-control" (input)="this.cidade = $event.target.value" value="{{cidade}}"
+                  placeholder="Cidade">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputEstado">Bairro</label>
+                <input type="text" class="form-control" (input)="this.bairro = $event.target.value" value="{{bairro}}"
+                  aria-describedby="emailHelp" placeholder="Bairro" required />
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputCEP">Nº</label>
+                <input type="text" class="form-control" (input)="this.numero = $event.target.value" value="{{numero}}"
+                  placeholder="Nº">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Ponto de referência</label>
+                <input type="text" class="form-control" (input)="this.pontoReferencia = $event.target.value"
+                  value="{{pontoReferencia}}" placeholder="Ponto de refêrencia">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputEstado">CEP</label>
+                <input type="text" class="form-control" (input)="this.cep = $event.target.value" value="{{cep}}"
+                  aria-describedby="emailHelp" placeholder="CEP" required />
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputCEP">UF</label>
+                <select (input)="this.uf = $event.target.value" value="{{uf}}" class="form-control">
+                  <option selected>UF</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MS">MS</option>
+                  <option value="MT">MT</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="tab-pane" id="contato" role="tabpanel">
+            <div class="modal-header">
+              <h6 class="modal-title"><strong>Contato</strong></h6>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail</label>
+              <input type="text" class="form-control" (input)="this.email = $event.target.value" value="{{email}}"
+                aria-describedby="emailHelp" placeholder="E-mail" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Telefone</label>
+                <input type="email" class="form-control" (input)="this.telefone = $event.target.value"
+                  value="{{telefone}}" placeholder="Telefone">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Site</label>
+                <input type="email" (input)="this.site = $event.target.value" value="{{site}}" class="form-control"
+                  placeholder="Site">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="observacoes" role="tabpanel">
+            <div class="modal-header">
+              <h6 class="modal-title"><strong>Observações</strong></h6>
+            </div>
+            <br>
+            <div class="form-group">
+              <textarea class="form-control" name="" id="" cols="95" rows="7"></textarea>
+            </div>
+          </div>
+
+
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Cidade</label>
-            <input type="text" class="form-control" (input)="this.cidade = $event.target.value" value="{{cidade}}"
-              placeholder="Cidade">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputEstado">Bairro</label>
-            <input type="text" class="form-control" (input)="this.bairro = $event.target.value" value="{{bairro}}"
-              aria-describedby="emailHelp" placeholder="Bairro" required />
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputCEP">Nº</label>
-            <input type="text" class="form-control" (input)="this.numero = $event.target.value" value="{{numero}}"
-              placeholder="Nº">
-          </div>
-        </div>
+        <script>
+          $(function () {
+            $('#myTab a:last').tab('show')
+          })
+        </script>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Ponto de referência</label>
-            <input type="text" class="form-control" (input)="this.pontoReferencia = $event.target.value"
-              value="{{pontoReferencia}}" placeholder="Ponto de refêrencia">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputEstado">CEP</label>
-            <input type="text" class="form-control" (input)="this.cep = $event.target.value" value="{{cep}}"
-              aria-describedby="emailHelp" placeholder="CEP" required />
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputCEP">UF</label>
-            <select (input)="this.uf = $event.target.value" value="{{uf}}" class="form-control">
-              <option selected>UF</option>
-              <option value="AC">AC</option>
-              <option value="AL">AL</option>
-              <option value="AP">AP</option>
-              <option value="AM">AM</option>
-              <option value="BA">BA</option>
-              <option value="CE">CE</option>
-              <option value="DF">DF</option>
-              <option value="ES">ES</option>
-              <option value="GO">GO</option>
-              <option value="MA">MA</option>
-              <option value="MS">MS</option>
-              <option value="MT">MT</option>
-              <option value="MG">MG</option>
-              <option value="PA">PA</option>
-              <option value="PB">PB</option>
-              <option value="PR">PR</option>
-              <option value="PE">PE</option>
-              <option value="PI">PI</option>
-              <option value="RJ">RJ</option>
-              <option value="RN">RN</option>
-              <option value="RS">RS</option>
-              <option value="RO">RO</option>
-              <option value="RR">RR</option>
-              <option value="SC">SC</option>
-              <option value="SP">SP</option>
-              <option value="SE">SE</option>
-              <option value="TO">TO</option>
-            </select>
-          </div>
-        </div>
 
-        <div class="modal-header">
-          <h6 class="modal-title"><strong>Observações</strong></h6>
-        </div>
-
-        <div class="form-group">
-          <textarea class="form-control" name="" id="" cols="95" rows="3"></textarea>
-        </div>
 
 
 
