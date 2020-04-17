@@ -56,9 +56,9 @@
       <td>{{dado2.cidade}}</td>
       <td>{{dado2.status}}</td>
       <td>
-        <a (click)="dadosEditar(dado2.razaoSocial, dado2.cnpj, dado2.status, dado2.endereco, dado2.complemento, dado2.cidade, dado2.bairro, dado2.numero, dado2.pontoReferencia, dado2.cep, dado2.uf, dado2.email, dado2.telefone, dado2.site, dado2.idPJuridica)"
+        <a (click)="dadosEditar(dado2.razaoSocial, dado2.cnpj, dado2.status, dado2.endereco, dado2.complemento, dado2.cidade, dado2.bairro, dado2.numero, dado2.pontoReferencia, dado2.cep, dado2.uf, dado2.email, dado2.telefone, dado2.site, dado2.observacoes, dado2.idPJuridica)"
           data-toggle="modal" data-target="#modal" title="Editar Registro"><i
-            class="far fa-edit text-info mr-2"></i></a>
+            class="fas fa-info-circle text-info mr-2"></i></a>
         <a (click)="excluir(dado2.idPJuridica)" title="Excluir Registro"><i
             class="far fa-trash-alt text-danger"></i></a>
       </td>
@@ -117,7 +117,7 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">CNPJ</label>
-                <input type="email" class="form-control" (input)="this.cnpj = $event.target.value" value="{{cnpj}}"
+                <input type="text" class="form-control" [textMask]="{mask: cnpjMask}" (input)="this.cnpj = $event.target.value" value="{{cnpj}}"
                   placeholder="CNPJ">
               </div>
               <div class="form-group col-md-6">
@@ -173,7 +173,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="inputEstado">CEP</label>
-                <input type="text" class="form-control" (input)="this.cep = $event.target.value" value="{{cep}}"
+                <input type="text" class="form-control" [textMask]="{mask: cepMask}" (input)="this.cep = $event.target.value" value="{{cep}}"
                   aria-describedby="emailHelp" placeholder="CEP" required />
               </div>
               <div class="form-group col-md-2">
@@ -220,19 +220,19 @@
             <br>
             <div class="form-group">
               <label for="exampleInputEmail1">E-mail</label>
-              <input type="text" class="form-control" (input)="this.email = $event.target.value" value="{{email}}"
+              <input type="email" class="form-control" (input)="this.email = $event.target.value" value="{{email}}"
                 aria-describedby="emailHelp" placeholder="E-mail" required />
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Telefone</label>
-                <input type="email" class="form-control" (input)="this.telefone = $event.target.value"
+                <input type="text" class="form-control" (input)="this.telefone = $event.target.value"
                   value="{{telefone}}" placeholder="Telefone">
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Site</label>
-                <input type="email" (input)="this.site = $event.target.value" value="{{site}}" class="form-control"
+                <input type="text" (input)="this.site = $event.target.value" value="{{site}}" class="form-control"
                   placeholder="Site">
               </div>
             </div>
@@ -243,7 +243,7 @@
             </div>
             <br>
             <div class="form-group">
-              <textarea class="form-control" name="" id="" cols="95" rows="7"></textarea>
+              <textarea (input)="this.observacoes = $event.target.value" value="{{observacoes}}" class="form-control" name="" id="" cols="95" rows="7"></textarea>
             </div>
           </div>
 

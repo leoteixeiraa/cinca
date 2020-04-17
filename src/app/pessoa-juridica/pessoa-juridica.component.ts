@@ -28,9 +28,12 @@ export class PessoaJuridicaComponent implements OnInit {
   email = '';
   telefone = '';
   site = '';
+  observacoes = '';
   title = 'Inserir Pessoa Jurídica';
   textoBuscar = '';
 
+  cnpjMask = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+  cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
   constructor(
     private provider: ApiServiceService,
     private router: Router
@@ -64,7 +67,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '') {
+    if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '' && this.observacoes !== '') {
       return new Promise(resolve => {
         const dados2 = {
           requisicao: 'add',
@@ -82,6 +85,7 @@ export class PessoaJuridicaComponent implements OnInit {
           email: this.email,
           telefone: this.telefone,
           site: this.site,
+          observacoes: this.observacoes,
         };
         this.provider.Api(dados2, 'apiPessoaJuridica.php')
           .subscribe(data => {
@@ -101,7 +105,7 @@ export class PessoaJuridicaComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(razaoSocial: string, cnpj: string, status: string, endereco: string, complemento: string, cidade: string, bairro: string, numero: string, pontoReferencia: string, cep: string, uf: string, email: string, telefone: string, site: string, idPJuridica: string) {
+  dadosEditar(razaoSocial: string, cnpj: string, status: string, endereco: string, complemento: string, cidade: string, bairro: string, numero: string, pontoReferencia: string, cep: string, uf: string, email: string, telefone: string, site: string, observacoes: string, idPJuridica: string) {
     this.title = 'Editar Pessoa Juridica';
     this.razaoSocial = razaoSocial;
     this.cnpj = cnpj;
@@ -117,6 +121,7 @@ export class PessoaJuridicaComponent implements OnInit {
     this.email = email;
     this.telefone = telefone;
     this.site = site;
+    this.observacoes = observacoes;
     this.idPJuridica = idPJuridica;
   }
 
@@ -138,6 +143,7 @@ export class PessoaJuridicaComponent implements OnInit {
         email: this.email,
         telefone: this.telefone,
         site: this.site,
+        observacoes: this.observacoes,
         idPJuridica: this.idPJuridica
       };
       this.provider.Api(dados2, 'apiPessoaJuridica.php')

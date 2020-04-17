@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
 
-  phoneMask = [ /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/]; 
+  cpfMask = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   constructor(
     private provider: ApiServiceService,
     private router: Router
