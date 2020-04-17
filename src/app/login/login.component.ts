@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         login: usu,
         senha: sen
       };
-      this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
+      this.provider.Api(dados, 'api.php').subscribe(data => {
         if (data['success']) {
           this.router.navigate(['/mandato']);
         } else {

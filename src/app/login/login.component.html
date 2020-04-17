@@ -16,8 +16,10 @@
 
     <!-- Login Form -->
     <form>
-    <input name="phone" [textMask]="{mask: cpfMask}" type="text"/>
-        <a class="fadeIn fourth" style="color:white;" (click)="login(this.usuario, this.senha)">Acessar </a>
+      <input name="cpf" placeholder="Digite seu CPF" [textMask]="{mask: cpfMask}" type="text" />
+      <input type="text" id="password" class="fadeIn third" name="senha" placeholder="Digite sua Senha"
+        (input)="this.senha = $event.target.value">
+      <a class="fadeIn fourth" style="color:white;" (click)="login(this.usuario, this.senha)">Acessar </a>
     </form>
 
     <!-- Remind Passowrd -->

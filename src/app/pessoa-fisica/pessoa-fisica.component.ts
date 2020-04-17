@@ -12,6 +12,7 @@ export class PessoaFisicaComponent implements OnInit {
   lista: any = [];
   limit = 10;
   start = 0;
+
   idPFisica = '';
   nome = '';
   cpf = '';
@@ -25,17 +26,24 @@ export class PessoaFisicaComponent implements OnInit {
   cidade = '';
   bairro = '';
   uf = '';
-  telefone = '';
+  celular = '';
+  telFixo = '';
   email = '';
-
+  observacoes = '';
   title = 'Inserir Pessoa Física';
   textoBuscar = '';
-  pageOfItems: Array<any>;
+
+  cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
+  telFixoMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  dtNascimentoMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+  rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
 
   constructor(
     private provider: ApiServiceService,
-    private router: Router,
+    private router: Router
   ) { }
+
 
   ngOnInit() {
     this.lista = [];
@@ -47,13 +55,13 @@ export class PessoaFisicaComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     return new Promise(resolve => {
-      const dados = {
+      const dados2 = {
         requisicao: 'listar',
         limit: this.limit,
         start: this.start,
         textoBuscar: texto
       };
-      this.provider.Api(dados, 'apiPessoaFisica.php').subscribe(data => {
+      this.provider.Api(dados2, 'apiPessoaFisica.php').subscribe(data => {
         for (const dado2 of data['result']) {
           this.lista.push(dado2);
         }
@@ -64,10 +72,12 @@ export class PessoaFisicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.estadoCivil !== '' && this.cep !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.telefone !== '' && this.email !== '') {
-
+    if (this.nome !== '' && this.cpf !== '' && this.sexo !== '' &&
+      this.dataNascimento !== '' && this.estadoCivil !== '' && this.cep !== '' &&
+      this.endereco !== '' && this.complemento !== '' && this.cidade !== '' &&
+      this.email !== '' && this.observacoes !== '') {
       return new Promise(resolve => {
-        const dados = {
+        const dados2 = {
           requisicao: 'add',
           nome: this.nome,
           cpf: this.cpf,
@@ -81,10 +91,12 @@ export class PessoaFisicaComponent implements OnInit {
           cidade: this.cidade,
           bairro: this.bairro,
           uf: this.uf,
-          telefone: this.telefone,
-          email: this.email
+          celular: this.celular,
+          telFixo: this.telFixo,
+          email: this.email,
+          observacoes: this.observacoes,
         };
-        this.provider.Api(dados, 'apiPessoaFisica.php')
+        this.provider.Api(dados2, 'apiPessoaFisica.php')
           .subscribe(data => {
 
             if (data['success']) {
@@ -102,7 +114,11 @@ export class PessoaFisicaComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(nome: string, cpf: string, rg: string, sexo: string, dataNascimento: string, estadoCivil: string, cep: string, endereco: string, complemento: string, cidade: string, bairro: string, uf: string, telefone: string, email: string, idPFisica: string) {
+  dadosEditar(nome: string, cpf: string, rg: string, sexo: string,
+    dataNascimento: string, estadoCivil: string, cep: string,
+    endereco: string, complemento: string, cidade: string, bairro: string,
+    uf: string, celular: string, telFixo: string, email: string,
+    observacoes: string, idPFisica: string) {
     this.title = 'Editar Pessoa Física';
     this.nome = nome;
     this.cpf = cpf;
@@ -116,59 +132,60 @@ export class PessoaFisicaComponent implements OnInit {
     this.cidade = cidade;
     this.bairro = bairro;
     this.uf = uf;
-    this.telefone = telefone;
+    this.celular = celular;
+    this.telFixo = telFixo;
     this.email = email;
+    this.observacoes = observacoes;
     this.idPFisica = idPFisica;
   }
+
   editar() {
-    // tslint:disable-next-line: max-line-length
-    if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.estadoCivil !== '' && this.cep !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.telefone !== '' && this.email !== '') {
-      return new Promise(resolve => {
-        const dados = {
-          requisicao: 'editar',
-          idPFisica: this.idPFisica,
-          nome: this.nome,
-          cpf: this.cpf,
-          rg: this.rg,
-          sexo: this.sexo,
-          dataNascimento: this.dataNascimento,
-          estadoCivil: this.estadoCivil,
-          cep: this.cep,
-          endereco: this.endereco,
-          complemento: this.complemento,
-          cidade: this.cidade,
-          bairro: this.bairro,
-          uf: this.uf,
-          telefone: this.telefone,
-          email: this.email
+    return new Promise(resolve => {
+      const dados2 = {
+        requisicao: 'editar',
+        nome: this.nome,
+        cpf: this.cpf,
+        rg: this.rg,
+        sexo: this.sexo,
+        dataNascimento: this.dataNascimento,
+        estadoCivil: this.estadoCivil,
+        cep: this.cep,
+        endereco: this.endereco,
+        complemento: this.complemento,
+        cidade: this.cidade,
+        bairro: this.bairro,
+        uf: this.uf,
+        celular: this.celular,
+        telFixo: this.telFixo,
+        email: this.email,
+        observacoes: this.observacoes,
+        idPFisica: this.idPFisica
+      };
+      this.provider.Api(dados2, 'apiPessoaFisica.php')
+        .subscribe(data => {
 
-        };
-        this.provider.Api(dados, 'apiPessoaFisica.php')
-          .subscribe(data => {
+          if (data['success']) {
+            alert('Editado com sucesso!!');
 
-            if (data['success']) {
-              alert('Editado com sucesso!!');
-              this.router.navigate(['/pessoa-fisica']);
-            } else {
-              alert('Erro ao Editar!!');
-            }
+            //  location='linhas';
+            // this.router.navigate(['/linhas']);
+            window.location.href = "pessoa-fisica";
+          } else {
+            alert('Erro ao Editar!!');
+          }
 
-          });
-      });
+        });
+    });
 
-    } else {
-      alert('Prencha os Campos!');
-    }
   }
 
   excluir(idu: string) {
     return new Promise(resolve => {
-      const dados = {
+      const dados2 = {
         requisicao: 'excluir',
-        id: idu
+        idPFisica: idu
       };
-
-      this.provider.Api(dados, 'apiPessoaFisica.php')
+      this.provider.Api(dados2, 'apiPessoaFisica.php')
         .subscribe(data => {
 
           if (data['success']) {
