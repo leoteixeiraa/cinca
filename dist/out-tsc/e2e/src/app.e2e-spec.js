@@ -8,7 +8,7 @@ describe('workspace-project App', () => {
     });
     it('should display welcome message', () => {
         page.navigateTo();
-        expect(page.getTitleText()).toEqual('telefonia app is running!');
+        expect(page.getTitleText()).toEqual('cinca app is running!');
     });
     afterEach(() => __awaiter(void 0, void 0, void 0, function* () {
         // Assert that there are no errors emitted from the browser

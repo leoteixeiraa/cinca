@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  usuario = '';
+  cpf = '';
   senha = '';
 
   cpfMask = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
     return new Promise(resolve => {
       const dados = {
         requisicao: 'login',
-        login: usu,
+        cpf: usu,
         senha: sen
       };
-      this.provider.Api(dados, 'api.php').subscribe(data => {
+      this.provider.Api(dados, 'apiPessoaFisica.php').subscribe(data => {
         if (data['success']) {
-          this.router.navigate(['/mandato']);
+          this.router.navigate(['/pessoa-fisica']);
         } else {
           alert('Dados icorretos!!');
         }

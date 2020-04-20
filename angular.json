@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "telefonia": {
+    "cinca": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/telefonia",
+            "outputPath": "dist/cinca",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "telefonia:build"
+            "browserTarget": "cinca:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "telefonia:build:production"
+              "browserTarget": "cinca:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "telefonia:build"
+            "browserTarget": "cinca:build"
           }
         },
         "test": {
@@ -110,18 +110,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "telefonia:serve"
+            "devServerTarget": "cinca:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "telefonia:serve:production"
+              "devServerTarget": "cinca:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "telefonia",
+  "defaultProject": "cinca",
   "cli": {
     "analytics": "35304fe7-57f0-4808-b780-97ef0ffcf681"
   }
