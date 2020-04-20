@@ -34,7 +34,7 @@ export class PessoaFisicaComponent implements OnInit {
   textoBuscar = '';
 
   cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
+  cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   telFixoMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   dtNascimentoMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
@@ -72,10 +72,7 @@ export class PessoaFisicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.nome !== '' && this.cpf !== '' && this.sexo !== '' &&
-      this.dataNascimento !== '' && this.estadoCivil !== '' && this.cep !== '' &&
-      this.endereco !== '' && this.complemento !== '' && this.cidade !== '' &&
-      this.email !== '' && this.observacoes !== '') {
+    if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.estadoCivil !== '' && this.cep !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.celular !== '' && this.telFixo !== '' && this.email !== '' && this.observacoes !== '') {
       return new Promise(resolve => {
         const dados2 = {
           requisicao: 'add',
@@ -114,12 +111,8 @@ export class PessoaFisicaComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(nome: string, cpf: string, rg: string, sexo: string,
-    dataNascimento: string, estadoCivil: string, cep: string,
-    endereco: string, complemento: string, cidade: string, bairro: string,
-    uf: string, celular: string, telFixo: string, email: string,
-    observacoes: string, idPFisica: string) {
-    this.title = 'Editar Pessoa Física';
+  dadosEditar(nome: string, cpf: string, rg: string, sexo: string, dataNascimento: string, estadoCivil: string, cep: string, endereco: string, complemento: string, cidade: string, bairro: string, uf: string, celular: string, telFixo: string, email: string, observacoes: string, idPFisica: string) {
+    this.title = 'Editar Pessoa Juridica';
     this.nome = nome;
     this.cpf = cpf;
     this.rg = rg;
@@ -201,3 +194,4 @@ export class PessoaFisicaComponent implements OnInit {
   }
 
 }
+
