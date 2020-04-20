@@ -84,9 +84,7 @@ let MandatoComponent = class MandatoComponent {
                     .subscribe(data => {
                     if (data['success']) {
                         alert('Editado com sucesso!!');
-                        //  location='linhas';
-                        // this.router.navigate(['/linhas']);
-                        window.location.href = "mandato";
+                        this.router.navigate(['/mandato']);
                     }
                     else {
                         alert('Erro ao Editar!!');

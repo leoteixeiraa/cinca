@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map'; //biblioteca via comando
 let ApiServiceService = class ApiServiceService {
     constructor(http) {
         this.http = http;
-        this.server = "http://localhost/apiAngular/";
+        this.server = "http://localhost/apiAngular";
     }
     Api(dados, api) {
         const httpOptions = {

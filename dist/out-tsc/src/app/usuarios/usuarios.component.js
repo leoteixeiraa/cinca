@@ -82,9 +82,7 @@ let UsuariosComponent = class UsuariosComponent {
                 .subscribe(data => {
                 if (data['success']) {
                     alert('Editado com sucesso!!');
-                    //  location='usuarios';
-                    // this.router.navigate(['/usuarios']);
-                    window.location.href = "usuarios";
+                    this.router.navigate(['/usuarios']);
                 }
                 else {
                     alert('Erro ao Editar!!');

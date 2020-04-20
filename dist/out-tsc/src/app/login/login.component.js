@@ -1,28 +1,29 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let LoginComponent = class LoginComponent {
-    constructor(provider) {
+    constructor(provider, router) {
         this.provider = provider;
-        this.usuario = '';
+        this.router = router;
+        this.cpf = '';
         this.senha = '';
+        this.cpfMask = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
     }
     ngOnInit() {
     }
-    login(usuario, senha) {
+    login(usu, sen) {
         return new Promise(resolve => {
             const dados = {
-                requisicao: 'listar',
-                textoBuscar: usuario
+                requisicao: 'login',
+                cpf: usu,
+                senha: sen
             };
-            this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
+            this.provider.Api(dados, 'apiPessoaFisica.php').subscribe(data => {
                 if (data['success']) {
-                    alert('Login Efetuado!');
-                    window.location.href = "usuarios";
+                    this.router.navigate(['/pessoa-fisica']);
                 }
                 else {
-                    alert('Dados Incorretos');
+                    alert('Dados icorretos!!');
                 }
-                resolve(true);
             });
         });
     }

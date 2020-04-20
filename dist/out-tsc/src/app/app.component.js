@@ -2,7 +2,8 @@ import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'cinca';
+        this.title = 'Sistema Único CINCATARINA';
+        this.phoneMask = ['(', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
     }
 };
 AppComponent = __decorate([

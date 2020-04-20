@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'; //biblioteca via comando
 })
 export class ApiServiceService {
 
-  server: string = "http://localhost/apiAngular";
+  server: string = "http://cinca-back-com-br.umbler.net/apiAngular/";
 
   constructor(private http: HttpClient) { }
 

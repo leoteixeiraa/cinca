@@ -14,6 +14,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
+import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
+import { FormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -25,14 +29,18 @@ AppModule = __decorate([
             LoginComponent,
             MandatoComponent,
             // JwPaginationComponent,
-            ConfirmDialogComponent
+            ConfirmDialogComponent,
+            PessoaFisicaComponent,
+            PessoaJuridicaComponent
         ],
         imports: [
             BrowserModule,
             AppRoutingModule,
             HttpClientModule,
             NgxPaginationModule,
-            CustomMaterialModule
+            CustomMaterialModule,
+            FormsModule,
+            TextMaskModule
         ],
         providers: [ApiServiceService,
             HttpClient
