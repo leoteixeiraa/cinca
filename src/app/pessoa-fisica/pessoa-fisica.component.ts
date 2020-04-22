@@ -30,9 +30,9 @@ export class PessoaFisicaComponent implements OnInit {
   telFixo = '';
   email = '';
   observacoes = '';
-  status = '';
   title = 'Inserir Pessoa Física';
   textoBuscar = '';
+  caminho = 'apiPessoaFisica.php';
 
   cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
@@ -40,16 +40,12 @@ export class PessoaFisicaComponent implements OnInit {
   dtNascimentoMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
 
-  constructor(
-    private provider: ApiServiceService,
-    private router: Router
-  ) { }
+  constructor(private provider: ApiServiceService, private router: Router) { }
 
 
   ngOnInit() {
     this.lista = [];
     this.start = 0;
-    this.textoBuscar = '54';
     this.carregar(this.textoBuscar);
   }
 
@@ -63,23 +59,20 @@ export class PessoaFisicaComponent implements OnInit {
   carregar(texto: string) {
     this.lista = [];
     this.start = 0;
-
-    if (!texto) {
-      texto = 'get-all';
-    }
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'listar',
         limit: this.limit,
         start: this.start,
         textoBuscar: texto
       };
-      this.provider.Api(dados2, 'apiPessoaFisica.php').subscribe(data => {
-        for (const dado2 of data['result']) {
-          this.lista.push(dado2);
+      this.provider.Api(dados, this.caminho).subscribe(data => {
+        for (const dado of data['result']) {
+          this.lista.push(dado);
         }
         resolve(true);
       });
+
     });
   }
 
@@ -87,7 +80,7 @@ export class PessoaFisicaComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.cep !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.celular !== '' && this.telFixo !== '' && this.email !== '' && this.observacoes !== '') {
       return new Promise(resolve => {
-        const dados2 = {
+        const dados = {
           requisicao: 'add',
           nome: this.nome,
           cpf: this.cpf,
@@ -105,9 +98,8 @@ export class PessoaFisicaComponent implements OnInit {
           telFixo: this.telFixo,
           email: this.email,
           observacoes: this.observacoes,
-          status: this.status
         };
-        this.provider.Api(dados2, 'apiPessoaFisica.php')
+        this.provider.Api(dados, this.caminho)
           .subscribe(data => {
 
             if (data['success']) {
@@ -144,13 +136,12 @@ export class PessoaFisicaComponent implements OnInit {
     this.telFixo = telFixo;
     this.email = email;
     this.observacoes = observacoes;
-    this.status = status;
     this.idPFisica = idPFisica;
   }
 
   editar() {
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'editar',
         nome: this.nome,
         cpf: this.cpf,
@@ -170,7 +161,7 @@ export class PessoaFisicaComponent implements OnInit {
         observacoes: this.observacoes,
         idPFisica: this.idPFisica
       };
-      this.provider.Api(dados2, 'apiPessoaFisica.php')
+      this.provider.Api(dados, this.caminho)
         .subscribe(data => {
 
           if (data['success']) {
@@ -191,11 +182,11 @@ export class PessoaFisicaComponent implements OnInit {
 
   excluir(idu: string) {
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'excluir',
         idPFisica: idu
       };
-      this.provider.Api(dados2, 'apiPessoaFisica.php')
+      this.provider.Api(dados, this.caminho)
         .subscribe(data => {
 
           if (data['success']) {

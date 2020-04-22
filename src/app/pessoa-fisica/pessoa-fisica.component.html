@@ -18,6 +18,15 @@
           <a class="dropdown-item" routerLink="/pessoa-juridica">Pessoa Jurídica</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Acesso Sistema</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" routerLink="/usuarios">Cadastrar Usuario</a>
+        </div>
+      </li>
+
     </ul>
     <button type="button" routerLink="/login" class="btn btn-link">Sair</button>
   </div>
@@ -70,22 +79,22 @@
       <td><b>estadoCivil</b></td>
       <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado2 of lista">
+    <tr *ngFor="let dado of lista">
 
-      <td>{{dado2.idPFisica}}</td>
-      <td>{{dado2.nome}}</td>
-      <td>{{dado2.cpf}}</td>
-      <td>{{dado2.cidade}}</td>
-      <td>{{dado2.email}}</td>
-      <td>{{dado2.estadoCivil}}</td>
+      <td>{{dado.idPFisica}}</td>
+      <td>{{dado.nome}}</td>
+      <td>{{dado.cpf}}</td>
+      <td>{{dado.cidade}}</td>
+      <td>{{dado.email}}</td>
+      <td>{{dado.estadoCivil}}</td>
       <td>
-        <a (click)="dadosEditar(dado2.nome, dado2.cpf, dado2.rg, dado2.sexo,
-         dado2.dataNascimento, dado2.estadoCivil, dado2.cep, dado2.endereco,
-         dado2.complemento, dado2.cidade, dado2.bairro, dado2.uf, dado2.celular,
-          dado2.telFixo, dado2.email, dado2.observacoes,
-           dado2.idPFisica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i
+        <a (click)="dadosEditar(dado.nome, dado.cpf, dado.rg, dado.sexo,
+         dado.dataNascimento, dado.estadoCivil, dado.cep, dado.endereco,
+         dado.complemento, dado.cidade, dado.bairro, dado.uf, dado.celular,
+          dado.telFixo, dado.email, dado.observacoes,
+           dado.idPFisica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i
             class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado2.idPFisica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+        <a (click)="excluir(dado.idPFisica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
       </td>
     </tr>
   </table>
@@ -102,8 +111,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" routerLink="/pessoa-fisica" data-dismiss="modal"
-          aria-label="Fechar">
+        <button type="button" class="close" routerLink="/pessoa-fisica" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

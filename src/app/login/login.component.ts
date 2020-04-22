@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { Router } from '@angular/router';
@@ -10,33 +9,40 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  cpf = '';
+  usuario = '';
   senha = '';
+  caminho = 'apiUsuarios.php';
+  cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-  cpfMask = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
-  constructor(
-    private provider: ApiServiceService,
-    private router: Router
-  ) { }
+  constructor(private provider: ApiServiceService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+
   }
 
-  login(usu: string, sen: string) {
+
+  login(usuario: string, senha: string) {
+
     return new Promise(resolve => {
       const dados = {
         requisicao: 'login',
-        cpf: usu,
-        senha: sen
+
+        usuario: this.usuario,
+        senha: this.senha
       };
-      this.provider.Api(dados, 'apiPessoaFisica.php').subscribe(data => {
-        if (data['success']) {
-          this.router.navigate(['/pessoa-fisica']);
-        } else {
-          alert('Dados icorretos!!');
-        }
-      });
+      this.provider.Api(dados, this.caminho)
+        .subscribe(data => {
+
+          if (data['success']) {
+
+            this.router.navigate(['/pessoa-fisica']);
+          } else {
+            alert('Dados Incorretos!!');
+          }
+
+        });
     });
   }
+
 
 }

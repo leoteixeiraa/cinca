@@ -1,94 +1,118 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <img src="https://www.cincatarina.sc.gov.br/images/cincatarina/logo-light.png"
+    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+  <a></a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Cadastro de Pessoa</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" routerLink="/pessoa-fisica">Pessoa Física</a>
+          <a class="dropdown-item" routerLink="/pessoa-juridica">Pessoa Jurídica</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Acesso Sistema</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" routerLink="/usuarios">Cadastrar Usuario</a>
+        </div>
+      </li>
+    </ul>
+    <button type="button" routerLink="/login" class="btn btn-link">Sair</button>
+  </div>
+</nav>
+
 <div class="container mt-4">
-    <span class="titulo">API de Usuários</span>
-    <hr class="mb-4">
-    
-    <div class="row">
-      <div class="col-lg-8 col-md-6 col-sm-12">
-        <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
-        <br><br>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search"
-        (input)="carregar($event.target.value)"
-        (change)="this.textBuscar = $event.target.value"
-        placeholder="Pesquisar" aria-label="Pesquisar">
-        <a (click)="carregar(this.textBuscar)" class="btn btn-outline-info my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+  <span class="titulo">Cadastro de Usuários</span>
+  <hr class="mb-4">
+
+  <div class="row">
+    <div class="col-lg-8 col-md-6 col-sm-12">
+      <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+      <br><br>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" (input)="carregar($event.target.value)"
+          (change)="this.textBuscar = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
+        <a (click)="carregar(this.textBuscar)" class="btn btn-outline-info my-2 my-sm-0"><i
+            class="fas fa-search"></i></a>
       </form>
-      </div>
-    
-    </div>
-    
-    <table class="table table-striped ml-2">
-      <tr>
-          <td><b>Nome</b></td>
-          <td><b>Usuário</b></td>
-          <td><b>Senha</b></td>
-          <td><b>Ações</b></td>
-      </tr>
-    <tr *ngFor="let dado of lista">
-    
-      <td>{{dado.nome}}</td>
-      <td>{{dado.usuario}}</td>
-      <td>{{dado.senha}}</td>
-      <td>
-          <a (click)="dadosEditar(dado.nome, dado.usuario, dado.senha, dado.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
-          <a (click)="excluir(dado.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
-      </td>
-    </tr>
-    </table>
-    
     </div>
 
-
-    
-<!--CONTEUDO DA JANELA MODAL DE INSERIR E EDITAR -->
-<div id="modal" class="modal fade" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <div class="modal-body">
-
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nome</label>
-                    <input type="text" class="form-control"
-                    (input)="this.nome = $event.target.value" aria-describedby="emailHelp"
-                    value="{{nome}}" placeholder="Seu nome" required />
-
-                  </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" (input)="this.usuario = $event.target.value"
-                  value="{{usuario}}"
-                   aria-describedby="emailHelp" placeholder="Seu email" required />
-
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Senha</label>
-                  <input type="text" class="form-control" (input)="this.senha = $event.target.value"
-                  value="{{senha}}"
-                  placeholder="Senha"  required />
-                </div>
-
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
-
-            <button *ngIf="id > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
-
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-
-        </div>
-
-      </div>
-    </div>
   </div>
 
+  <table class="table table-striped ml-2">
+    <tr>
+      <td><b>Nome</b></td>
+      <td><b>Usuário</b></td>
+      <td><b>Ações</b></td>
+    </tr>
+    <tr *ngFor="let dado of lista">
 
+      <td>{{dado.nome}}</td>
+      <td>{{dado.usuario}}</td>
+      <td>
+        <a (click)="dadosEditar(dado.nome, dado.usuario, dado.senha, dado.id)" data-toggle="modal" data-target="#modal"
+          title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+        <a (click)="excluir(dado.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR E EDITAR -->
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nome</label>
+          <input type="text" class="form-control" (input)="this.nome = $event.target.value" aria-describedby="emailHelp"
+            value="{{nome}}" placeholder="Seu nome" required />
+
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">CPF</label>
+          <input type="email" class="form-control" (input)="this.usuario = $event.target.value" value="{{usuario}}"
+            aria-describedby="emailHelp" placeholder="Seu CPF" required />
+
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" (input)="this.senha = $event.target.value" value="{{senha}}"
+            placeholder="Senha" required />
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+        <button *ngIf="id > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
