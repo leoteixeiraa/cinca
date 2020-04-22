@@ -19,6 +19,7 @@ export class UsuariosComponent implements OnInit {
   title = 'Inserir Usuário';
   textBuscar = '';
   caminho = 'apiUsuarios.php';
+  cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   constructor(private provider: ApiServiceService, private router: Router) { }
 
