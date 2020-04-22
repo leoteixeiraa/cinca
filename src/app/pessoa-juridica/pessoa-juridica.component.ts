@@ -43,12 +43,17 @@ export class PessoaJuridicaComponent implements OnInit {
   ngOnInit() {
     this.lista = [];
     this.start = 0;
+    this.textoBuscar = 'Ativo';
     this.carregar(this.textoBuscar);
   }
 
   carregar(texto: string) {
     this.lista = [];
     this.start = 0;
+    if (!texto) {
+      texto = 'get-all';
+    }
+
     return new Promise(resolve => {
       const dados2 = {
         requisicao: 'listar',
@@ -92,7 +97,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
-              window.location.href = "pessoa-juridica";
+              this.router.navigate(['/pessoa-juridica']);
             } else {
               alert('Erro ao Salvar!!');
             }
@@ -153,8 +158,7 @@ export class PessoaJuridicaComponent implements OnInit {
             alert('Editado com sucesso!!');
 
             //  location='linhas';
-            // this.router.navigate(['/linhas']);
-            window.location.href = "pessoa-juridica";
+            this.router.navigate(['/pessoa-juridica']);
           } else {
             alert('Erro ao Editar!!');
           }
@@ -176,7 +180,7 @@ export class PessoaJuridicaComponent implements OnInit {
           if (data['success']) {
             alert('Excluido com sucesso!');
 
-            window.location.href = "pessoa-juridica";
+            this.router.navigate(['/pessoa-juridica']);
           } else {
             alert('Erro ao Excluir!!');
           }

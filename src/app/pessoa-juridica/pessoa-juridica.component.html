@@ -102,7 +102,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" onClick="window.location.reload();" data-dismiss="modal"
+        <button type="button" class="close" routerLink="/pessoa-juridica" data-dismiss="modal"
           aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -295,7 +295,7 @@
 
           <button *ngIf="idPJuridica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" onClick="window.location.reload();"
+          <button type="button" class="btn btn-secondary" routerLink="/pessoa-juridica"
             data-dismiss="modal">Fechar</button>
 
         </div>

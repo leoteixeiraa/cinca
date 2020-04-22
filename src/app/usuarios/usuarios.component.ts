@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,23 +13,20 @@ export class UsuariosComponent implements OnInit {
   limit = 10;
   start = 0;
   nome = '';
-  login = '';
+  usuario = '';
   senha = '';
-  idUser = '';
-  title = 'Inserir Usuário ao sistema';
-  textoBuscar = '';
+  id = '';
+  title = 'Inserir Usuário';
+  textBuscar = '';
+  caminho = 'apiUsuarios.php';
 
-  constructor(
-    private provider: ApiServiceService,
-    private router: Router
-  ) { }
+  constructor(private provider: ApiServiceService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.lista = [];
     this.start = 0;
-    this.carregar(this.textoBuscar);
+    this.carregar(this.textBuscar);
   }
-
 
   carregar(texto: string) {
     this.lista = [];
@@ -41,30 +38,34 @@ export class UsuariosComponent implements OnInit {
         start: this.start,
         textoBuscar: texto
       };
-      this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
-        for (const dado2 of data['result']) {
-          this.lista.push(dado2);
+
+      this.provider.Api(dados, this.caminho).subscribe(data => {
+        for (const dado of data['result']) {
+          this.lista.push(dado);
         }
         resolve(true);
       });
+
     });
   }
 
+
   cadastrar() {
-    if (this.login !== '' && this.senha !== '') {
+    if (this.nome !== '' && this.usuario !== '' && this.senha !== '') {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'add',
           nome: this.nome,
-          login: this.login,
+          usuario: this.usuario,
           senha: this.senha
         };
-        this.provider.Api(dados, 'apiUsuarios.php')
+        this.provider.Api(dados, this.caminho)
           .subscribe(data => {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
-              window.location.href = "usuarios";
+              window.location.reload();
+              //this.router.navigate(['/usuarios']);
             } else {
               alert('Erro ao Salvar!!');
             }
@@ -76,51 +77,57 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  dadosEditar(nome: string, login: string, senha: string, idUser: string) {
+
+  dadosEditar(nome: string, usuario: string, senha: string, id: string) {
     this.title = 'Editar Usuário';
     this.nome = nome;
-    this.login = login;
+    this.usuario = usuario;
     this.senha = senha;
-    this.idUser = idUser;
+    this.id = id;
   }
+
 
   editar() {
-    return new Promise(resolve => {
-      const dados = {
-        requisicao: 'editar',
-        nome: this.nome,
-        login: this.login,
-        senha: this.senha,
-        idUser: this.idUser
-      };
-      this.provider.Api(dados, 'apiUsuarios.php')
-        .subscribe(data => {
+    if (this.nome !== '' && this.usuario !== '' && this.senha !== '') {
+      return new Promise(resolve => {
+        const dados = {
+          requisicao: 'editar',
+          nome: this.nome,
+          usuario: this.usuario,
+          senha: this.senha,
+          id: this.id
+        };
+        this.provider.Api(dados, this.caminho)
+          .subscribe(data => {
 
-          if (data['success']) {
-            alert('Editado com sucesso!!');
-            this.router.navigate(['/usuarios']);
-          } else {
-            alert('Erro ao Editar!!');
-          }
+            if (data['success']) {
+              alert('Editado com sucesso!!');
+              window.location.reload();
+            } else {
+              alert('Erro ao Editar!!');
+            }
 
-        });
-    });
+          });
+      });
 
+    } else {
+      alert('Prencha os Campos!');
+    }
   }
+
 
   excluir(idu: string) {
     return new Promise(resolve => {
       const dados = {
         requisicao: 'excluir',
-        idUser: idu
+        id: idu
       };
-      this.provider.Api(dados, 'apiUsuarios.php')
+      this.provider.Api(dados, this.caminho)
         .subscribe(data => {
 
           if (data['success']) {
-            alert('Excluido com sucesso!');
 
-            window.location.href = "usuarios";
+            window.location.reload();
           } else {
             alert('Erro ao Excluir!!');
           }
@@ -128,5 +135,6 @@ export class UsuariosComponent implements OnInit {
         });
     });
   }
+
 
 }

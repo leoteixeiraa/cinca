@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'confirm-dialog', component: ConfirmDialogComponent },
   { path: 'pessoa-fisica', component: PessoaFisicaComponent },
   { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
 ];
 
 @NgModule({
