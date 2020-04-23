@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
@@ -31,50 +31,57 @@ export class PessoaJuridicaComponent implements OnInit {
   observacoes = '';
   title = 'Inserir Pessoa Jurídica';
   textoBuscar = '';
+  caminho = 'apiPessoaJuridica.php';
 
   cnpjMask = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   constructor(
     private provider: ApiServiceService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 
   ngOnInit() {
     this.lista = [];
     this.start = 0;
-    this.textoBuscar = 'Ativo';
     this.carregar(this.textoBuscar);
   }
+
+  load() {
+    //Session storage salva os dados como string
+    // tslint:disable-next-line: no-unused-expression
+    (sessionStorage.refresh == 'true' || !sessionStorage.refresh) && location.reload();
+    sessionStorage.refresh = false;
+  }
+
 
   carregar(texto: string) {
     this.lista = [];
     this.start = 0;
-    if (!texto) {
-      texto = 'get-all';
-    }
-
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'listar',
         limit: this.limit,
         start: this.start,
         textoBuscar: texto
       };
-      this.provider.Api(dados2, 'apiPessoaJuridica.php').subscribe(data => {
-        for (const dado2 of data['result']) {
-          this.lista.push(dado2);
+      this.provider.Api(dados, this.caminho).subscribe(data => {
+        for (const dado of data['result']) {
+          this.lista.push(dado);
         }
         resolve(true);
       });
+
     });
   }
+
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
     if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '' && this.observacoes !== '') {
       return new Promise(resolve => {
-        const dados2 = {
+        const dados = {
           requisicao: 'add',
           razaoSocial: this.razaoSocial,
           cnpj: this.cnpj,
@@ -92,12 +99,13 @@ export class PessoaJuridicaComponent implements OnInit {
           site: this.site,
           observacoes: this.observacoes,
         };
-        this.provider.Api(dados2, 'apiPessoaJuridica.php')
+        this.provider.Api(dados, this.caminho)
           .subscribe(data => {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
               this.router.navigate(['/pessoa-juridica']);
+              this.load();
             } else {
               alert('Erro ao Salvar!!');
             }
@@ -132,7 +140,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
   editar() {
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'editar',
         razaoSocial: this.razaoSocial,
         cnpj: this.cnpj,
@@ -151,14 +159,20 @@ export class PessoaJuridicaComponent implements OnInit {
         observacoes: this.observacoes,
         idPJuridica: this.idPJuridica
       };
-      this.provider.Api(dados2, 'apiPessoaJuridica.php')
+      this.provider.Api(dados, this.caminho)
         .subscribe(data => {
 
           if (data['success']) {
             alert('Editado com sucesso!!');
 
             //  location='linhas';
+            // this.router.navigate(['/linhas']);
             this.router.navigate(['/pessoa-juridica']);
+            this.load();
+            location.reload();
+            this.router.navigateByUrl('/pessoa-juridica', { skipLocationChange: true }).then(() => {
+              this.router.navigate([`pessoa-juridica`])
+            });
           } else {
             alert('Erro ao Editar!!');
           }
@@ -170,17 +184,18 @@ export class PessoaJuridicaComponent implements OnInit {
 
   excluir(idu: string) {
     return new Promise(resolve => {
-      const dados2 = {
+      const dados = {
         requisicao: 'excluir',
         idPJuridica: idu
       };
-      this.provider.Api(dados2, 'apiPessoaJuridica.php')
+      this.provider.Api(dados, this.caminho)
         .subscribe(data => {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-
-            this.router.navigate(['/pessoa-juridica']);
+            this.router.navigate(['/pessoa-fisica']);
+            this.load();
+            location.reload();
           } else {
             alert('Erro ao Excluir!!');
           }

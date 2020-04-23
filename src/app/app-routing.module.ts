@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'pessoa-fisica', component: PessoaFisicaComponent },
   { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
+  { path: 'pessoa-fisica', redirectTo: '/pessoa-fisica', pathMatch: 'full' },
+  { path: 'pessoa-juridica', redirectTo: '/pessoa-juridica', pathMatch: 'full' }
 ];
 
 @NgModule({
