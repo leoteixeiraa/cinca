@@ -79,7 +79,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '' && this.observacoes !== '') {
+    if (this.razaoSocial !== '' && this.cnpj !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.numero !== '' && this.cep !== '' && this.uf !== '' && this.email !== '' && this.telefone !== '' && this.site !== '') {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'add',
@@ -104,6 +104,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
+              window.location.reload();
               this.router.navigate(['/pessoa-juridica']);
               this.load();
             } else {
@@ -167,9 +168,8 @@ export class PessoaJuridicaComponent implements OnInit {
 
             //  location='linhas';
             // this.router.navigate(['/linhas']);
+            window.location.reload();
             this.router.navigate(['/pessoa-juridica']);
-            this.load();
-            location.reload();
             this.router.navigateByUrl('/pessoa-juridica', { skipLocationChange: true }).then(() => {
               this.router.navigate([`pessoa-juridica`])
             });

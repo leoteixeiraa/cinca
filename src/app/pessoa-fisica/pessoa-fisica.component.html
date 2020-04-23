@@ -74,7 +74,7 @@
       <td><b>CPF</b></td>
       <td><b>Cidade</b></td>
       <td><b>E-mail</b></td>
-      <td><b>estadoCivil</b></td>
+      <td><b>Telefone</b></td>
       <td><b>Ações</b></td>
     </tr>
     <tr *ngFor="let dado of lista">
@@ -84,7 +84,7 @@
       <td>{{dado.cpf}}</td>
       <td>{{dado.cidade}}</td>
       <td>{{dado.email}}</td>
-      <td>{{dado.estadoCivil}}</td>
+      <td>{{dado.telFixo}}</td>
       <td>
         <a (click)="dadosEditar(dado.nome, dado.cpf, dado.rg, dado.sexo,
          dado.dataNascimento, dado.estadoCivil, dado.cep, dado.endereco,
@@ -308,9 +308,11 @@
 
 
         <div class="modal-footer">
-          <button *ngIf="idPFisica === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+          <button *ngIf="idPFisica === '' " type="button" class="btn btn-primary" routerLink="/pessoa-fisica"
+            (click)="cadastrar()">Salvar</button>
 
-          <button *ngIf="idPFisica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+          <button *ngIf="idPFisica > '0' " type="button" class="btn btn-primary" routerLink="/pessoa-fisica"
+            (click)="editar()">Editar</button>
 
           <button type="button" class="btn btn-secondary" routerLink="/pessoa-fisica"
             data-dismiss="modal">Fechar</button>

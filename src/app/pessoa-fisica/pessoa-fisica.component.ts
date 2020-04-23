@@ -33,6 +33,7 @@ export class PessoaFisicaComponent implements OnInit {
   title = 'Inserir Pessoa Física';
   textoBuscar = '';
   caminho = 'apiPessoaFisica.php';
+  ApiServiceService;
 
   cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
@@ -47,6 +48,8 @@ export class PessoaFisicaComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     this.carregar(this.textoBuscar);
+    this.reload();
+    this.load();
   }
 
   load() {
@@ -54,6 +57,15 @@ export class PessoaFisicaComponent implements OnInit {
     // tslint:disable-next-line: no-unused-expression
     (sessionStorage.refresh == 'true' || !sessionStorage.refresh) && location.reload();
     sessionStorage.refresh = false;
+  }
+
+  reload() {
+    if (this.ApiServiceService.reload) {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['pessoa-fisica']);
+        this.ApiServiceService.reload = false;
+      });
+    }
   }
 
   carregar(texto: string) {
@@ -78,7 +90,7 @@ export class PessoaFisicaComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.cep !== '' && this.endereco !== '' && this.complemento !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.celular !== '' && this.telFixo !== '' && this.email !== '' && this.observacoes !== '') {
+    if (this.nome !== '' && this.cpf !== '' && this.rg !== '' && this.sexo !== '' && this.dataNascimento !== '' && this.cep !== '' && this.endereco !== '' && this.cidade !== '' && this.bairro !== '' && this.uf !== '' && this.celular !== '' && this.telFixo !== '' && this.email !== '') {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'add',
@@ -104,8 +116,7 @@ export class PessoaFisicaComponent implements OnInit {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
-              this.router.navigate(['/pessoa-fisica']);
-              this.load();
+              this.reload();
             } else {
               alert('Erro ao Salvar!!');
             }
@@ -119,7 +130,7 @@ export class PessoaFisicaComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
   dadosEditar(nome: string, cpf: string, rg: string, sexo: string, dataNascimento: string, estadoCivil: string, cep: string, endereco: string, complemento: string, cidade: string, bairro: string, uf: string, celular: string, telFixo: string, email: string, observacoes: string, idPFisica: string) {
-    this.title = 'Editar Pessoa Juridica';
+    this.title = 'Editar Pessoa Física';
     this.nome = nome;
     this.cpf = cpf;
     this.rg = rg;
@@ -169,8 +180,9 @@ export class PessoaFisicaComponent implements OnInit {
 
             //  location='linhas';
             // this.router.navigate(['/linhas']);
-            this.router.navigate(['/pessoa-fisica']);
+
             this.load();
+            this.reload();
           } else {
             alert('Erro ao Editar!!');
           }
@@ -192,8 +204,8 @@ export class PessoaFisicaComponent implements OnInit {
           if (data['success']) {
             alert('Excluido com sucesso!');
 
-            this.router.navigate(['/pessoa-fisica']);
-            this.load();
+            this.reload();
+
           } else {
             alert('Erro ao Excluir!!');
           }
