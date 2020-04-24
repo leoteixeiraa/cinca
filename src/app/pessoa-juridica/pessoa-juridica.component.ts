@@ -35,6 +35,7 @@ export class PessoaJuridicaComponent implements OnInit {
 
   cnpjMask = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  dados: any;
   constructor(
     private provider: ApiServiceService,
     private router: Router,
@@ -101,12 +102,22 @@ export class PessoaJuridicaComponent implements OnInit {
         };
         this.provider.Api(dados, this.caminho)
           .subscribe(data => {
+            console.log(dados);
+
+
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
               window.location.reload();
               this.router.navigate(['/pessoa-juridica']);
               this.load();
+              this.dados.reset();
+
+
+
+
+
+
             } else {
               alert('Erro ao Salvar!!');
             }
