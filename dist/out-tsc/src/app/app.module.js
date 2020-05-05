@@ -1,6 +1,6 @@
+import { __decorate } from "tslib";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,31 +17,34 @@ import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.compo
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MateriaisComponent } from './materiais/materiais.component';
-
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    UsuariosComponent,
-    LoginComponent,
-    // JwPaginationComponent,
-    ConfirmDialogComponent,
-    PessoaFisicaComponent,
-    PessoaJuridicaComponent,
-    MateriaisComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgxPaginationModule, //Paginação
-    CustomMaterialModule,
-    FormsModule,
-    TextMaskModule
-  ],
-  providers: [ApiServiceService,
-    HttpClient
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+let AppModule = class AppModule {
+};
+AppModule = __decorate([
+    NgModule({
+        declarations: [
+            AppComponent,
+            UsuariosComponent,
+            LoginComponent,
+            // JwPaginationComponent,
+            ConfirmDialogComponent,
+            PessoaFisicaComponent,
+            PessoaJuridicaComponent,
+            MateriaisComponent
+        ],
+        imports: [
+            BrowserModule,
+            AppRoutingModule,
+            HttpClientModule,
+            NgxPaginationModule,
+            CustomMaterialModule,
+            FormsModule,
+            TextMaskModule
+        ],
+        providers: [ApiServiceService,
+            HttpClient
+        ],
+        bootstrap: [AppComponent]
+    })
+], AppModule);
+export { AppModule };
+//# sourceMappingURL=app.module.js.map

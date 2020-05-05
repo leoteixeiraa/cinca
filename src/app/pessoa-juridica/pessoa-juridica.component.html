@@ -12,7 +12,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Cadastro de Pessoa</a>
+          aria-expanded="false">Consultar Pessoa</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" routerLink="/pessoa-fisica">Pessoa Física</a>
           <a class="dropdown-item" routerLink="/pessoa-juridica">Pessoa Jurídica</a>
@@ -78,21 +78,21 @@
       <td><b>Status</b></td>
       <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado2 of lista">
+    <tr *ngFor="let dado of lista">
 
-      <td>{{dado2.idPJuridica}}</td>
-      <td>{{dado2.razaoSocial}}</td>
-      <td>{{dado2.cnpj}}</td>
-      <td>{{dado2.endereco}}</td>
-      <td>{{dado2.telefone}}</td>
-      <td>{{dado2.email}}</td>
-      <td>{{dado2.cidade}}</td>
-      <td>{{dado2.status}}</td>
+      <td>{{dado.idPJuridica}}</td>
+      <td>{{dado.razaoSocial}}</td>
+      <td>{{dado.cnpj}}</td>
+      <td>{{dado.endereco}}</td>
+      <td>{{dado.telefone}}</td>
+      <td>{{dado.email}}</td>
+      <td>{{dado.cidade}}</td>
+      <td>{{dado.status}}</td>
       <td>
-        <a (click)="dadosEditar(dado2.razaoSocial, dado2.cnpj, dado2.status, dado2.endereco, dado2.complemento, dado2.cidade, dado2.bairro, dado2.numero, dado2.pontoReferencia, dado2.cep, dado2.uf, dado2.email, dado2.telefone, dado2.site, dado2.observacoes, dado2.idPJuridica)"
+        <a (click)="dadosEditar(dado.razaoSocial, dado.cnpj, dado.status, dado.endereco, dado.complemento, dado.cidade, dado.bairro, dado.numero, dado.pontoReferencia, dado.cep, dado.uf, dado.email, dado.telefone, dado.site, dado.observacoes, dado.idPJuridica)"
           data-toggle="modal" data-target="#modal" title="Editar Registro"><i
             class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado2.idPJuridica)" title="Excluir Registro"><i
+        <a (click)="excluir(dado.idPJuridica)" title="Excluir Registro"><i
             class="far fa-trash-alt text-danger"></i></a>
       </td>
     </tr>

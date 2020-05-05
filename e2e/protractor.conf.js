@@ -16,7 +16,7 @@ exports.config = {
     browserName: 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://cincatarina-sistema-com-br.umbler.net/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
