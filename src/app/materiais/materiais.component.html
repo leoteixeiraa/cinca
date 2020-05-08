@@ -1,4 +1,3 @@
-<!-- Toolbar -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <img src="https://www.cincatarina.sc.gov.br/images/cincatarina/logo-light.png"
     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
@@ -16,6 +15,13 @@
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" routerLink="/pessoa-fisica">Pessoa Física</a>
           <a class="dropdown-item" routerLink="/pessoa-juridica">Pessoa Jurídica</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Materiais & Serviços</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" routerLink="/materiais">Materiais</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -119,9 +125,7 @@
           </li>
 
 
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#endereco" role="tab" aria-controls="endereco">Foto</a>
-          </li>
+        
           
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#observacoes" role="tab"
@@ -171,21 +175,7 @@
             </div>
             
           </div>
-          <div class="tab-pane" id="endereco" role="tabpanel">
-            <div class="modal-header">
-              <h6 class="modal-title"><strong>Imagem do Material</strong></h6>
-            </div>
-            <br>
-            <div class="form-group">
-               <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                    <div class="invalid-feedback">Example invalid custom file feedback</div>
-                </div>
-            </div>
-           
-            </div>
-
+        
 
      
           
