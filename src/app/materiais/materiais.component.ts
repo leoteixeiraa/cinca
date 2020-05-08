@@ -14,10 +14,11 @@ export class MateriaisComponent implements OnInit {
   start = 0;
 
   idMaterial = '';
+  cod_lcin = '';
+  unidade = '';
   descricao = '';
   quantidade = '';
   custoUnit = '';
-  custovendaUnit = '';
   marca = '';
   observacoes = '';
   title = 'Inserir Material';
@@ -61,14 +62,15 @@ export class MateriaisComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.descricao !== '' && this.quantidade !== '' && this.custoUnit !== '' && this.custovendaUnit !== '' && this.marca !== '') {
+    if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '' && this.marca !== '') {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'add',
+          cod_lcin: this.cod_lcin,
           descricao: this.descricao,
           quantidade: this.quantidade,
+          unidade: this.unidade,
           custoUnit: this.custoUnit,
-          custovendaUnit: this.custovendaUnit,
           marca: this.marca,
           observacoes: this.observacoes,
         };
@@ -90,12 +92,13 @@ export class MateriaisComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(descricao: string, quantidade: string, custoUnit: string, custovendaUnit: string, marca: string, observacoes: string, idMaterial: string) {
+  dadosEditar(cod_lcin: string, descricao: string, unidade: string, quantidade: string, custoUnit: string, marca: string, observacoes: string, idMaterial: string) {
     this.title = 'Editar Material';
+    this.cod_lcin = cod_lcin;
     this.descricao = descricao;
+    this.unidade = unidade;
     this.quantidade = quantidade;
     this.custoUnit = custoUnit;
-    this.custovendaUnit = custovendaUnit;
     this.marca = marca;
     this.observacoes = observacoes;
     this.idMaterial = idMaterial;
@@ -105,10 +108,11 @@ export class MateriaisComponent implements OnInit {
     return new Promise(resolve => {
       const dados = {
         requisicao: 'editar',
+        cod_lcin: this.cod_lcin,
         descricao: this.descricao,
+        unidade: this.unidade,
         quantidade: this.quantidade,
         custoUnit: this.custoUnit,
-        custovendaUnit: this.custovendaUnit,
         marca: this.marca,
         observacoes: this.observacoes,
         idMaterial: this.idMaterial

@@ -17,6 +17,7 @@ import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.compo
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MateriaisComponent } from './materiais/materiais.component';
+import { ServicosComponent } from './servicos/servicos.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MateriaisComponent } from './materiais/materiais.component';
     ConfirmDialogComponent,
     PessoaFisicaComponent,
     PessoaJuridicaComponent,
-    MateriaisComponent
+    MateriaisComponent,
+    ServicosComponent
   ],
   imports: [
     BrowserModule,

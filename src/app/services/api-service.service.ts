@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 })
 export class ApiServiceService {
 
+  reload = true;
+
   caminho = 'http://cinca-back-com-br.umbler.net/';
   //caminho = 'http://hospedarangular-com-br.umbler.net/';
   constructor(private http: HttpClient) { }

@@ -75,26 +75,26 @@
 
   <table class="table table-striped ml-2">
     <tr>
-      <td><b>ID Material</b></td>
+      <td><b>COD LCIN</b></td>
+      <td><b>Unidade Medida</b></td>
       <td><b>Descricao</b></td>
       <td><b>Quantidade</b></td>
       <td><b>Custo Unit R$</b></td>
-      <td><b>Custo Venda R$</b></td>
       <td><b>Marca</b></td>
       <td><b>Ações</b></td>
     </tr>
     <tr *ngFor="let dado of lista">
 
-      <td>{{dado.idMaterial}}</td>
+      <td>{{dado.cod_lcin}}</td>
+      <td>{{dado.unidade}}</td>
       <td>{{dado.descricao}}</td>
       <td>{{dado.quantidade}}</td>
       <td>{{dado.custoUnit}}</td>
-      <td>{{dado.custovendaUnit}}</td>
       <td>{{dado.marca}}</td>
       <td>
-        <a (click)="dadosEditar(dado.descricao, dado.quantidade, dado.custoUnit, dado.custovendaUnit,
-         dado.marca, dado.observacoes, dado.idMaterial)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i
-            class="fas fa-info-circle text-info mr-2"></i></a>
+        <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
+         dado.marca, dado.observacoes, dado.idMaterial)" data-toggle="modal" data-target="#modal"
+          title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"></i></a>
         <a (click)="excluir(dado.idMaterial)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
       </td>
     </tr>
@@ -112,7 +112,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" routerLink="/mater" data-dismiss="modal" aria-label="Fechar">
+        <button type="button" class="close" routerLink="/materiais" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -125,8 +125,8 @@
           </li>
 
 
-        
-          
+
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#observacoes" role="tab"
               aria-controls="observacoes">Observacoes</a>
@@ -139,22 +139,40 @@
               <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
             </div>
             <br>
+
             <div class="form-group">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">COD LCIN</label>
+                  <input type="text" class="form-control" (input)="this.cod_lcin = $event.target.value"
+                    value="{{cod_lcin}}" placeholder="Ex. CIM10949">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Unidade de Medida</label>
+                  <select class="custom-select mr-sm-2" id="unidade" (input)="this.unidade = $event.target.value"
+                    value="{{unidade}}">
+                    <option value="Unidade">Unidade</option>
+                    <option value="Metros">Metros</option>
+                    <option value="KG">KG</option>
+                  </select>
+                </div>
+
+              </div>
               <label for="exampleInputEmail1">Descrição</label>
-              <input type="text" class="form-control" (input)="this.descricao = $event.target.value" value="{{descricao}}"
-                aria-describedby="emailHelp" placeholder="Descrição do Material" required />
+              <input type="text" class="form-control" (input)="this.descricao = $event.target.value"
+                value="{{descricao}}" aria-describedby="emailHelp" placeholder="Descrição do Material" required />
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Quantidade</label>
-                <input type="number" class="form-control" 
-                  (input)="this.quantidade = $event.target.value" value="{{quantidade}}" placeholder="Quantidade do Material">
+                <input type="number" class="form-control" (input)="this.quantidade = $event.target.value"
+                  value="{{quantidade}}" placeholder="Quantidade do Material">
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Marca</label>
-                <input type="text" class="form-control" 
-                  (input)="this.marca = $event.target.value" value="{{marca}}" placeholder="Marca Produto">
+                <input type="text" class="form-control" (input)="this.marca = $event.target.value" value="{{marca}}"
+                  placeholder="Marca Produto">
               </div>
 
             </div>
@@ -162,23 +180,18 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Custo Unitário</label>
-                <input type="number" class="form-control" 
-                  (input)="this.custoUnit = $event.target.value" value="{{custoUnit}}" placeholder="Custo Unitário do Material">
+                <input type="text" class="form-control" (input)="this.custoUnit = $event.target.value"
+                  value="{{custoUnit}}" placeholder="Custo Unitário do Material">
               </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Custo Venda</label>
-                <input type="text" class="form-control" 
-                  (input)="this.custovendaUnit = $event.target.value" value="{{custovendaUnit}}"
-                  placeholder="Custo de Venda do Material">
-              </div>
+
 
             </div>
-            
-          </div>
-        
 
-     
-          
+          </div>
+
+
+
+
           <div class="tab-pane" id="observacoes" role="tabpanel">
             <div class="modal-header">
               <h6 class="modal-title"><strong>Observações</strong></h6>
@@ -206,8 +219,7 @@
           <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais"
             (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" routerLink="/materiais"
-            data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" routerLink="/materiais" data-dismiss="modal">Fechar</button>
 
         </div>
 
