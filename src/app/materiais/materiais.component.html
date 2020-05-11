@@ -213,13 +213,14 @@
         </script>
 
         <div class="modal-footer">
-          <button *ngIf="idMaterial === '' " type="button" class="btn btn-primary" routerLink="/materiais"
+          <button *ngIf="idMaterial === '' " type="button" class="btn btn-primary" routerLink="/materiais.html"
             (click)="cadastrar()">Salvar</button>
 
-          <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais"
+          <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais.html"
             (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" routerLink="/materiais" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" routerLink="/materiais.html"
+            data-dismiss="modal">Fechar</button>
 
         </div>
 

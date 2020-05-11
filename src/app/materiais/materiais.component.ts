@@ -62,7 +62,7 @@ export class MateriaisComponent implements OnInit {
 
   cadastrar() {
     // tslint:disable-next-line: max-line-length
-    if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '' && this.marca !== '') {
+    if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'add',
@@ -124,7 +124,7 @@ export class MateriaisComponent implements OnInit {
             alert('Editado com sucesso!!');
 
             //  location='linhas';
-            this.router.navigateByUrl('/materiais');
+            this.router.navigateByUrl('/materiais.html');
 
 
           } else {
@@ -147,6 +147,7 @@ export class MateriaisComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
+            this.router.navigateByUrl('/materiais.html');
 
           } else {
             alert('Erro ao Excluir!!');
