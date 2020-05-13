@@ -26,6 +26,7 @@ export class MateriaisComponent implements OnInit {
   caminho = 'apiMateriais.php';
   ApiServiceService;
 
+  paginaAtual: number = 1;
 
   constructor(private provider: ApiServiceService, private router: Router) { }
 

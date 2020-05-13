@@ -83,7 +83,8 @@
       <td><b>Marca</b></td>
       <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado of lista">
+    <tr
+      *ngFor="let dado of lista | paginate: { itemsPerPage: 5, currentPage: paginaAtual, totalItems: lista }; let i = index">
 
       <td>{{dado.cod_lcin}}</td>
       <td>{{dado.unidade}}</td>
@@ -99,7 +100,8 @@
       </td>
     </tr>
   </table>
-
+  <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
 </div>
 
 
@@ -159,8 +161,8 @@
 
               </div>
               <label for="exampleInputEmail1">Descrição</label>
-              <input type="text" class="form-control" (input)="this.descricao = $event.target.value"
-                value="{{descricao}}" aria-describedby="emailHelp" placeholder="Descrição do Material" required />
+              <textarea (input)="this.descricao = $event.target.value" value="{{descricao}}" class="form-control"
+                name="" id="" cols="95" rows="4"></textarea>
             </div>
 
             <div class="form-row">

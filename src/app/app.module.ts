@@ -39,7 +39,7 @@ import { ServicosComponent } from './servicos/servicos.component';
     NgxPaginationModule, //Paginação
     CustomMaterialModule,
     FormsModule,
-    TextMaskModule
+    TextMaskModule,
   ],
   providers: [ApiServiceService,
     HttpClient
