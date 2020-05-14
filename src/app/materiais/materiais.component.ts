@@ -10,7 +10,7 @@ import { ApiServiceService } from '../services/api-service.service';
 export class MateriaisComponent implements OnInit {
 
   lista: any = [];
-  limit = 10;
+  limit = 1000;
   start = 0;
 
   idMaterial = '';
@@ -26,7 +26,10 @@ export class MateriaisComponent implements OnInit {
   caminho = 'apiMateriais.php';
   ApiServiceService;
 
+  totalRecords: String;
   paginaAtual: number = 1;
+
+
 
   constructor(private provider: ApiServiceService, private router: Router) { }
 
@@ -54,8 +57,11 @@ export class MateriaisComponent implements OnInit {
       this.provider.Api(dados, this.caminho).subscribe(data => {
         for (const dado of data['result']) {
           this.lista.push(dado);
+
+
         }
         resolve(true);
+
       });
 
     });

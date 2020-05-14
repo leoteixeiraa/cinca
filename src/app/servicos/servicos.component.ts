@@ -11,7 +11,7 @@ export class ServicosComponent implements OnInit {
 
 
   lista: any = [];
-  limit = 10;
+  limit = 1000;
   start = 0;
 
   idServico = '';
