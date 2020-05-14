@@ -19,9 +19,10 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Materiais & Serviços</a>
+          aria-expanded="false">Materiais & Servicos</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" routerLink="/materiais">Materiais</a>
+          <a class="dropdown-item" routerLink="/servicos">Servicos</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -35,6 +36,7 @@
     <button type="button" routerLink="/login" class="btn btn-link">Sair</button>
   </div>
 </nav>
+
 
 
 <div class="container mt-4">
@@ -98,8 +100,7 @@
         <a (click)="dadosEditar(dado.razaoSocial, dado.cnpj, dado.status, dado.endereco, dado.complemento, dado.cidade, dado.bairro, dado.numero, dado.pontoReferencia, dado.cep, dado.uf, dado.email, dado.telefone, dado.site, dado.observacoes, dado.idPJuridica)"
           data-toggle="modal" data-target="#modal" title="Editar Registro"><i
             class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado.idPJuridica)" title="Excluir Registro"><i
-            class="far fa-trash-alt text-danger"></i></a>
+        <a (click)="excluir(dado.idPJuridica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
       </td>
     </tr>
   </table>

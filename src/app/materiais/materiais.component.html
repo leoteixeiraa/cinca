@@ -19,9 +19,10 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Materiais & Serviços</a>
+          aria-expanded="false">Materiais & Servicos</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" routerLink="/materiais">Materiais</a>
+          <a class="dropdown-item" routerLink="/servicos">Servicos</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -35,6 +36,7 @@
     <button type="button" routerLink="/login" class="btn btn-link">Sair</button>
   </div>
 </nav>
+
 
 
 
@@ -89,7 +91,7 @@
       <td>{{dado.unidade}}</td>
       <td>{{dado.descricao}}</td>
       <td>{{dado.quantidade}}</td>
-      <td>{{dado.custoUnit}}</td>
+      <td> {{dado.custoUnit }}</td>
       <td>{{dado.marca}}</td>
       <td>
         <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
