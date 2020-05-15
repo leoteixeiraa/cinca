@@ -6,7 +6,7 @@ let PessoaJuridicaComponent = class PessoaJuridicaComponent {
         this.router = router;
         this.route = route;
         this.lista = [];
-        this.limit = 10;
+        this.limit = 1000;
         this.start = 0;
         this.idPJuridica = '';
         this.razaoSocial = '';
@@ -29,6 +29,7 @@ let PessoaJuridicaComponent = class PessoaJuridicaComponent {
         this.caminho = 'apiPessoaJuridica.php';
         this.cnpjMask = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
         this.cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+        this.paginaAtual = 1;
     }
     ngOnInit() {
         this.lista = [];

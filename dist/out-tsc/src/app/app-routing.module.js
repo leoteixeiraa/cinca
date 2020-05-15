@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
 import { MateriaisComponent } from './materiais/materiais.component';
+import { ServicosComponent } from './servicos/servicos.component';
 const routes = [
     { path: 'usuarios', component: UsuariosComponent },
     { path: 'login', component: LoginComponent },
@@ -14,9 +15,8 @@ const routes = [
     { path: 'pessoa-fisica', component: PessoaFisicaComponent },
     { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
     { path: 'materiais', component: MateriaisComponent },
+    { path: 'servicos', component: ServicosComponent },
     { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
-    { path: 'pessoa-fisica', redirectTo: '/pessoa-fisica', pathMatch: 'full' },
-    { path: 'pessoa-juridica', redirectTo: '/pessoa-juridica', pathMatch: 'full' }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

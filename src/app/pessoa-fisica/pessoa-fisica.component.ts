@@ -10,7 +10,7 @@ import { ApiServiceService } from '../services/api-service.service';
 export class PessoaFisicaComponent implements OnInit {
 
   lista: any = [];
-  limit = 10;
+  limit = 1000;
   start = 0;
 
   idPFisica = '';
@@ -40,6 +40,10 @@ export class PessoaFisicaComponent implements OnInit {
   telFixoMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   dtNascimentoMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
+
+  totalRecords: String;
+  paginaAtual: number = 1;
+
 
   constructor(private provider: ApiServiceService, private router: Router) { }
 

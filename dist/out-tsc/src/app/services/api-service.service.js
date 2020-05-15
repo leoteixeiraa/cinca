@@ -6,6 +6,7 @@ let ApiServiceService = class ApiServiceService {
     //caminho = 'http://hospedarangular-com-br.umbler.net/';
     constructor(http) {
         this.http = http;
+        this.reload = true;
         this.caminho = 'http://cinca-back-com-br.umbler.net/';
     }
     Api(dados, api) {

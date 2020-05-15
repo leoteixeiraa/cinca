@@ -31,6 +31,7 @@ export class MateriaisComponent implements OnInit {
 
 
 
+
   constructor(private provider: ApiServiceService, private router: Router) { }
 
 
@@ -68,34 +69,39 @@ export class MateriaisComponent implements OnInit {
   }
 
   cadastrar() {
-    // tslint:disable-next-line: max-line-length
-    if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
-      return new Promise(resolve => {
-        const dados = {
-          requisicao: 'add',
-          cod_lcin: this.cod_lcin,
-          descricao: this.descricao,
-          quantidade: this.quantidade,
-          unidade: this.unidade,
-          custoUnit: this.custoUnit,
-          marca: this.marca,
-          observacoes: this.observacoes,
-        };
-        this.provider.Api(dados, this.caminho)
-          .subscribe(data => {
+    var regra = /^[0-9]+$/;
+    if (this.cod_lcin.match(regra)) {
+      if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
+        return new Promise(resolve => {
+          const dados = {
+            requisicao: 'add',
+            cod_lcin: this.cod_lcin,
+            descricao: this.descricao,
+            quantidade: this.quantidade,
+            unidade: this.unidade,
+            custoUnit: this.custoUnit,
+            marca: this.marca,
+            observacoes: this.observacoes,
+          };
+          this.provider.Api(dados, this.caminho)
+            .subscribe(data => {
 
-            if (data['success']) {
-              alert('Salvo com sucesso!!');
+              if (data['success']) {
+                alert('Salvo com sucesso!!');
 
-            } else {
-              alert('Erro ao Salvar!!');
-            }
+              } else {
+                alert('Erro ao Salvar!!');
+              }
 
-          });
-      });
+            });
+        });
+      } else {
+        alert('Prencha os Campos!');
+      }
     } else {
-      alert('Prencha os Campos!');
+      alert("Permitido somente número inteiro no COD LCIN!");
     }
+
   }
 
   // tslint:disable-next-line: max-line-length
@@ -112,36 +118,42 @@ export class MateriaisComponent implements OnInit {
   }
 
   editar() {
-    return new Promise(resolve => {
-      const dados = {
-        requisicao: 'editar',
-        cod_lcin: this.cod_lcin,
-        descricao: this.descricao,
-        unidade: this.unidade,
-        quantidade: this.quantidade,
-        custoUnit: this.custoUnit,
-        marca: this.marca,
-        observacoes: this.observacoes,
-        idMaterial: this.idMaterial
-      };
-      this.provider.Api(dados, this.caminho)
-        .subscribe(data => {
+    var regra = /^[0-9]+$/;
+    if (this.cod_lcin.match(regra)) {
+      return new Promise(resolve => {
+        const dados = {
+          requisicao: 'editar',
+          cod_lcin: this.cod_lcin,
+          descricao: this.descricao,
+          unidade: this.unidade,
+          quantidade: this.quantidade,
+          custoUnit: this.custoUnit,
+          marca: this.marca,
+          observacoes: this.observacoes,
+          idMaterial: this.idMaterial
+        };
+        this.provider.Api(dados, this.caminho)
+          .subscribe(data => {
 
-          if (data['success']) {
-            alert('Editado com sucesso!!');
+            if (data['success']) {
+              alert('Editado com sucesso!!');
 
-            //  location='linhas';
-            this.router.navigateByUrl('/materiais.html');
+              this.router.navigateByUrl('/materiais');
 
 
-          } else {
-            alert('Erro ao Editar!!');
-          }
+            } else {
+              alert('Erro ao Editar!!');
+            }
 
-        });
-    });
+          });
+      });
+
+    } else {
+      alert("Permitido somente número inteiro no COD LCIN!");
+    }
 
   }
+
 
   excluir(idu: string) {
     return new Promise(resolve => {
@@ -154,7 +166,7 @@ export class MateriaisComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-            this.router.navigateByUrl('/materiais.html');
+            this.router.navigateByUrl('/materiais');
 
           } else {
             alert('Erro ao Excluir!!');

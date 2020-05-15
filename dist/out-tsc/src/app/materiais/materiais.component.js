@@ -5,18 +5,20 @@ let MateriaisComponent = class MateriaisComponent {
         this.provider = provider;
         this.router = router;
         this.lista = [];
-        this.limit = 10;
+        this.limit = 1000;
         this.start = 0;
         this.idMaterial = '';
+        this.cod_lcin = '';
+        this.unidade = '';
         this.descricao = '';
         this.quantidade = '';
         this.custoUnit = '';
-        this.custovendaUnit = '';
         this.marca = '';
         this.observacoes = '';
         this.title = 'Inserir Material';
         this.textoBuscar = '';
         this.caminho = 'apiMateriais.php';
+        this.paginaAtual = 1;
     }
     ngOnInit() {
         this.lista = [];
@@ -43,14 +45,15 @@ let MateriaisComponent = class MateriaisComponent {
     }
     cadastrar() {
         // tslint:disable-next-line: max-line-length
-        if (this.descricao !== '' && this.quantidade !== '' && this.custoUnit !== '' && this.custovendaUnit !== '' && this.marca !== '') {
+        if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
             return new Promise(resolve => {
                 const dados = {
                     requisicao: 'add',
+                    cod_lcin: this.cod_lcin,
                     descricao: this.descricao,
                     quantidade: this.quantidade,
+                    unidade: this.unidade,
                     custoUnit: this.custoUnit,
-                    custovendaUnit: this.custovendaUnit,
                     marca: this.marca,
                     observacoes: this.observacoes,
                 };
@@ -70,40 +73,47 @@ let MateriaisComponent = class MateriaisComponent {
         }
     }
     // tslint:disable-next-line: max-line-length
-    dadosEditar(descricao, quantidade, custoUnit, custovendaUnit, marca, observacoes, idMaterial) {
+    dadosEditar(cod_lcin, descricao, unidade, quantidade, custoUnit, marca, observacoes, idMaterial) {
         this.title = 'Editar Material';
+        this.cod_lcin = cod_lcin;
         this.descricao = descricao;
+        this.unidade = unidade;
         this.quantidade = quantidade;
         this.custoUnit = custoUnit;
-        this.custovendaUnit = custovendaUnit;
         this.marca = marca;
         this.observacoes = observacoes;
         this.idMaterial = idMaterial;
     }
     editar() {
-        return new Promise(resolve => {
-            const dados = {
-                requisicao: 'editar',
-                descricao: this.descricao,
-                quantidade: this.quantidade,
-                custoUnit: this.custoUnit,
-                custovendaUnit: this.custovendaUnit,
-                marca: this.marca,
-                observacoes: this.observacoes,
-                idMaterial: this.idMaterial
-            };
-            this.provider.Api(dados, this.caminho)
-                .subscribe(data => {
-                if (data['success']) {
-                    alert('Editado com sucesso!!');
-                    //  location='linhas';
-                    this.router.navigateByUrl('/materiais');
-                }
-                else {
-                    alert('Erro ao Editar!!');
-                }
+        var regra = /^[0-9]+$/;
+        if (this.cod_lcin.match(regra)) {
+            return new Promise(resolve => {
+                const dados = {
+                    requisicao: 'editar',
+                    cod_lcin: this.cod_lcin,
+                    descricao: this.descricao,
+                    unidade: this.unidade,
+                    quantidade: this.quantidade,
+                    custoUnit: this.custoUnit,
+                    marca: this.marca,
+                    observacoes: this.observacoes,
+                    idMaterial: this.idMaterial
+                };
+                this.provider.Api(dados, this.caminho)
+                    .subscribe(data => {
+                    if (data['success']) {
+                        alert('Editado com sucesso!!');
+                        this.router.navigateByUrl('/materiaisl');
+                    }
+                    else {
+                        alert('Erro ao Editar!!');
+                    }
+                });
             });
-        });
+        }
+        else {
+            alert("Permitido somente número inteiro no COD LCIN!");
+        }
     }
     excluir(idu) {
         return new Promise(resolve => {
@@ -115,6 +125,7 @@ let MateriaisComponent = class MateriaisComponent {
                 .subscribe(data => {
                 if (data['success']) {
                     alert('Excluido com sucesso!');
+                    this.router.navigateByUrl('/materiais');
                 }
                 else {
                     alert('Erro ao Excluir!!');

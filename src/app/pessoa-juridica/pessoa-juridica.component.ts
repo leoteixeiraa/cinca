@@ -10,7 +10,7 @@ import { ApiServiceService } from '../services/api-service.service';
 export class PessoaJuridicaComponent implements OnInit {
 
   lista: any = [];
-  limit = 10;
+  limit = 1000;
   start = 0;
 
   idPJuridica = '';
@@ -36,6 +36,10 @@ export class PessoaJuridicaComponent implements OnInit {
   cnpjMask = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   dados: any;
+
+  totalRecords: String;
+  paginaAtual: number = 1;
+
   constructor(
     private provider: ApiServiceService,
     private router: Router,

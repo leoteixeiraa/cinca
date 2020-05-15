@@ -86,7 +86,7 @@
       <td><b>Status</b></td>
       <td><b>Ações</b></td>
     </tr>
-    <tr *ngFor="let dado of lista">
+    <tr *ngFor="let dado of lista | paginate: { itemsPerPage: 8, currentPage: paginaAtual }; let i = index">
 
       <td>{{dado.idPJuridica}}</td>
       <td>{{dado.razaoSocial}}</td>
@@ -104,7 +104,8 @@
       </td>
     </tr>
   </table>
-
+  <pagination-controls (pageChange)="paginaAtual = $event" maxSize="7" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
 </div>
 
 

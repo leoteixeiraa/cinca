@@ -64,32 +64,39 @@ export class ServicosComponent implements OnInit {
   }
 
   cadastrar() {
-    // tslint:disable-next-line: max-line-length
-    if (this.cod_lcin !== '' && this.descricao !== '' && this.custoUnit !== '') {
-      return new Promise(resolve => {
-        const dados = {
-          requisicao: 'add',
-          cod_lcin: this.cod_lcin,
-          descricao: this.descricao,
-          custoUnit: this.custoUnit,
-          marca: this.marca,
-          observacoes: this.observacoes,
-        };
-        this.provider.Api(dados, this.caminho)
-          .subscribe(data => {
+    var regra = /^[0-9]+$/;
+    if (this.cod_lcin.match(regra)) {
+      if (this.cod_lcin !== '' && this.descricao !== '' && this.custoUnit !== '') {
+        return new Promise(resolve => {
+          const dados = {
+            requisicao: 'add',
+            cod_lcin: this.cod_lcin,
+            descricao: this.descricao,
+            custoUnit: this.custoUnit,
+            marca: this.marca,
+            observacoes: this.observacoes,
+          };
+          this.provider.Api(dados, this.caminho)
+            .subscribe(data => {
 
-            if (data['success']) {
-              alert('Salvo com sucesso!!');
+              if (data['success']) {
+                alert('Salvo com sucesso!!');
 
-            } else {
-              alert('Erro ao Salvar!!');
-            }
+              } else {
+                alert('Erro ao Salvar!!');
+              }
 
-          });
-      });
+            });
+        });
+      } else {
+        alert('Prencha os Campos!');
+      }
+
     } else {
-      alert('Prencha os Campos!');
+      alert("Permitido somente número inteiro no COD LCIN!");
     }
+
+
   }
 
   // tslint:disable-next-line: max-line-length
@@ -104,34 +111,40 @@ export class ServicosComponent implements OnInit {
   }
 
   editar() {
-    return new Promise(resolve => {
-      const dados = {
-        requisicao: 'editar',
-        cod_lcin: this.cod_lcin,
-        descricao: this.descricao,
-        custoUnit: this.custoUnit,
-        marca: this.marca,
-        observacoes: this.observacoes,
-        idServico: this.idServico
-      };
-      this.provider.Api(dados, this.caminho)
-        .subscribe(data => {
+    var regra = /^[0-9]+$/;
+    if (this.cod_lcin.match(regra)) {
+      return new Promise(resolve => {
+        const dados = {
+          requisicao: 'editar',
+          cod_lcin: this.cod_lcin,
+          descricao: this.descricao,
+          custoUnit: this.custoUnit,
+          marca: this.marca,
+          observacoes: this.observacoes,
+          idMaterial: this.idServico
+        };
+        this.provider.Api(dados, this.caminho)
+          .subscribe(data => {
 
-          if (data['success']) {
-            alert('Editado com sucesso!!');
+            if (data['success']) {
+              alert('Editado com sucesso!!');
 
-            //  location='linhas';
-            this.router.navigateByUrl('/materiais.html');
+              this.router.navigateByUrl('/materiaisl');
 
 
-          } else {
-            alert('Erro ao Editar!!');
-          }
+            } else {
+              alert('Erro ao Editar!!');
+            }
 
-        });
-    });
+          });
+      });
+
+    } else {
+      alert("Permitido somente número inteiro no COD LCIN!");
+    }
 
   }
+
 
   excluir(idu: string) {
     return new Promise(resolve => {
@@ -144,7 +157,7 @@ export class ServicosComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-            this.router.navigateByUrl('/materiais.html');
+            this.router.navigateByUrl('/servicos');
 
           } else {
             alert('Erro ao Excluir!!');

@@ -17,8 +17,6 @@ const routes: Routes = [
   { path: 'materiais', component: MateriaisComponent },
   { path: 'servicos', component: ServicosComponent },
   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
-  { path: 'pessoa-fisica', redirectTo: '/pessoa-fisica', pathMatch: 'full' },
-  { path: 'pessoa-juridica', redirectTo: '/pessoa-juridica', pathMatch: 'full' },
 ];
 
 @NgModule({

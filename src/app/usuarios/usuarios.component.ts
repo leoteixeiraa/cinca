@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class UsuariosComponent implements OnInit {
 
   lista: any = [];
-  limit = 10;
+  limit = 1000;
   start = 0;
   nome = '';
   usuario = '';
@@ -21,6 +21,8 @@ export class UsuariosComponent implements OnInit {
   caminho = 'apiUsuarios.php';
   cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
+  totalRecords: String;
+  paginaAtual: number = 1;
   constructor(private provider: ApiServiceService, private router: Router) { }
 
   ngOnInit(): void {

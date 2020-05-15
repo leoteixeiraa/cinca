@@ -5,7 +5,7 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
         this.provider = provider;
         this.router = router;
         this.lista = [];
-        this.limit = 10;
+        this.limit = 1000;
         this.start = 0;
         this.idPFisica = '';
         this.nome = '';
@@ -32,6 +32,7 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
         this.telFixoMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
         this.dtNascimentoMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
         this.rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
+        this.paginaAtual = 1;
     }
     ngOnInit() {
         this.lista = [];

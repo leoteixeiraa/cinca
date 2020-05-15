@@ -5,7 +5,7 @@ let UsuariosComponent = class UsuariosComponent {
         this.provider = provider;
         this.router = router;
         this.lista = [];
-        this.limit = 10;
+        this.limit = 1000;
         this.start = 0;
         this.nome = '';
         this.usuario = '';
@@ -15,6 +15,7 @@ let UsuariosComponent = class UsuariosComponent {
         this.textBuscar = '';
         this.caminho = 'apiUsuarios.php';
         this.cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+        this.paginaAtual = 1;
     }
     ngOnInit() {
         this.lista = [];
