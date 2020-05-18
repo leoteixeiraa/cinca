@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-materiais',
@@ -149,15 +150,17 @@ export class MateriaisComponent implements OnInit {
       });
 
     } else {
-      alert("Permitido somente número inteiro no COD LCIN!");
+      alert("Permitido somente número inteiro no COD LCIN!"); //se não seguir a primeira regra
     }
 
   }
 
 
+
   excluir(idu: string) {
     return new Promise(resolve => {
       const dados = {
+
         requisicao: 'excluir',
         idMaterial: idu
       };
