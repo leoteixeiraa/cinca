@@ -25,6 +25,9 @@
           <a class="dropdown-item" routerLink="/servicos">Servicos</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pontos/">Pontos<span class="sr-only">(current)</span></a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Acesso Sistema</a>
@@ -97,8 +100,7 @@
         <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
          dado.marca, dado.observacoes, dado.idMaterial)" data-toggle="modal" data-target="#modal"
           title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"></i></a>
-          <a (click)="excluir(dado.idMaterial)" title="Excluir Registro"><i
-                        class="far fa-trash-alt text-danger"></i></a>
+        <a (click)="excluir(dado.idMaterial)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
 
       </td>
     </tr>
@@ -224,7 +226,7 @@
           <button *ngIf="idMaterial === '' " type="button" class="btn btn-primary" routerLink="/materiais.html"
             (click)="cadastrar()">Salvar</button>
 
-         
+
 
           <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais.html"
             (click)="editar()">Editar</button>

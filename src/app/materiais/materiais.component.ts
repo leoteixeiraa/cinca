@@ -73,6 +73,7 @@ export class MateriaisComponent implements OnInit {
     var regra = /^[0-9]+$/;
     if (this.cod_lcin.match(regra)) {
       if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
+
         return new Promise(resolve => {
           const dados = {
             requisicao: 'add',
@@ -83,7 +84,9 @@ export class MateriaisComponent implements OnInit {
             custoUnit: this.custoUnit,
             marca: this.marca,
             observacoes: this.observacoes,
+
           };
+
           this.provider.Api(dados, this.caminho)
             .subscribe(data => {
 

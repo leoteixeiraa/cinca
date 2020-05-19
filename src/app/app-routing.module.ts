@@ -7,6 +7,7 @@ import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
 import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
+import { PontosComponent } from './pontos/pontos.component';
 
 const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
   { path: 'materiais', component: MateriaisComponent },
   { path: 'servicos', component: ServicosComponent },
+  { path: 'pontos', component: PontosComponent },
   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
 ];
 

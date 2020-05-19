@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
+import { PontosComponent } from './pontos/pontos.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ServicosComponent } from './servicos/servicos.component';
     PessoaFisicaComponent,
     PessoaJuridicaComponent,
     MateriaisComponent,
-    ServicosComponent
+    ServicosComponent,
+    PontosComponent
   ],
   imports: [
     BrowserModule,

@@ -121,7 +121,7 @@ export class ServicosComponent implements OnInit {
           custoUnit: this.custoUnit,
           marca: this.marca,
           observacoes: this.observacoes,
-          idMaterial: this.idServico
+          idServico: this.idServico
         };
         this.provider.Api(dados, this.caminho)
           .subscribe(data => {
