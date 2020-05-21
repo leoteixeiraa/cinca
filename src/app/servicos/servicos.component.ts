@@ -98,7 +98,6 @@ export class ServicosComponent implements OnInit {
 
 
   }
-
   // tslint:disable-next-line: max-line-length
   dadosEditar(cod_lcin: string, descricao: string, custoUnit: string, marca: string, observacoes: string, idServico: string) {
     this.title = 'Editar Servico';
@@ -130,8 +129,6 @@ export class ServicosComponent implements OnInit {
               alert('Editado com sucesso!!');
 
               this.router.navigateByUrl('/materiaisl');
-
-
             } else {
               alert('Erro ao Editar!!');
             }
@@ -142,10 +139,7 @@ export class ServicosComponent implements OnInit {
     } else {
       alert("Permitido somente número inteiro no COD LCIN!");
     }
-
   }
-
-
   excluir(idu: string) {
     return new Promise(resolve => {
       const dados = {

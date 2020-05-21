@@ -94,11 +94,11 @@
       <td>{{dado.unidade}}</td>
       <td>{{dado.descricao}}</td>
       <td>{{dado.quantidade}}</td>
-      <td>{{dado.custoUnit }}</td>
+      <td>R${{dado.custoUnit}}</td>
       <td>{{dado.marca}}</td>
       <td>
         <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
-         dado.marca, dado.observacoes, dado.idMaterial)" data-toggle="modal" data-target="#modal"
+         dado.marca, dado.matManutencao, dado.idMaterial)" data-toggle="modal" data-target="#modal"
           title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"></i></a>
         <a (click)="excluir(dado.idMaterial)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
 
@@ -189,11 +189,19 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Custo Unitário</label>
-                <input type="text" id="value" class="form-control money2" (input)="this.custoUnit = $event.target.value"
+                <input type="text" id="value" class="form-control money" (input)="this.custoUnit = $event.target.value"
                   value="{{custoUnit}}" placeholder="Custo Unitário do Material">
-
               </div>
 
+              <div class="form-group col-md-6">
+                <div class="custom-control form-control-lg custom-checkbox">
+                  <br>
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Material de Manutenção</label>
+                </div>
+
+
+              </div>
 
             </div>
 
