@@ -189,10 +189,10 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Custo Unitário</label>
-                <input type="text" class="form-control money2" (input)="this.custoUnit = $event.target.value"
+                <input type="text" class="form-control money" (input)="this.custoUnit = $event.target.value"
                   value="{{custoUnit}}" placeholder="Custo Unitário do Material">
               </div>
-
+              <p>{{custoUnit}}</p>
               <div class="form-group col-md-6">
                 <div class="custom-control form-control-lg custom-checkbox">
                   <br>
