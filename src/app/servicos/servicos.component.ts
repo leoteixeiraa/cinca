@@ -65,7 +65,8 @@ export class ServicosComponent implements OnInit {
 
   cadastrar() {
     var regra = /^[0-9]+$/;
-    if (this.cod_lcin.match(regra)) {
+    var regra2 = /^[0-9,.]+$/;
+    if (this.cod_lcin.match(regra) && this.custoUnit.match(regra2)) {
       if (this.cod_lcin !== '' && this.descricao !== '' && this.custoUnit !== '') {
         return new Promise(resolve => {
           const dados = {
@@ -93,7 +94,7 @@ export class ServicosComponent implements OnInit {
       }
 
     } else {
-      alert("Permitido somente número inteiro no COD LCIN!");
+      alert("Permitido somente números no COD LCIN! E no campo Custo Unitário apenas numero, ponto e virgula. Verifique.");
     }
 
 
@@ -111,7 +112,8 @@ export class ServicosComponent implements OnInit {
 
   editar() {
     var regra = /^[0-9]+$/;
-    if (this.cod_lcin.match(regra)) {
+    var regra2 = /^[0-9,.]+$/;
+    if (this.cod_lcin.match(regra) && this.custoUnit.match(regra2)) {
       return new Promise(resolve => {
         const dados = {
           requisicao: 'editar',
@@ -128,7 +130,7 @@ export class ServicosComponent implements OnInit {
             if (data['success']) {
               alert('Editado com sucesso!!');
 
-              this.router.navigateByUrl('/materiaisl');
+              this.router.navigateByUrl('/servicos');
             } else {
               alert('Erro ao Editar!!');
             }
@@ -137,7 +139,7 @@ export class ServicosComponent implements OnInit {
       });
 
     } else {
-      alert("Permitido somente número inteiro no COD LCIN!");
+      alert("Permitido somente números no COD LCIN! E no campo Custo Unitário apenas numero, ponto e virgula. Verifique.");
     }
   }
   excluir(idu: string) {

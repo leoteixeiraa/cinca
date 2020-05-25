@@ -26,17 +26,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.7/angular-locale_pt-br.js"></script>
 
 
-
+  <!-- Mascara de dinheiro INICIO  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
 
-
+  <!-- Mascara de dinheiro FIM  -->
 
   <script>
     $(document).ready(function () {
-      $('.money').mask('000.000.000.000.000,00', { reverse: false });
-      $('.money2').mask("#.##0.00", { reverse: true });
+      $('.money').mask('000.000.000.000.000,00', { reverse: true });
+      $('.money2').mask("#.##0,00", { reverse: true });
 
       $(".money").change(function () {
         $("#value").html($(this).val().replace(/\D/g, ''))
@@ -47,13 +47,12 @@
 
 
 
-
 <link rel="stylesheet" href="styles.01a868b05aa83087c934.css"></head>
 
 <body>
 
 
   <app-root></app-root>
-<script src="runtime-es2015.0811dcefd377500b5b1a.js" type="module"></script><script src="runtime-es5.0811dcefd377500b5b1a.js" nomodule defer></script><script src="polyfills-es5.277e2e1d6fb2daf91a5c.js" nomodule defer></script><script src="polyfills-es2015.ca64e4516afbb1b890d5.js" type="module"></script><script src="main-es2015.323e37751b30d9a42301.js" type="module"></script><script src="main-es5.323e37751b30d9a42301.js" nomodule defer></script></body>
+<script src="runtime-es2015.0811dcefd377500b5b1a.js" type="module"></script><script src="runtime-es5.0811dcefd377500b5b1a.js" nomodule defer></script><script src="polyfills-es5.277e2e1d6fb2daf91a5c.js" nomodule defer></script><script src="polyfills-es2015.ca64e4516afbb1b890d5.js" type="module"></script><script src="main-es2015.edb9f390798f22300a11.js" type="module"></script><script src="main-es5.edb9f390798f22300a11.js" nomodule defer></script></body>
 
 </html>

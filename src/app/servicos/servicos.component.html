@@ -86,7 +86,7 @@
 
             <td>{{dado.cod_lcin}}</td>
             <td>{{dado.descricao}}</td>
-            <td> {{dado.custoUnit }}</td>
+            <td>R${{dado.custoUnit}}</td>
             <td>{{dado.marca}}</td>
             <td>
                 <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.custoUnit,
@@ -198,13 +198,13 @@
                 </script>
 
                 <div class="modal-footer">
-                    <button *ngIf="idServico === '' " type="button" class="btn btn-primary" routerLink="/servicos.html"
+                    <button *ngIf="idServico === '' " type="button" class="btn btn-primary" routerLink="/servicos"
                         (click)="cadastrar()">Salvar</button>
 
-                    <button *ngIf="idServico > '0' " type="button" class="btn btn-primary" routerLink="/servicos.html"
+                    <button *ngIf="idServico > '0' " type="button" class="btn btn-primary" routerLink="/servicos"
                         (click)="editar()">Editar</button>
 
-                    <button type="button" class="btn btn-secondary" routerLink="/servicos.html"
+                    <button type="button" class="btn btn-secondary" routerLink="/servicos"
                         data-dismiss="modal">Fechar</button>
 
                 </div>
