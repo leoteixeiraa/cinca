@@ -167,6 +167,7 @@
                 </div>
 
               </div>
+
               <label for="exampleInputEmail1">Descrição</label>
               <textarea (input)="this.descricao = $event.target.value" value="{{descricao}}" class="form-control"
                 name="" id="" cols="95" rows="4"></textarea>
@@ -202,12 +203,19 @@
 
               </div>
 
+
             </div>
 
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="customFile">
-              <label class="custom-file-label" for="customFile">Imagem do Material</label>
+            <div class="form-group">
+              <label for="file">File</label>
+              <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
+              <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                <div *ngIf="f.file.errors.required">File is required.</div>
+              </div>
             </div>
+
+            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px;">
+
 
           </div>
 

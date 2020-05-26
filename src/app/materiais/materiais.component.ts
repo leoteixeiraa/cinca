@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
-import { CurrencyPipe } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -31,10 +32,15 @@ export class MateriaisComponent implements OnInit {
   totalRecords: String;
   paginaAtual: number = 1;
 
+  imageSrc: string;
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
 
 
-
-  constructor(private provider: ApiServiceService, private router: Router) { }
+  constructor(private provider: ApiServiceService, private router: Router, private http: HttpClient) { }
 
 
   ngOnInit() {
@@ -44,6 +50,30 @@ export class MateriaisComponent implements OnInit {
 
 
 
+  }
+
+  get f() {
+    return this.myForm.controls;
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+
+        this.imageSrc = reader.result as string;
+
+        this.myForm.patchValue({
+          fileSource: reader.result
+        });
+
+      };
+
+    }
   }
 
 
