@@ -28,6 +28,7 @@ export class MateriaisComponent implements OnInit {
   textoBuscar = '';
   caminho = 'apiMateriais.php';
   ApiServiceService;
+  imagem;
 
   totalRecords: String;
   paginaAtual: number = 1;
@@ -75,6 +76,17 @@ export class MateriaisComponent implements OnInit {
 
     }
   }
+
+
+  submit() {
+    console.log(this.myForm.value);
+    this.http.post('http://cinca-back-com-br.umbler.net/upload.php', this.myForm.value)
+      .subscribe(res => {
+        console.log(res);
+        alert('Uploaded Successfully.');
+      })
+  }
+
 
 
   carregar(texto: string) {

@@ -114,6 +114,7 @@
 
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+
 <div id="modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -205,19 +206,21 @@
 
 
             </div>
-
-            <div class="form-group">
-              <label for="file">File</label>
-              <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
-              <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                <div *ngIf="f.file.errors.required">File is required.</div>
+            <form [formGroup]="myForm" (ngSubmit)="submit()">
+              <div class="form-group">
+                <label for="file">File</label>
+                <input formControlName="file" id="file" type="file" class="form-control"
+                  (change)="onFileChange($event)">
+                <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                  <div *ngIf="f.file.errors.required">File is required.</div>
+                </div>
               </div>
-            </div>
 
-            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px;">
-
+              <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px;">
+            </form>
 
           </div>
+
 
 
 
@@ -243,9 +246,8 @@
         </script>
 
         <div class="modal-footer">
-          <button *ngIf="idMaterial === '' " type="button" class="btn btn-primary" routerLink="/materiais.html"
+          <button *ngIf="idMaterial === '' " type="submit" class="btn btn-primary" routerLink="/materiais.html"
             (click)="cadastrar()">Salvar</button>
-
 
 
           <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais.html"
@@ -259,5 +261,6 @@
         </div>
 
       </div>
+
     </div>
   </div>
