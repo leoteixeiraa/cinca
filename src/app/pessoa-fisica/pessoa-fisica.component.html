@@ -103,8 +103,7 @@
          dado.complemento, dado.cidade, dado.bairro, dado.uf, dado.celular,
           dado.telFixo, dado.email, dado.observacoes,
            dado.idPFisica)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i
-            class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado.idPFisica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+            class="fas fa-info-circle text-info mr-1" style="font-size:18px"></i></a>
       </td>
     </tr>
   </table>
@@ -122,7 +121,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" routerLink="/pessoa-fisica" data-dismiss="modal" aria-label="Fechar">
+        <button type="button" class="close" (click)="onRefresh();" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -321,14 +320,14 @@
 
 
         <div class="modal-footer">
-          <button *ngIf="idPFisica === '' " type="button" class="btn btn-primary" routerLink="/pessoa-fisica"
-            (click)="cadastrar()">Salvar</button>
+          <button *ngIf="idPFisica === '' " type="button" class="btn btn-primary" (click)="cadastrar();">Salvar</button>
 
-          <button *ngIf="idPFisica > '0' " type="button" class="btn btn-primary" routerLink="/pessoa-fisica"
-            (click)="editar()">Editar</button>
+          <button *ngIf="idPFisica > '0' " type="button" class="btn btn-primary" (click)="editar();">Editar</button>
 
-          <button type="button" class="btn btn-secondary" routerLink="/pessoa-fisica"
-            data-dismiss="modal">Fechar</button>
+          <button *ngIf="idPFisica > '0' " type="button" class="btn btn-danger"
+            (click)="excluir(idPFisica)">Excluir</button>
+
+          <button type="button" class="btn btn-secondary" (click)="onRefresh();" data-dismiss="modal">Fechar</button>
 
         </div>
 

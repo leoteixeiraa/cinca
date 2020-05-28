@@ -99,8 +99,7 @@
       <td>
         <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
          dado.marca, dado.matManutencao, dado.idMaterial)" data-toggle="modal" data-target="#modal"
-          title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado.idMaterial)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+          title="Editar Registro"><i class="fas fa-info-circle text-info mr-2" style="font-size:18px"></i></a>
 
       </td>
     </tr>
@@ -120,7 +119,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" routerLink="/materiais" data-dismiss="modal" aria-label="Fechar">
+        <button type="button" class="close" (click)="onRefresh();" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -206,7 +205,7 @@
 
 
             </div>
-            <form [formGroup]="myForm" (ngSubmit)="submit()">
+            <form>
               <div class="form-group">
                 <label for="file">File</label>
                 <input formControlName="file" id="file" type="file" class="form-control"
@@ -246,17 +245,17 @@
         </script>
 
         <div class="modal-footer">
-          <button *ngIf="idMaterial === '' " type="submit" class="btn btn-primary" routerLink="/materiais.html"
+          <button *ngIf="idMaterial === '' " class="btn btn-primary" routerLink="/materiais.html"
             (click)="cadastrar()">Salvar</button>
 
 
           <button *ngIf="idMaterial > '0' " type="button" class="btn btn-primary" routerLink="/materiais.html"
             (click)="editar()">Editar</button>
 
+          <button *ngIf="idMaterial > '0' " type="button" class="btn btn-danger"
+            (click)="excluir(idMaterial)">Excluir</button>
 
-
-          <button type="button" class="btn btn-secondary" routerLink="/materiais.html"
-            data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" (click)="onRefresh();" data-dismiss="modal">Fechar</button>
 
         </div>
 

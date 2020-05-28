@@ -52,7 +52,6 @@ export class PessoaFisicaComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     this.carregar(this.textoBuscar);
-    this.reload();
     this.load();
   }
 
@@ -63,14 +62,18 @@ export class PessoaFisicaComponent implements OnInit {
     sessionStorage.refresh = false;
   }
 
-  reload() {
-    if (this.ApiServiceService.reload) {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['pessoa-fisica']);
-        this.ApiServiceService.reload = false;
+  onRefresh() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+
+    let currentUrl = this.router.url + '?';
+
+    this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
       });
-    }
   }
+
 
   carregar(texto: string) {
     this.lista = [];
@@ -120,7 +123,7 @@ export class PessoaFisicaComponent implements OnInit {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
-              this.reload();
+
             } else {
               alert('Erro ao Salvar!!');
             }
@@ -131,6 +134,7 @@ export class PessoaFisicaComponent implements OnInit {
       alert('Prencha os Campos!');
     }
   }
+
 
   // tslint:disable-next-line: max-line-length
   dadosEditar(nome: string, cpf: string, rg: string, sexo: string, dataNascimento: string, estadoCivil: string, cep: string, endereco: string, complemento: string, cidade: string, bairro: string, uf: string, celular: string, telFixo: string, email: string, observacoes: string, idPFisica: string) {
@@ -182,11 +186,6 @@ export class PessoaFisicaComponent implements OnInit {
           if (data['success']) {
             alert('Editado com sucesso!!');
 
-            //  location='linhas';
-            // this.router.navigate(['/linhas']);
-
-            this.load();
-            this.reload();
           } else {
             alert('Erro ao Editar!!');
           }
@@ -208,7 +207,7 @@ export class PessoaFisicaComponent implements OnInit {
           if (data['success']) {
             alert('Excluido com sucesso!');
 
-            this.reload();
+
 
           } else {
             alert('Erro ao Excluir!!');

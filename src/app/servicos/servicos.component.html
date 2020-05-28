@@ -91,9 +91,7 @@
             <td>
                 <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.custoUnit,
            dado.marca, dado.observacoes, dado.idServico)" data-toggle="modal" data-target="#modal"
-                    title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"></i></a>
-                <a (click)="excluir(dado.idServico)" title="Excluir Registro"><i
-                        class="far fa-trash-alt text-danger"></i></a>
+                    title="Editar Registro"><i class="fas fa-info-circle text-info mr-2" style="font-size:18px"></i></a>
             </td>
         </tr>
     </table>
@@ -111,7 +109,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{title}}</h5>
-                <button type="button" class="close" routerLink="/servicos" data-dismiss="modal" aria-label="Fechar">
+                <button type="button" class="close" (click)="onRefresh();" data-dismiss="modal" aria-label="Fechar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -204,7 +202,11 @@
                     <button *ngIf="idServico > '0' " type="button" class="btn btn-primary" routerLink="/servicos"
                         (click)="editar()">Editar</button>
 
-                    <button type="button" class="btn btn-secondary" routerLink="/servicos"
+
+                    <button *ngIf="idServico > '0' " type="button" class="btn btn-danger"
+                        (click)="excluir(idServico)">Excluir</button>
+
+                    <button type="button" class="btn btn-secondary" (click)="onRefresh();"
                         data-dismiss="modal">Fechar</button>
 
                 </div>

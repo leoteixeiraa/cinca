@@ -63,15 +63,7 @@
       </form>
 
     </div>
-    <!-- <div class="col-sm">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" (input)="carregar($event.target.value)"
-          (change)="this.textoBuscar = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
-        <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0"><i
-            class="fas fa-search"></i></a>
-      </form>
 
-    </div> -->
 
   </div>
 
@@ -101,9 +93,8 @@
       <td>{{dado.status}}</td>
       <td>
         <a (click)="dadosEditar(dado.razaoSocial, dado.cnpj, dado.status, dado.endereco, dado.complemento, dado.cidade, dado.bairro, dado.numero, dado.pontoReferencia, dado.cep, dado.uf, dado.email, dado.telefone, dado.site, dado.observacoes, dado.idPJuridica)"
-          data-toggle="modal" data-target="#modal" title="Editar Registro"><i
-            class="fas fa-info-circle text-info mr-2"></i></a>
-        <a (click)="excluir(dado.idPJuridica)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+          data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"
+            style="font-size:18px"></i></a>
       </td>
     </tr>
   </table>
@@ -120,7 +111,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="close" routerLink="/pessoa-juridica" data-dismiss="modal" aria-label="Fechar">
+        <button type="button" class="close" (click)="onRefresh();" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -312,8 +303,10 @@
 
           <button *ngIf="idPJuridica > '0' " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
 
-          <button type="button" class="btn btn-secondary" routerLink="/pessoa-juridica"
-            data-dismiss="modal">Fechar</button>
+          <button *ngIf="idPJuridica > '0' " type="button" class="btn btn-danger" routerLink="/pessoa-fisica"
+            (click)="excluir(idPJuridica)">Excluir</button>
+
+          <button type="button" class="btn btn-secondary" (click)="onRefresh();" data-dismiss="modal">Fechar</button>
 
         </div>
 

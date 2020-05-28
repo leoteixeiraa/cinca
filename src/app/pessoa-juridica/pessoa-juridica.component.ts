@@ -53,11 +53,16 @@ export class PessoaJuridicaComponent implements OnInit {
     this.carregar(this.textoBuscar);
   }
 
-  load() {
-    //Session storage salva os dados como string
-    // tslint:disable-next-line: no-unused-expression
-    (sessionStorage.refresh == 'true' || !sessionStorage.refresh) && location.reload();
-    sessionStorage.refresh = false;
+  onRefresh() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+
+    let currentUrl = this.router.url + '?';
+
+    this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
   }
 
 
@@ -112,15 +117,6 @@ export class PessoaJuridicaComponent implements OnInit {
 
             if (data['success']) {
               alert('Salvo com sucesso!!');
-              window.location.reload();
-              this.router.navigate(['/pessoa-juridica']);
-              this.load();
-              this.dados.reset();
-
-
-
-
-
 
             } else {
               alert('Erro ao Salvar!!');
@@ -181,13 +177,6 @@ export class PessoaJuridicaComponent implements OnInit {
           if (data['success']) {
             alert('Editado com sucesso!!');
 
-            //  location='linhas';
-            // this.router.navigate(['/linhas']);
-            window.location.reload();
-            this.router.navigate(['/pessoa-juridica']);
-            this.router.navigateByUrl('/pessoa-juridica', { skipLocationChange: true }).then(() => {
-              this.router.navigate([`pessoa-juridica`])
-            });
           } else {
             alert('Erro ao Editar!!');
           }
@@ -208,9 +197,6 @@ export class PessoaJuridicaComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-            this.router.navigate(['/pessoa-fisica']);
-            this.load();
-            location.reload();
           } else {
             alert('Erro ao Excluir!!');
           }

@@ -10,16 +10,84 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
 
 const routes: Routes = [
-  { path: 'usuarios', component: UsuariosComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'confirm-dialog', component: ConfirmDialogComponent },
-  { path: 'pessoa-fisica', component: PessoaFisicaComponent },
-  { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
-  { path: 'materiais', component: MateriaisComponent },
-  { path: 'servicos', component: ServicosComponent },
-  { path: 'pontos', component: PontosComponent },
-  { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
+
+  {
+
+    path: '',
+
+    redirectTo: 'usuarios',
+
+    pathMatch: 'full'
+
+  },
+
+  {
+
+    path: 'usuarios',
+
+
+    component: UsuariosComponent
+
+  },
+
+  {
+
+    path: 'login',
+
+    component: LoginComponent
+
+  },
+
+  {
+
+    path: 'pessoa-fisica',
+
+    component: PessoaFisicaComponent
+
+  },
+
+  {
+
+    path: 'pessoa-juridica',
+
+    component: PessoaJuridicaComponent
+
+  },
+
+  {
+
+    path: 'materiais',
+
+    component: MateriaisComponent
+
+  },
+
+  {
+
+    path: 'servicos',
+
+
+    component: ServicosComponent
+
+  }
+
+
 ];
+
+
+
+
+//   { 
+//     path: 'usuarios', component: UsuariosComponent },
+//   { path: 'login', component: LoginComponent },
+//   { path: 'confirm-dialog', component: ConfirmDialogComponent },
+//   { path: 'pessoa-fisica', component: PessoaFisicaComponent },
+//   { path: 'pessoa-juridica', component: PessoaJuridicaComponent },
+//   { path: 'materiais', component: MateriaisComponent },
+//   { path: 'servicos', component: ServicosComponent },
+//   { path: 'pontos', component: PontosComponent },
+//   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
+// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -39,6 +39,18 @@ export class ServicosComponent implements OnInit {
 
   }
 
+  onRefresh() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+
+    let currentUrl = this.router.url + '?';
+
+    this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
+  }
+
 
   carregar(texto: string) {
     this.lista = [];
@@ -130,7 +142,6 @@ export class ServicosComponent implements OnInit {
             if (data['success']) {
               alert('Editado com sucesso!!');
 
-              this.router.navigateByUrl('/servicos');
             } else {
               alert('Erro ao Editar!!');
             }
@@ -153,7 +164,7 @@ export class ServicosComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-            this.router.navigateByUrl('/servicos');
+
 
           } else {
             alert('Erro ao Excluir!!');

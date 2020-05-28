@@ -77,15 +77,19 @@ export class MateriaisComponent implements OnInit {
     }
   }
 
+  onRefresh() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
 
-  submit() {
-    console.log(this.myForm.value);
-    this.http.post('http://cinca-back-com-br.umbler.net/upload.php', this.myForm.value)
-      .subscribe(res => {
-        console.log(res);
-        alert('Uploaded Successfully.');
-      })
+    let currentUrl = this.router.url + '?';
+
+    this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
   }
+
+
 
 
 
@@ -187,8 +191,6 @@ export class MateriaisComponent implements OnInit {
             if (data['success']) {
               alert('Editado com sucesso!!');
 
-              this.router.navigateByUrl('/materiais');
-
 
             } else {
               alert('Erro ao Editar!!');
@@ -217,7 +219,7 @@ export class MateriaisComponent implements OnInit {
 
           if (data['success']) {
             alert('Excluido com sucesso!');
-            this.router.navigateByUrl('/materiais');
+
 
           } else {
             alert('Erro ao Excluir!!');
