@@ -41,7 +41,6 @@
 </nav>
 
 
-
 <div class="container mt-4">
   <span class="titulo">Painel Pessoa Jurídica</span>
   <hr class="mb-4">
@@ -106,7 +105,7 @@
 
 
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
-<div id="modal" class="modal fade" role="dialog">
+<div id="modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -157,7 +156,7 @@
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Status</label>
                 <select (input)="this.status = $event.target.value" value="{{status}}" class="form-control">
-                  <option selected>{{status}}</option>
+
                   <option selected>Ativo</option>
                   <option>Inativo</option>
                 </select>

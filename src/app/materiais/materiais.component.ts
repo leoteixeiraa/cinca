@@ -208,25 +208,33 @@ export class MateriaisComponent implements OnInit {
 
 
   excluir(idu: string) {
-    return new Promise(resolve => {
-      const dados = {
 
-        requisicao: 'excluir',
-        idMaterial: idu
-      };
-      this.provider.Api(dados, this.caminho)
-        .subscribe(data => {
+    var agree = confirm("deseja deletar os dados??");
 
-          if (data['success']) {
-            alert('Excluido com sucesso!');
+    if (agree) {
+      return new Promise(resolve => {
+        const dados = {
+
+          requisicao: 'excluir',
+          idMaterial: idu
+        };
+        this.provider.Api(dados, this.caminho)
+          .subscribe(data => {
+
+            if (data['success']) {
+              alert('Excluido com sucesso!');
 
 
-          } else {
-            alert('Erro ao Excluir!!');
-          }
 
-        });
-    });
+
+            } else {
+              alert('Erro ao Excluir!!');
+            }
+
+          });
+      });
+    } else {
+      return false;
+    }
   }
-
 }

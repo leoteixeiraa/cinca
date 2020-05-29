@@ -196,26 +196,31 @@ export class PessoaFisicaComponent implements OnInit {
   }
 
   excluir(idu: string) {
-    return new Promise(resolve => {
-      const dados = {
-        requisicao: 'excluir',
-        idPFisica: idu
-      };
-      this.provider.Api(dados, this.caminho)
-        .subscribe(data => {
 
-          if (data['success']) {
-            alert('Excluido com sucesso!');
+    var agree = confirm("Tem certeza que deseja excluir esses dados?");
+
+    if (agree) {
+      return new Promise(resolve => {
+        const dados = {
+
+          requisicao: 'excluir',
+          idPFisica: idu
+        };
+        this.provider.Api(dados, this.caminho)
+          .subscribe(data => {
+
+            if (data['success']) {
+              alert('Excluido com sucesso!');
 
 
+            } else {
+              alert('Erro ao Excluir!!');
+            }
 
-          } else {
-            alert('Erro ao Excluir!!');
-          }
-
-        });
-    });
+          });
+      });
+    } else {
+      return false;
+    }
   }
-
 }
-
