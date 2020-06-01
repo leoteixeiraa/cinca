@@ -120,7 +120,8 @@ export class MateriaisComponent implements OnInit {
     var regra = /^[0-9]+$/;
     var regra2 = /^[0-9,.]+$/;
     if (this.cod_lcin.match(regra) && this.custoUnit.match(regra2)) {
-      if (this.cod_lcin !== '' && this.descricao !== '' && this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
+      if (this.cod_lcin !== '' && this.descricao !== '' &&
+        this.unidade !== '' && this.quantidade !== '' && this.custoUnit !== '') {
 
         return new Promise(resolve => {
           const dados = {
@@ -140,6 +141,7 @@ export class MateriaisComponent implements OnInit {
 
               if (data['success']) {
                 alert('Salvo com sucesso!!');
+                console.log(data);
 
               } else {
                 alert('Erro ao Salvar!!');

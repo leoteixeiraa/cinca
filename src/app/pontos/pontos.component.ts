@@ -125,14 +125,14 @@ export class PontosComponent implements OnInit {
     var regra = /^[0-9]+$/;
 
     if (this.potencia.match(regra)) {
-      if (this.potencia !== '' && this.consumo !== '' && this.endereco !== '' && this.cidade !== '') {
+      if (this.status !== '' && this.potencia !== '' && this.consumo !== '' && this.endereco !== '' && this.cidade !== '') {
 
         return new Promise(resolve => {
           const dados = {
             requisicao: 'add',
             potencia: this.potencia,
             consumo: this.consumo,
-            // status: this.status,
+            status: this.status,
             endereco: this.endereco,
             complemento: this.complemento,
             latitude: this.latitude,
@@ -155,7 +155,6 @@ export class PontosComponent implements OnInit {
               if (data['success']) {
                 alert('Salvo com sucesso!!');
                 console.log(data);
-
               } else {
                 alert('Erro ao Salvar!!');
               }
@@ -171,14 +170,14 @@ export class PontosComponent implements OnInit {
 
   }
 
-  dadosEditar(potencia: string, consumo: string, endereco: string, complemento: string,
+  dadosEditar(potencia: string, consumo: string, status: string, endereco: string, complemento: string,
     latitude: string, longitude: string, cidade: string, bairro: string, pontoReferencia: string,
     uf: string, cep: string, tipoPoste: string, fabricante: string,
     dimensoes: string, observacoes: string, idPonto: string) {
     this.title = 'Editar Ponto';
     this.potencia = potencia;
     this.consumo = consumo;
-    // this.status = status;
+    this.status = status;
     this.endereco = endereco;
     this.complemento = complemento;
     this.latitude = latitude;
@@ -204,7 +203,7 @@ export class PontosComponent implements OnInit {
           requisicao: 'editar',
           potencia: this.potencia,
           consumo: this.consumo,
-          // status: this.status,
+          status: this.status,
           endereco: this.endereco,
           complemento: this.complemento,
           latitude: this.latitude,
@@ -225,6 +224,7 @@ export class PontosComponent implements OnInit {
 
             if (data['success']) {
               alert('Editado com sucesso!!');
+              console.log(data);
 
 
             } else {
@@ -257,6 +257,7 @@ export class PontosComponent implements OnInit {
 
             if (data['success']) {
               alert('Excluido com sucesso!');
+              console.log(data);
 
 
             } else {

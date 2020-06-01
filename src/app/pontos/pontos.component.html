@@ -87,9 +87,11 @@
             <td>{{dado.cidade}}</td>
             <td>
                 <a (click)="dadosEditar(dado.potencia, dado.consumo, dado.status, dado.endereco, 
-          dado.cidade, dado.latitude, dado.longitude, dado.uf, dado.fabricante, 
-          dado.tipoPoste, dado.dimensoes, dado.status, dado.idPonto)" data-toggle="modal" data-target="#modal"
-                    title="Editar Registro"><i class="fas fa-info-circle text-info mr-2" style="font-size:18px"></i></a>
+                dado.complemento, dado.latitude, dado.longitude, dado.cidade, dado.bairro, 
+                dado.pontoReferencia, dado.uf, dado.cep, dado.fabricante, 
+                dado.tipoPoste, dado.dimensoes, dado.observacoes, dado.idPonto)" data-toggle="modal"
+                    data-target="#modal" title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"
+                        style="font-size:18px"></i></a>
             </td>
         </tr>
     </table>
@@ -141,9 +143,9 @@
                         <br>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputEmail4">Potência</label>
+                                <label for="inputEmail4">Potência *</label>
                                 <input type="text" (input)="this.potencia = $event.target.value" value="{{potencia}}"
-                                    class="form-control" placeholder="Potência" required>
+                                    class="form-control" placeholder="Potência">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Consumo</label>
@@ -160,9 +162,10 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Status</label>
-                                <select class="form-control">
-                                    <option selected>Ponto Ativo</option>
-                                    <option>Ponto Inativo</option>
+                                <select (input)="this.status = $event.target.value" value="{{status}}"
+                                    class="form-control">
+                                    <option value="Ponto Ativo" selected>Ponto Ativo</option>
+                                    <option value="Ponto Inativo">Ponto Inativo</option>
                                 </select>
                             </div>
                         </div>
@@ -318,7 +321,7 @@
                     <button *ngIf="idPonto > '0' " type="button" class="btn btn-primary"
                         (click)="editar()">Editar</button>
 
-                    <button *ngIf="idPonto > '0' " type="button" class="btn btn-danger" routerLink="/pessoa-fisica"
+                    <button *ngIf="idPonto > '0' " type="button" class="btn btn-danger"
                         (click)="excluir(idPonto)">Excluir</button>
 
                     <button type="button" class="btn btn-secondary" (click)="onRefresh();"
