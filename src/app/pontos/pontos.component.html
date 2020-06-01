@@ -142,11 +142,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Potência</label>
-                                <input type="text" class="form-control" placeholder="Potência">
+                                <input type="text" (input)="this.potencia = $event.target.value" value="{{potencia}}"
+                                    class="form-control" placeholder="Potência" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Consumo</label>
-                                <input type="text" class="form-control" placeholder="Consumo">
+                                <input type="text" (input)="this.consumo = $event.target.value" value="{{consumo}}"
+                                    class="form-control" placeholder="Consumo">
                             </div>
                         </div>
 
@@ -173,23 +175,25 @@
                         <br>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Endereço</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Endereço"
-                                required />
+                            <input type="text" (input)="this.endereco = $event.target.value" value="{{endereco}}"
+                                class="form-control" aria-describedby="emailHelp" placeholder="Endereço" required />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Complemento</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp"
-                                placeholder="Complemento" />
+                            <input type="text" (input)="this.complemento = $event.target.value" value="{{complemento}}"
+                                class="form-control" aria-describedby="emailHelp" placeholder="Complemento" />
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Latitude</label>
-                                <input type="text" class="form-control" placeholder="Latitude">
+                                <input type="text" class="form-control" (input)="this.latitude= $event.target.value"
+                                    value="{{latitude}}" placeholder="Latitude">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Longitude</label>
-                                <input type="text" class="form-control" placeholder="Longitude">
+                                <input type="text" class="form-control" (input)="this.longitude = $event.target.value"
+                                    value="{{longitude}}" placeholder="Longitude">
                             </div>
                         </div>
 
@@ -204,8 +208,8 @@
 
                             <div class="form-group col-md-4">
                                 <label for="inputEstado">Bairro</label>
-                                <input type="text" class="form-control" aria-describedby="emailHelp"
-                                    placeholder="Bairro" required />
+                                <input type="text" (input)="this.bairro = $event.target.value" value="{{bairro}}"
+                                    class="form-control" aria-describedby="emailHelp" placeholder="Bairro" required />
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputCEP">UF</label>
@@ -245,11 +249,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Ponto Refêrencia</label>
-                                <input type="text" class="form-control" placeholder="Ponto Refêrencia">
+                                <input type="text" class="form-control"
+                                    (input)="this.pontoReferencia = $event.target.value" value="{{pontoReferencia}}"
+                                    placeholder="Ponto Refêrencia">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">CEP</label>
-                                <input type="text" class="form-control" placeholder="CEP">
+                                <input type="text" (input)="this.cep = $event.target.value" value="{{cep}}"
+                                    class="form-control" placeholder="CEP">
                             </div>
                         </div>
 
@@ -262,18 +269,20 @@
                         <br>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Fabricante</label>
-                            <input type="email" class="form-control" aria-describedby="emailHelp"
-                                placeholder="Fabricante" required />
+                            <input type="email" (input)="this.fabricante = $event.target.value" value="{{fabricante}}"
+                                class="form-control" aria-describedby="emailHelp" placeholder="Fabricante" required />
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Tipo do Poste</label>
-                                <input type="text" class="form-control" placeholder="Tipo do Poste">
+                                <input type="text" class="form-control" (input)="this.tipoPoste = $event.target.value"
+                                    value="{{tipoPoste}}" placeholder="Tipo do Poste">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Dimensões</label>
-                                <input type="text" class="form-control" placeholder="Dimensões do Ponto">
+                                <input type="text" class="form-control" (input)="this.dimensoes = $event.target.value"
+                                    value="{{dimensoes}}" placeholder="Dimensões do Ponto">
                             </div>
                         </div>
                     </div>

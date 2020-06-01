@@ -21,17 +21,21 @@ export class PontosComponent implements OnInit {
   consumo = '';
   status = '';
   endereco = '';
-  cidade = '';
+  complemento = ''; //novo
   latitude = '';
   longitude = '';
+  cidade = '';
+  bairro = '';
+  pontoReferencia = '';
   uf = '';
+  cep = '';
   fabricante = '';
   tipoPoste = '';
   dimensoes = '';
   observacoes = '';
   title = 'Inserir Ponto';
   textoBuscar = '';
-  caminho = 'apiPonto.php';
+  caminho = 'apiPontos.php';
   ApiServiceService;
   imagem;
 
@@ -94,10 +98,6 @@ export class PontosComponent implements OnInit {
       });
   }
 
-
-
-
-
   carregar(texto: string) {
     this.lista = [];
     this.start = 0;
@@ -123,21 +123,25 @@ export class PontosComponent implements OnInit {
 
   cadastrar() {
     var regra = /^[0-9]+$/;
-    var regra2 = /^[0-9,.]+ $/;
-    if (this.potencia.match(regra) && this.consumo.match(regra2)) {
-      if (this.status !== '' && this.potencia !== '' && this.consumo !== '' && this.endereco !== '' && this.cidade !== '') {
+
+    if (this.potencia.match(regra)) {
+      if (this.potencia !== '' && this.consumo !== '' && this.endereco !== '' && this.cidade !== '') {
 
         return new Promise(resolve => {
           const dados = {
             requisicao: 'add',
             potencia: this.potencia,
             consumo: this.consumo,
-            status: this.status,
+            // status: this.status,
             endereco: this.endereco,
-            cidade: this.cidade,
+            complemento: this.complemento,
             latitude: this.latitude,
             longidute: this.longitude,
+            cidade: this.cidade,
+            bairro: this.bairro,
+            pontoReferencia: this.pontoReferencia,
             uf: this.uf,
+            cep: this.cep,
             fabricante: this.fabricante,
             tipoPoste: this.tipoPoste,
             dimensoes: this.dimensoes,
@@ -150,6 +154,7 @@ export class PontosComponent implements OnInit {
 
               if (data['success']) {
                 alert('Salvo com sucesso!!');
+                console.log(data);
 
               } else {
                 alert('Erro ao Salvar!!');
@@ -166,16 +171,23 @@ export class PontosComponent implements OnInit {
 
   }
 
-  dadosEditar(potencia: string, consumo: string, status: string, endereco: string, cidade: string, latitude: string, longitude: string, uf: string, fabricante: string, tipoPoste: string, dimensoes: string, observacoes: string, idPonto: string) {
+  dadosEditar(potencia: string, consumo: string, endereco: string, complemento: string,
+    latitude: string, longitude: string, cidade: string, bairro: string, pontoReferencia: string,
+    uf: string, cep: string, tipoPoste: string, fabricante: string,
+    dimensoes: string, observacoes: string, idPonto: string) {
     this.title = 'Editar Ponto';
     this.potencia = potencia;
     this.consumo = consumo;
-    this.status = status;
+    // this.status = status;
     this.endereco = endereco;
-    this.cidade = cidade;
+    this.complemento = complemento;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.cidade = cidade;
+    this.bairro = bairro;
+    this.pontoReferencia = pontoReferencia;
     this.uf = uf;
+    this.cep = cep;
     this.fabricante = fabricante;
     this.tipoPoste = tipoPoste;
     this.dimensoes = dimensoes;
@@ -192,12 +204,16 @@ export class PontosComponent implements OnInit {
           requisicao: 'editar',
           potencia: this.potencia,
           consumo: this.consumo,
-          status: this.status,
+          // status: this.status,
           endereco: this.endereco,
-          cidade: this.cidade,
+          complemento: this.complemento,
           latitude: this.latitude,
           longitude: this.longitude,
+          cidade: this.cidade,
+          bairro: this.bairro,
+          pontoReferencia: this.pontoReferencia,
           uf: this.uf,
+          cep: this.cep,
           fabricante: this.fabricante,
           tipoPoste: this.tipoPoste,
           dimensoes: this.dimensoes,
