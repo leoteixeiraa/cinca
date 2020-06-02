@@ -30,6 +30,9 @@ export class MateriaisComponent implements OnInit {
   ApiServiceService;
   imagem;
 
+  marked = false;
+  matManutencaoCheck = false;
+
   totalRecords: String;
   paginaAtual: number = 1;
 
@@ -76,6 +79,12 @@ export class MateriaisComponent implements OnInit {
 
     }
   }
+
+  toggleVisibility(e) {
+    this.marked = e.target.checked;
+  }
+
+
 
   onRefresh() {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
@@ -132,6 +141,7 @@ export class MateriaisComponent implements OnInit {
             unidade: this.unidade,
             custoUnit: this.custoUnit,
             marca: this.marca,
+            matManutencaoCheck: this.matManutencaoCheck,
             observacoes: this.observacoes,
 
           };
@@ -159,7 +169,7 @@ export class MateriaisComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(cod_lcin: string, descricao: string, unidade: string, quantidade: string, custoUnit: string, marca: string, observacoes: string, idMaterial: string) {
+  dadosEditar(cod_lcin: string, descricao: string, unidade: string, quantidade: string, custoUnit: string, marca: string, matManutencaoCheck: boolean, observacoes: string, idMaterial: string) {
     this.title = 'Editar Material';
     this.cod_lcin = cod_lcin;
     this.descricao = descricao;
@@ -167,6 +177,7 @@ export class MateriaisComponent implements OnInit {
     this.quantidade = quantidade;
     this.custoUnit = custoUnit;
     this.marca = marca;
+    this.matManutencaoCheck = matManutencaoCheck;
     this.observacoes = observacoes;
     this.idMaterial = idMaterial;
   }
@@ -184,6 +195,7 @@ export class MateriaisComponent implements OnInit {
           quantidade: this.quantidade,
           custoUnit: this.custoUnit,
           marca: this.marca,
+          matManutencaoCheck: this.matManutencaoCheck,
           observacoes: this.observacoes,
           idMaterial: this.idMaterial
         };
