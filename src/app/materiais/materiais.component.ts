@@ -35,7 +35,7 @@ export class MateriaisComponent implements OnInit {
   totalRecords: String;
   paginaAtual: number = 1;
 
-  matManutencao: number = 0;
+  matManutencao: number = null;
 
 
 

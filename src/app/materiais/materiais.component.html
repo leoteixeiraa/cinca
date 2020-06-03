@@ -196,11 +196,11 @@
               <div class="form-group col-md-6">
                 <div class="custom-control form-control-lg custom-checkbox">
                   <br>
-                  <input type="checkbox" [(ngModel)]="matManutencao"
-                    (change)="matManutencao = $event.target.checked ? 1 : 0"
-                    (ngModelChange)="matManutencao = $event ? 1 : 0" class="custom-control-input" id="customCheck1">
+                  <input type="checkbox" [attr.checked]="matManutencao == 1" [(ngModel)]="matManutencao"
+                    (change)="matManutencao = $event.target.checked ? 1 : null"
+                    (ngModelChange)="matManutencao = $event ? 1 : null" class="custom-control-input" id="customCheck1">
                   <label class="custom-control-label" for="customCheck1">Material de
-                    Manutenção</label><br>{{matManutencao}}<br><b></b>{{matManutencao}}
+                    Manutenção</label>
                 </div>
 
 
