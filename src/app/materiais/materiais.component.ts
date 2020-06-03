@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from '../services/api-service.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+// import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -30,18 +30,14 @@ export class MateriaisComponent implements OnInit {
   ApiServiceService;
   imagem;
 
-  marked = false;
-  matManutencaoCheck = false;
-
+  marked = 1;
+  theCheckbox = 1;
   totalRecords: String;
   paginaAtual: number = 1;
 
-  imageSrc: string;
-  myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
-  });
+  matManutencao: number = 0;
+
+
 
 
   constructor(private provider: ApiServiceService, private router: Router, private http: HttpClient) { }
@@ -56,29 +52,29 @@ export class MateriaisComponent implements OnInit {
 
   }
 
-  get f() {
-    return this.myForm.controls;
-  }
+  // get f() {
+  //   return this.myForm.controls;
+  // }
 
-  onFileChange(event) {
-    const reader = new FileReader();
+  // onFileChange(event) {
+  //   const reader = new FileReader();
 
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
+  //   if (event.target.files && event.target.files.length) {
+  //     const [file] = event.target.files;
+  //     reader.readAsDataURL(file);
 
-      reader.onload = () => {
+  //     reader.onload = () => {
 
-        this.imageSrc = reader.result as string;
+  //       this.imageSrc = reader.result as string;
 
-        this.myForm.patchValue({
-          fileSource: reader.result
-        });
+  //       this.myForm.patchValue({
+  //         fileSource: reader.result
+  //       });
 
-      };
+  //     };
 
-    }
-  }
+  //   }
+  // }
 
   toggleVisibility(e) {
     this.marked = e.target.checked;
@@ -141,7 +137,7 @@ export class MateriaisComponent implements OnInit {
             unidade: this.unidade,
             custoUnit: this.custoUnit,
             marca: this.marca,
-            matManutencaoCheck: this.matManutencaoCheck,
+            matManutencao: this.matManutencao,
             observacoes: this.observacoes,
 
           };
@@ -169,7 +165,7 @@ export class MateriaisComponent implements OnInit {
   }
 
   // tslint:disable-next-line: max-line-length
-  dadosEditar(cod_lcin: string, descricao: string, unidade: string, quantidade: string, custoUnit: string, marca: string, matManutencaoCheck: boolean, observacoes: string, idMaterial: string) {
+  dadosEditar(cod_lcin: string, descricao: string, unidade: string, quantidade: string, custoUnit: string, marca: string, matManutencao: number, observacoes: string, idMaterial: string) {
     this.title = 'Editar Material';
     this.cod_lcin = cod_lcin;
     this.descricao = descricao;
@@ -177,7 +173,7 @@ export class MateriaisComponent implements OnInit {
     this.quantidade = quantidade;
     this.custoUnit = custoUnit;
     this.marca = marca;
-    this.matManutencaoCheck = matManutencaoCheck;
+    this.matManutencao = matManutencao;
     this.observacoes = observacoes;
     this.idMaterial = idMaterial;
   }
@@ -195,7 +191,7 @@ export class MateriaisComponent implements OnInit {
           quantidade: this.quantidade,
           custoUnit: this.custoUnit,
           marca: this.marca,
-          matManutencaoCheck: this.matManutencaoCheck,
+          matManutencao: this.matManutencao,
           observacoes: this.observacoes,
           idMaterial: this.idMaterial
         };
