@@ -172,7 +172,7 @@ export class PontosComponent implements OnInit {
 
   dadosEditar(potencia: string, consumo: string, status: string, endereco: string, complemento: string,
     latitude: string, longitude: string, cidade: string, bairro: string, pontoReferencia: string,
-    uf: string, cep: string, tipoPoste: string, fabricante: string,
+    uf: string, cep: string, fabricante: string, tipoPoste: string,
     dimensoes: string, observacoes: string, idPonto: string) {
     this.title = 'Editar Ponto';
     this.potencia = potencia;
