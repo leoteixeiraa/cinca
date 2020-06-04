@@ -99,6 +99,7 @@ export class ServicosComponent implements OnInit {
                 alert('Erro ao Salvar!!');
               }
 
+
             });
         });
       } else {
@@ -141,6 +142,9 @@ export class ServicosComponent implements OnInit {
 
             if (data['success']) {
               alert('Editado com sucesso!!');
+              console.error(data);
+              console.log(data);
+
 
             } else {
               alert('Erro ao Editar!!');
