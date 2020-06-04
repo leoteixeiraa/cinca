@@ -57,9 +57,6 @@ export class PontosComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     this.carregar(this.textoBuscar);
-
-
-
   }
 
   get f() {

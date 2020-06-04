@@ -19,6 +19,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PontosComponent } from './pontos/pontos.component';
     PessoaJuridicaComponent,
     MateriaisComponent,
     ServicosComponent,
-    PontosComponent
+    PontosComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.compo
 import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
 
@@ -76,6 +77,15 @@ const routes: Routes = [
 
 
     component: PontosComponent
+
+  },
+
+  {
+
+    path: 'upload',
+
+
+    component: UploadComponent
 
   }
 
