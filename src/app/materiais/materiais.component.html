@@ -54,6 +54,18 @@
       <br><br>
     </div>
 
+    <div class="col-sm-8">
+      <div class="custom-control form-control-lg custom-checkbox">
+
+        <input type="checkbox" [(ngModel)]="matManutencaoCheck" (ngModelChange)="matManutencaoCheck = $event ? 1 : null"
+          (input)="carregar($event.target.value)" class="custom-control-input" id="matManutencaoFilter">
+        <label class="custom-control-label" for="matManutencaoFilter">Material de
+          Manutenção</label>
+        {{matManutencaoCheck}}
+        <br><br>
+      </div>
+    </div>
+
     <div class="col-lg-4 col-md-6 col-sm-12">
 
       <form class="form-inline my-2 my-lg-0">
@@ -61,6 +73,7 @@
           (change)="this.textoBuscar = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
         <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0"><i
             class="fas fa-search"></i></a>
+
       </form>
 
     </div>
@@ -94,7 +107,7 @@
       <td>{{dado.unidade}}</td>
       <td>{{dado.descricao}}</td>
       <td>{{dado.quantidade}}</td>
-      <td>R${{dado.custoUnit}}</td>
+      <td>R$&nbsp;{{dado.custoUnit}}</td>
       <td>{{dado.marca}}</td>
       <td>
         <a (click)="dadosEditar(dado.cod_lcin, dado.descricao, dado.unidade, dado.quantidade, dado.custoUnit,
@@ -110,7 +123,7 @@
 
 
 
-
+R
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
 

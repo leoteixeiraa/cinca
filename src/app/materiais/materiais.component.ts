@@ -31,11 +31,12 @@ export class MateriaisComponent implements OnInit {
   imagem;
 
   marked = 1;
-  theCheckbox = 1;
+
   totalRecords: String;
   paginaAtual: number = 1;
 
   matManutencao: number = null;
+  matManutencaoCheck: number = null;
 
 
 
@@ -47,8 +48,6 @@ export class MateriaisComponent implements OnInit {
     this.lista = [];
     this.start = 0;
     this.carregar(this.textoBuscar);
-
-
 
   }
 
@@ -80,8 +79,6 @@ export class MateriaisComponent implements OnInit {
     this.marked = e.target.checked;
   }
 
-
-
   onRefresh() {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
 
@@ -94,10 +91,6 @@ export class MateriaisComponent implements OnInit {
       });
   }
 
-
-
-
-
   carregar(texto: string) {
     this.lista = [];
     this.start = 0;
@@ -106,7 +99,8 @@ export class MateriaisComponent implements OnInit {
         requisicao: 'listar',
         limit: this.limit,
         start: this.start,
-        textoBuscar: texto
+        textoBuscar: texto,
+
       };
       this.provider.Api(dados, this.caminho).subscribe(data => {
         for (const dado of data['result']) {
