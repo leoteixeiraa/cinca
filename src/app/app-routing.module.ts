@@ -8,7 +8,7 @@ import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
 import { UploadComponent } from './upload/upload.component';
-
+import { MatManutencaoComponent } from './mat-manutencao/mat-manutencao.component';
 const routes: Routes = [
 
   {
@@ -27,6 +27,15 @@ const routes: Routes = [
 
 
     component: UsuariosComponent
+
+  },
+
+  {
+
+    path: 'mat-manutencao',
+
+
+    component: MatManutencaoComponent
 
   },
 

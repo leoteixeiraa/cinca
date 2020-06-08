@@ -1,0 +1,10 @@
+<p>
+    Start editing to see some magic happen :)
+</p>
+
+<select multiple>
+    <option *ngFor="let target of availableTargets; let i = index;" [value]="target .id" (click)="AddTarget(i)">
+        {{target.name}}</option>
+</select>
+
+{{ selectedTargets | json }}
