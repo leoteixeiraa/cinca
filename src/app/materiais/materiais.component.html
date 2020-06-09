@@ -54,7 +54,7 @@
       <br><br>
     </div>
 
-    <div class="col-sm-8">
+    <!-- <div class="col-sm-8">
       <div class="custom-control form-control-lg custom-checkbox">
 
         <input type="checkbox" [(ngModel)]="matManutencaoCheck" (ngModelChange)="matManutencaoCheck = $event ? 1 : null"
@@ -64,7 +64,7 @@
         {{matManutencaoCheck}}
         <br><br>
       </div>
-    </div>
+    </div> -->
 
     <div class="col-lg-4 col-md-6 col-sm-12">
 
@@ -122,8 +122,18 @@
 </div>
 
 
+<p>
+  Start editing to see some magic happen :)
+</p>
 
-R
+<select multiple>
+  <option *ngFor="let dado of lista ; let i = index;" [value]="dado.cod_lcin" (click)="AddTarget(i)">
+    {{dado.descricao}}</option>
+</select>
+
+
+
+{{ selectedTargets | json }}
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
 <!--CONTEUDO DA JANELA MODAL DE INSERIR-->
 
@@ -278,4 +288,5 @@ R
       </div>
 
     </div>
+
   </div>

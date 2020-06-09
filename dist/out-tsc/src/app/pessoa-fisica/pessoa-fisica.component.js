@@ -38,7 +38,6 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
         this.lista = [];
         this.start = 0;
         this.carregar(this.textoBuscar);
-        this.reload();
         this.load();
     }
     load() {
@@ -47,13 +46,14 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
         (sessionStorage.refresh == 'true' || !sessionStorage.refresh) && location.reload();
         sessionStorage.refresh = false;
     }
-    reload() {
-        if (this.ApiServiceService.reload) {
-            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-                this.router.navigate(['pessoa-fisica']);
-                this.ApiServiceService.reload = false;
-            });
-        }
+    onRefresh() {
+        this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+        let currentUrl = this.router.url + '?';
+        this.router.navigateByUrl(currentUrl)
+            .then(() => {
+            this.router.navigated = false;
+            this.router.navigate([this.router.url]);
+        });
     }
     carregar(texto) {
         this.lista = [];
@@ -100,7 +100,6 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
                     .subscribe(data => {
                     if (data['success']) {
                         alert('Salvo com sucesso!!');
-                        this.reload();
                     }
                     else {
                         alert('Erro ao Salvar!!');
@@ -159,10 +158,6 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
                 .subscribe(data => {
                 if (data['success']) {
                     alert('Editado com sucesso!!');
-                    //  location='linhas';
-                    // this.router.navigate(['/linhas']);
-                    this.load();
-                    this.reload();
                 }
                 else {
                     alert('Erro ao Editar!!');
@@ -171,22 +166,27 @@ let PessoaFisicaComponent = class PessoaFisicaComponent {
         });
     }
     excluir(idu) {
-        return new Promise(resolve => {
-            const dados = {
-                requisicao: 'excluir',
-                idPFisica: idu
-            };
-            this.provider.Api(dados, this.caminho)
-                .subscribe(data => {
-                if (data['success']) {
-                    alert('Excluido com sucesso!');
-                    this.reload();
-                }
-                else {
-                    alert('Erro ao Excluir!!');
-                }
+        var agree = confirm("Tem certeza que deseja excluir esses dados?");
+        if (agree) {
+            return new Promise(resolve => {
+                const dados = {
+                    requisicao: 'excluir',
+                    idPFisica: idu
+                };
+                this.provider.Api(dados, this.caminho)
+                    .subscribe(data => {
+                    if (data['success']) {
+                        alert('Excluido com sucesso!');
+                    }
+                    else {
+                        alert('Erro ao Excluir!!');
+                    }
+                });
             });
-        });
+        }
+        else {
+            return false;
+        }
     }
 };
 PessoaFisicaComponent = __decorate([

@@ -14,10 +14,13 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { PessoaFisicaComponent } from './pessoa-fisica/pessoa-fisica.component';
 import { PessoaJuridicaComponent } from './pessoa-juridica/pessoa-juridica.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MateriaisComponent } from './materiais/materiais.component';
 import { ServicosComponent } from './servicos/servicos.component';
+import { PontosComponent } from './pontos/pontos.component';
+import { UploadComponent } from './upload/upload.component';
+import { MatManutencaoComponent } from './mat-manutencao/mat-manutencao.component';
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,7 +34,10 @@ AppModule = __decorate([
             PessoaFisicaComponent,
             PessoaJuridicaComponent,
             MateriaisComponent,
-            ServicosComponent
+            ServicosComponent,
+            PontosComponent,
+            UploadComponent,
+            MatManutencaoComponent
         ],
         imports: [
             BrowserModule,
@@ -41,6 +47,7 @@ AppModule = __decorate([
             CustomMaterialModule,
             FormsModule,
             TextMaskModule,
+            ReactiveFormsModule
         ],
         providers: [ApiServiceService,
             HttpClient

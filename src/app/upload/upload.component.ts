@@ -10,49 +10,76 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
+  images = [];
 
-  caminho = "upload.php"
-
-  imageSrc: string;
   myForm = new FormGroup({
+
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+
     file: new FormControl('', [Validators.required]),
+
     fileSource: new FormControl('', [Validators.required])
+
   });
 
 
 
-  constructor(private provider: ApiServiceService, private router: Router, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
   ngOnInit(): void {
     throw new Error("Method not implemented.");
   }
 
+
+
   get f() {
+
     return this.myForm.controls;
+
   }
+
+
 
   onFileChange(event) {
-    const reader = new FileReader();
 
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
+    if (event.target.files && event.target.files[0]) {
 
-      reader.onload = () => {
+      var filesAmount = event.target.files.length;
 
-        this.imageSrc = reader.result as string;
+      for (let i = 0; i < filesAmount; i++) {
 
-        this.myForm.patchValue({
-          fileSource: reader.result
-        });
+        var reader = new FileReader();
 
-      };
+
+
+        reader.onload = (event: any) => {
+
+          console.log(event.target.result);
+
+          this.images.push(event.target.result);
+
+
+
+          this.myForm.patchValue({
+
+            fileSource: this.images
+
+          });
+
+        }
+
+
+
+        reader.readAsDataURL(event.target.files[i]);
+
+      }
 
     }
+
   }
 
+
   submit() {
-    console.log(this.myForm.value);
+    console.log(this.myForm.value)
     this.http.post('http://cinca-back-com-br.umbler.net/upload.php', this.myForm.value)
       .subscribe(res => {
         console.log(res);

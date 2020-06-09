@@ -38,8 +38,13 @@ export class MateriaisComponent implements OnInit {
   matManutencao: number = null;
   matManutencaoCheck: number = null;
 
+  availableTargets = [];
+  selectedTargets = [];
 
-
+  public AddTarget(index) {
+    this.selectedTargets.push(this.availableTargets[index]);
+    this.availableTargets.splice(index, 1);
+  }
 
   constructor(private provider: ApiServiceService, private router: Router, private http: HttpClient) { }
 
