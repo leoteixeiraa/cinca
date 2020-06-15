@@ -21,6 +21,7 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
 import { UploadComponent } from './upload/upload.component';
 import { MatManutencaoComponent } from './mat-manutencao/mat-manutencao.component';
+import { AberturaChamadoComponent } from './abertura-chamado/abertura-chamado.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatManutencaoComponent } from './mat-manutencao/mat-manutencao.componen
     ServicosComponent,
     PontosComponent,
     UploadComponent,
-    MatManutencaoComponent
+    MatManutencaoComponent,
+    AberturaChamadoComponent
   ],
   imports: [
     BrowserModule,

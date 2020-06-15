@@ -9,13 +9,14 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { PontosComponent } from './pontos/pontos.component';
 import { UploadComponent } from './upload/upload.component';
 import { MatManutencaoComponent } from './mat-manutencao/mat-manutencao.component';
+import { AberturaChamadoComponent } from './abertura-chamado/abertura-chamado.component';
 const routes: Routes = [
 
   {
 
     path: '',
 
-    redirectTo: 'usuarios',
+    redirectTo: 'abertura-chamado',
 
     pathMatch: 'full'
 
@@ -36,6 +37,15 @@ const routes: Routes = [
 
 
     component: MatManutencaoComponent
+
+  },
+
+  {
+
+    path: 'abertura-chamado',
+
+
+    component: AberturaChamadoComponent
 
   },
 

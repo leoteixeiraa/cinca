@@ -1,0 +1,464 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <img src="https://www.cincatarina.sc.gov.br/images/cincatarina/logo-light.png"
+        class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    <a></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Consultar Pessoa</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" routerLink="/pessoa-fisica">Pessoa Física</a>
+                    <a class="dropdown-item" routerLink="/pessoa-juridica">Pessoa Jurídica</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Materiais & Servicos</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" routerLink="/materiais">Materiais</a>
+                    <a class="dropdown-item" routerLink="/servicos">Servicos</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/pontos/">Pontos<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Acesso Sistema</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" routerLink="/usuarios">Cadastrar Usuario</a>
+                </div>
+            </li>
+        </ul>
+        <button type="button" routerLink="/login" class="btn btn-link">Sair</button>
+    </div>
+</nav>
+
+
+
+<div class="container mt-4">
+    <span class="titulo">Painel de Ocorrências</span>
+    <hr class="mb-4">
+
+    <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-12">
+            <button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+
+            <br><br>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12">
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" (input)="carregar($event.target.value)"
+                    (change)="this.textoBuscar = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
+                <a (click)="carregar(this.textoBuscar)" class="btn btn-outline-info my-2 my-sm-0"><i
+                        class="fas fa-search"></i></a>
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+
+    <table class="table table-striped ml-2">
+        <tr>
+            <td><b>ID Ponto</b></td>
+            <td><b>Potência</b></td>
+            <td><b>Consumo</b></td>
+            <td><b>Tipo do Poste</b></td>
+            <td><b>Cidade</b></td>
+            <td><b>Ações</b></td>
+        </tr>
+        <tr *ngFor="let dado of lista | paginate: { itemsPerPage: 8, currentPage: paginaAtual }; let i = index">
+
+            <td>{{dado.idOcorrencia}}</td>
+            <td>{{dado.potencia}}</td>
+            <td>{{dado.consumo}}</td>
+            <td>{{dado.tipoPoste}}</td>
+            <td>{{dado.cidade}}</td>
+            <td>
+                <a (click)="dadosEditar(dado.municipio, dado.solicitante, dado.endereco,
+                 dado.bairro, dado.cep, dado.pontoReferencia, dado.numero, dado.origem,
+                  dado.dataAbertura, dado.dataAutorizacao,
+                   dado.dataFechamento, dado.prioridade, dado.situacao, dado.idOcorrencia)" data-toggle="modal"
+                    data-target="#modal" title="Editar Registro"><i class="fas fa-info-circle text-info mr-2"
+                        style="font-size:18px"></i></a>
+            </td>
+        </tr>
+    </table>
+    <pagination-controls (pageChange)="paginaAtual = $event" maxSize="7" previousLabel="Anterior" nextLabel="Próximo">
+    </pagination-controls>
+</div>
+
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{title}}</h5>
+                <button type="button" class="close" (click)="onRefresh();" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#principal" role="tab"
+                            aria-controls="principal">Dados Ocorrencia</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#endereco" role="tab"
+                            aria-controls="endereco">Endereço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#especificacoes" role="tab"
+                            aria-controls="especificacoes">Especificações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#observacoes" role="tab"
+                            aria-controls="observacoes">Observacoes</a>
+                    </li>
+                </ul>
+                <!--Inf. do Sub-Menu -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="principal" role="tabpanel">
+                        <div class="modal-header">
+                            <h6 class="modal-title"><strong>Informações Básicas</strong></h6>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Numero da Ocorrência</label>
+                                <input type="text" class="form-control" placeholder="Ocorrência nº" disabled>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Origem</label>
+                                <select class="form-control">
+                                    <option selected>WhatsApp</option>
+                                    <option>E-mail</option>
+                                    <option>0800</option>
+                                    <option>Gestor da Prefeitura</option>
+                                    <option>Empresa Terceirizada</option>
+                                    <option>Via Sistema</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Prioridade:</label>
+                                <select class="form-control">
+                                    <option selected>Baixa</option>
+                                    <option>Média</option>
+                                    <option>Alta</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Município</label>
+                                <select class="form-control">
+                                    <option>ABDON BATISTA</option>
+                                    <option>AGROLÂNDIA</option>
+                                    <option>ÁGUA DOCE</option>
+                                    <option>ÁGUAS MORNAS</option>
+                                    <option>ALFREDO WAGNER</option>
+                                    <option>ALTO BELA VISTA</option>
+                                    <option>ANGELINA</option>
+                                    <option>ANITA GARIBALDI</option>
+                                    <option>ANITÁPOLIS</option>
+                                    <option>ANTÔNIO CARLOS</option>
+                                    <option>ARROIO TRINTA</option>
+                                    <option>ASCURRA</option>
+                                    <option>BOM JESUS</option>
+                                    <option>BRUNÓPOLIS</option>
+                                    <option>CAÇADOR</option>
+                                    <option>CALMON</option>
+                                    <option>CAPINZAL</option>
+                                    <option>CATANDUVAS</option>
+                                    <option>CELSO RAMOS</option>
+                                    <option>COCAL DO SUL</option>
+                                    <option>CORONEL MARTINS</option>
+                                    <option>CURITIBANOS</option>
+                                    <option>CAMPOS NOVOS</option>
+                                    <option>DONA EMMA</option>
+                                    <option>ENTRE RIOS</option>
+                                    <option>ERVAL VELHO</option>
+                                    <option>FAXINAL DOS GUEDES</option>
+                                    <option>FRAIBURGO</option>
+                                    <option>FREI ROGÉRIO</option>
+                                    <option>GALVÃO</option>
+                                    <option>GARUVA</option>
+                                    <option>GUATAMBÚ</option>
+                                    <option>HERVAL D'OESTE</option>
+                                    <option>IBIAM</option>
+                                    <option>IBICARÉ</option>
+                                    <option>IOMERÊ</option>
+                                    <option>IPUAÇU</option>
+                                    <option>IPUMIRIM</option>
+                                    <option>IRANI</option>
+                                    <option>IRATI</option>
+                                    <option>IRINEÓPOLIS</option>
+                                    <option>ITÁ</option>
+                                    <option>ITAPOÁ</option>
+                                    <option>ITUPORANGA</option>
+                                    <option>JABORÁ</option>
+                                    <option>JOAÇABA</option>
+                                    <option>JUPIÁ</option>
+                                    <option>LACERDÓPOLIS</option>
+                                    <option>LAGES</option>
+                                    <option>LAJEADO GRANDE</option>
+                                    <option>LAURENTINO</option>
+                                    <option>LEBON RÉGIS</option>
+                                    <option>LEOBERTO LEAL</option>
+                                    <option>LINDÓIA DO SUL</option>
+                                    <option>LONTRAS</option>
+                                    <option>LUZERNA</option>
+                                    <option>MACIEIRA</option>
+                                    <option>MAJOR GERCINO</option>
+                                    <option>MAREMA</option>
+                                    <option>MATOS COSTA</option>
+                                    <option>MONTE CARLO</option>
+                                    <option>MONTE CASTELO</option>
+                                    <option>MORRO DA FUMAÇA</option>
+                                    <option>NOVA TRENTO</option>
+                                    <option>NOVA VENEZA</option>
+                                    <option>NOVO HORIZONTE</option>
+                                    <option>ORLEANS</option>
+                                    <option>OURO</option>
+                                    <option>OURO VERDE</option>
+                                    <option>PALMEIRA</option>
+                                    <option>PASSOS MAIA</option>
+                                    <option>PAULO LOPES</option>
+                                    <option>PINHEIRO PRETO</option>
+                                    <option>PIRATUBA</option>
+                                    <option>PONTE ALTA DO NORTE</option>
+                                    <option>PONTE SERRADA</option>
+                                    <option>PRESIDENTE CASTELLO BRANCO</option>
+                                    <option>QUILOMBO</option>
+                                    <option>RANCHO QUEIMADO</option>
+                                    <option>RIO DAS ANTAS</option>
+                                    <option>RIO DOS CEDROS</option>
+                                    <option>RIO DO SUL</option>
+                                    <option>RIO NEGRINHO</option>
+                                    <option>SALETE</option>
+                                    <option>SALTO VELOSO</option>
+                                    <option>SANTA CECÍLIA</option>
+                                    <option>SANTA TEREZINHA</option>
+                                    <option>SANTO AMARO DA IMPERATRIZ</option>
+                                    <option>SÃO BERNARDINO</option>
+                                    <option>SÃO BONIFÁCIO</option>
+                                    <option>SÃO DOMINGOS</option>
+                                    <option>ABELARDO LUZ</option>
+                                    <option>SÃO FRANCISCO DO SUL</option>
+                                    <option>SÃO LOURENÇO DO OESTE</option>
+                                    <option>SÃO PEDRO DE ALCÂNTARA</option>
+                                    <option>SIDERÓPOLIS</option>
+                                    <option>TANGARÁ</option>
+                                    <option>TIMBÓ GRANDE</option>
+                                    <option>TREZE TÍLIAS</option>
+                                    <option>URUBICI</option>
+                                    <option>VARGEÃO</option>
+                                    <option>VARGEM</option>
+                                    <option>VARGEM BONITA</option>
+                                    <option>VIDEIRA</option>
+                                    <option>XANXERÊ</option>
+                                    <option>XAVANTINA</option>
+                                    <option>XAXIM</option>
+                                    <option>ZORTÉA</option>
+
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Data Abertura</label>
+                                <input type="datetime-local" class="form-control" placeholder="Data Abertura" disabled>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Data Autorizado</label>
+                                <input type="datetime-local" class="form-control" placeholder="Data Autorizado"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <h5>Situação da Ocorrência: <span class="badge badge-pill badge-warning">Em Análise</span>
+                            </h5>
+                            <!-- <div class="form-group col-md-6">
+                                <label for="inputPassword4">Data Autorizado</label>
+                                <input type="datetime-local" class="form-control" placeholder="Data Autorizado"
+                                    disabled>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="endereco" role="tabpanel">
+                        <div class="modal-header">
+                            <h6 class="modal-title"><strong>Endereço</strong></h6>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Endereço</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Endereço"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Complemento</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp"
+                                placeholder="Complemento" />
+                        </div>
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Município</label>
+                                <input type="text" class="form-control" placeholder="Município" disabled>
+                            </div>
+
+
+
+                            <div class="form-group col-md-4">
+                                <label for="inputEstado">Bairro</label>
+                                <input type="text" class="form-control" aria-describedby="emailHelp"
+                                    placeholder="Bairro" required />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputCEP">UF</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC" selected>SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Ponto Refêrencia</label>
+                                <input type="text" class="form-control" placeholder="Ponto Refêrencia">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">CEP</label>
+                                <input type="text" class="form-control" placeholder="CEP">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane" id="especificacoes" role="tabpanel">
+                        <div class="modal-header">
+                            <h6 class="modal-title"><strong>Especificações do Ponto</strong></h6>
+                        </div>
+                        <br>
+                        <div class="form-group">
+
+
+                            <label for="exampleInputEmail1">Fabricante</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp"
+                                placeholder="Fabricante" required />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Tipo do Poste</label>
+                                <select class="form-control">
+                                    <option value="Concreto Duplo T">Concreto Duplo T</option>
+                                    <option value="Concreto Circular">Concreto Circular</option>
+                                    <option value="Madeira">Madeira</option>
+                                    <option value="Ornamental">Ornamental</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Dimensões</label>
+                                <select class="form-control">
+                                    <option>teste</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="observacoes" role="tabpanel">
+                        <div class="modal-header">
+                            <h6 class="modal-title"><strong>Observações</strong></h6>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <textarea class="form-control" name="" id="" cols="95" rows="7"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script>
+                    $(function () {
+                        $('#myTab a:last').tab('show')
+                    })
+                </script>
+
+
+
+
+
+
+                <div class="modal-footer">
+                    <button *ngIf="idOcorrencia === '' " type="button" class="btn btn-primary"
+                        (click)="cadastrar()">Salvar</button>
+
+                    <button *ngIf="idOcorrencia > '0' " type="button" class="btn btn-primary"
+                        (click)="editar()">Editar</button>
+
+                    <button *ngIf="idOcorrencia > '0' " type="button" class="btn btn-danger"
+                        (click)="excluir(idOcorrencia)">Excluir</button>
+
+                    <button type="button" class="btn btn-secondary" (click)="onRefresh();"
+                        data-dismiss="modal">Fechar</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
